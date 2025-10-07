@@ -15,7 +15,15 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
      title: "CodeRun 2025",
-     description: "Site oficial CodeRun 2025",
+     description:
+          "Site oficial CodeRun 2025 - Cea mai mare competiție de programare din România",
+     keywords: "programare, competiție, coding, hackathon",
+     authors: [{ name: "BEST Cluj-Napoca" }],
+     openGraph: {
+          title: "CodeRun 2025",
+          description: "Join the CodeRunners!",
+          images: ["/images/logo.png"],
+     },
 };
 
 export default function RootLayout({

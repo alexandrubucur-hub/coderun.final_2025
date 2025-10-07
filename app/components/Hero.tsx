@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { GradientSlideButton } from "@/components/ui/gradient-slide-button";
 
 const HeroSection: React.FC = () => {
      const [glitchText, setGlitchText] = useState("");
@@ -188,6 +189,13 @@ const HeroSection: React.FC = () => {
                                              <button className="px-12 py-6 bg-gradient-coderun text-white font-bold rounded-full text-xl text-glitch transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-coderun-pink/30 active:scale-95 border-2 border-coderun-accent">
                                                   Înscrie-te
                                              </button>
+                                             <GradientSlideButton
+                                                  className="px-12 py-6 bg-black text-2xl  font-bold rounded-full  text-white border-2 border-coderun-accent text-glitch"
+                                                  colorFrom="#FA58B6"
+                                                  colorTo="#7A0BC0"
+                                             >
+                                                  Înscrie-te
+                                             </GradientSlideButton>
                                         </Link>
                                    </div>
                               </div>

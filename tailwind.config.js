@@ -57,14 +57,6 @@ module.exports = {
                               filter: "drop-shadow(0 0 40px #FA58B6) drop-shadow(0 0 80px #7A0BC0)",
                          },
                     },
-                    "text-glitch": {
-                         "0%": {
-                              textShadow: "2px 0 #FA58B6, -2px 0 #7A0BC0",
-                         },
-                         "100%": {
-                              textShadow: "-2px 0 #FA58B6, 2px 0 #7A0BC0",
-                         },
-                    },
                },
                backgroundImage: {
                     "gradient-coderun":
