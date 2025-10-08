@@ -52,7 +52,7 @@ const HeroSection: React.FC = () => {
                <div className="absolute inset-0 z-10 pointer-events-none text-glitch">
                     {/* Animated Matrix-style background elements */}
                     <div className="absolute top-10 left-10 text-coderun-pink font-mono text-xs opacity-40 ">
-                         {"{"}code: "reality"{"}"}
+                         {"{"}code: 'reality'{"}"}
                     </div>
                     <div className="absolute top-32 right-20 text-coderun-purple font-mono text-xs opacity-35 ">
                          function(){`{return dreams;}`}
@@ -70,7 +70,7 @@ const HeroSection: React.FC = () => {
                          const matrix = new Reality();
                     </div>
                     <div className="absolute top-1/3 left-1/2 text-coderun-pink-light font-mono text-xs opacity-25 ">
-                         console.log("Neo awakens");
+                         console.log('Neo awakens');
                     </div>
                     <div className="absolute bottom-1/3 right-1/4 text-coderun-accent font-mono text-xs opacity-40 ">
                          Array.from(∞).forEach(code)
