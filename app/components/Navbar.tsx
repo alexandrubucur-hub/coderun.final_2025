@@ -7,6 +7,7 @@ import {
 } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import Image from "next/image";
 import { GradientSlideButton } from "@/components/ui/gradient-slide-button";
 
 const navigation = [
@@ -32,7 +33,7 @@ const Navbar: React.FC = () => {
           >
                <div className="max-w-8xl mx-auto px-2 sm:px-6 lg:px-8">
                     <div className="relative flex h-20 items-center">
-                         {/* Buton Hamburger (vizibil doar pe mobil/tabletă, poziționat absolut) */}
+                         {/* Buton Hamburger */}
                          <div className="absolute inset-y-0 left-0 flex items-center lg:hidden">
                               <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-coderun-purple/20 hover:text-coderun-pink transition-all duration-300 focus:ring-2 focus:ring-inset focus:ring-coderun-accent">
                                    <span className="absolute -inset-0.5" />
@@ -50,44 +51,46 @@ const Navbar: React.FC = () => {
                               </DisclosureButton>
                          </div>
 
-                         {/* Container Principal pentru layout - ocupă toată lățimea */}
+                         {/* Container Principal */}
                          <div className="flex flex-1 items-center justify-center">
-                              {/* --- LAYOUT PENTRU MOBIL & TABLETĂ (<1024px) --- */}
-                              {/* Logo centrat, vizibil doar pe ecrane mici */}
+                              {/* Logo Mobile */}
                               <div className="flex flex-shrink-0 items-center lg:hidden">
-                                   <a
+                                   <Link
                                         href="#"
                                         className="transition-transform duration-300 hover:scale-105"
                                    >
-                                        <img
+                                        <Image
+                                             src="/images/logo.png"
                                              alt="Coderun Logo"
-                                             src="./images/logo.png"
+                                             width={200}
+                                             height={64}
                                              className="h-16 w-auto filter drop-shadow-lg"
                                         />
-                                   </a>
+                                   </Link>
                               </div>
 
-                              {/* --- LAYOUT PENTRU DESKTOP (>1024px) --- */}
-                              {/* Sistem de 3 coloane egale, vizibil doar pe ecrane mari */}
+                              {/* Layout Desktop */}
                               <div className="hidden w-full items-center lg:flex">
-                                   {/* Coloana 1: Logo (aliniat la stânga) */}
+                                   {/* Logo Stânga */}
                                    <div className="flex-1 justify-start">
-                                        <a
+                                        <Link
                                              href="#"
                                              className="transition-transform duration-300 hover:scale-105"
                                         >
-                                             <img
+                                             <Image
+                                                  src="/images/logo.png"
                                                   alt="Coderun Logo"
-                                                  src="./images/logo.png"
+                                                  width={200}
+                                                  height={64}
                                                   className="h-16 w-auto filter drop-shadow-lg"
                                              />
-                                        </a>
+                                        </Link>
                                    </div>
 
-                                   {/* Coloana 2: Navigația (aliniată pe centru) */}
+                                   {/* Navigație Centru */}
                                    <div className="flex flex-1 justify-center items-center space-x-6">
                                         {navigation.map((item) => (
-                                             <a
+                                             <Link
                                                   key={item.name}
                                                   href={item.href}
                                                   aria-current={
@@ -103,15 +106,15 @@ const Navbar: React.FC = () => {
                                                   )}
                                              >
                                                   {item.name}
-                                             </a>
+                                             </Link>
                                         ))}
                                    </div>
 
-                                   {/* Coloana 3: Buton (aliniat la dreapta) */}
+                                   {/* Buton Dreapta */}
                                    <div className="flex flex-1 justify-end items-center min-w-0">
                                         <Link href="#">
                                              <GradientSlideButton
-                                                  className="rounded-full bg-black text-white border-2 border-coderun-accent hover:border-coderun-pink transition-all duration-300 shadow-lg shadow-coderun-purple/20 hover:shadow-coderun-pink/30"
+                                                  className="rounded-full bg-coderun-dark text-white border-2 border-coderun-accent hover:border-coderun-pink transition-all duration-300 shadow-lg shadow-coderun-purple/20 hover:shadow-coderun-pink/30"
                                                   colorFrom="#FA58B6"
                                                   colorTo="#7A0BC0"
                                              >
@@ -124,13 +127,13 @@ const Navbar: React.FC = () => {
                     </div>
                </div>
 
-               {/* --- Meniul mobil (Sidebar) --- */}
+               {/* Meniu mobil */}
                <DisclosurePanel className="lg:hidden bg-coderun-dark/95 backdrop-blur-xl border-t border-coderun-purple/30">
                     <div className="space-y-1 px-2 pb-3 pt-2">
                          {navigation.map((item) => (
                               <DisclosureButton
                                    key={item.name}
-                                   as="a"
+                                   as={Link}
                                    href={item.href}
                                    aria-current={
                                         item.current ? "page" : undefined

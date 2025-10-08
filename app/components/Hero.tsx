@@ -8,14 +8,14 @@ const HeroSection: React.FC = () => {
      const [glitchText, setGlitchText] = useState("");
 
      const codeSnippets = [
-          "function hackTheMatrix() {",
-          "const reality = new Simulation();",
-          "if (you.canCode()) {",
-          "while(true) { dream(); }",
-          'console.log("Welcome to CodeRun");',
-          "Array.from({length: ∞}).map(code)",
-          "const cyberpunk = true;",
-          "export default YourFuture;",
+          `function hackTheMatrix() {`,
+          `const reality = new Simulation();`,
+          `if (you.canCode()) {`,
+          `while(true) { dream(); }`,
+          `console.log("Welcome to CodeRun");`,
+          `Array.from({length: Infinity}).map(code)`,
+          `const cyberpunk = true;`,
+          `export default YourFuture;`,
      ];
 
      useEffect(() => {
@@ -25,13 +25,11 @@ const HeroSection: React.FC = () => {
                          Math.floor(Math.random() * codeSnippets.length)
                     ];
                setGlitchText(randomSnippet);
-
-               setTimeout(() => {
-                    setGlitchText("");
-               }, 1500);
+               setTimeout(() => setGlitchText(""), 1500);
           }, 2500);
+
           return () => clearInterval(interval);
-     }, []);
+     }, [codeSnippets]);
 
      return (
           <section className="relative min-h-screen w-full overflow-hidden bg-gradient-cyberpunk">
@@ -50,44 +48,42 @@ const HeroSection: React.FC = () => {
                </div>
 
                {/* Glitch Code Overlay */}
-               <div className="absolute inset-0 z-10 pointer-events-none">
+               <div className="absolute inset-0 z-10 pointer-events-none text-glitch">
                     {/* Animated Matrix-style background elements */}
-                    <div className="absolute top-10 left-10 text-coderun-pink font-mono text-xs opacity-40 animate-glitch">
+                    <div className="absolute top-10 left-10 text-coderun-pink font-mono text-xs opacity-40 ">
                          {"{"}code: "reality"{"}"}
                     </div>
-                    <div className="absolute top-32 right-20 text-coderun-purple font-mono text-xs opacity-35 animate-glitch-2">
+                    <div className="absolute top-32 right-20 text-coderun-purple font-mono text-xs opacity-35 ">
                          function(){`{return dreams;}`}
                     </div>
-                    <div className="absolute bottom-40 left-32 text-coderun-pink-light font-mono text-xs opacity-40 animate-glitch">
+                    <div className="absolute bottom-40 left-32 text-coderun-pink-light font-mono text-xs opacity-40 ">
                          while(true){`{challenge();}`}
                     </div>
-                    <div className="absolute bottom-20 right-10 text-coderun-accent font-mono text-xs opacity-45 animate-glitch-2">
+                    <div className="absolute bottom-20 right-10 text-coderun-accent font-mono text-xs opacity-45">
                          const future = await code();
                     </div>
-
-                    {/* Additional glitch text elements */}
-                    <div className="absolute top-1/4 right-1/3 text-coderun-pink font-mono text-xs opacity-35 animate-glitch">
+                    <div className="absolute top-1/4 right-1/3 text-coderun-pink font-mono text-xs opacity-35">
                          if(dream.isReal()) {`{hack();}`}
                     </div>
-                    <div className="absolute top-3/4 left-1/4 text-coderun-purple font-mono text-xs opacity-30 animate-glitch-2">
+                    <div className="absolute top-3/4 left-1/4 text-coderun-purple font-mono text-xs opacity-30 ">
                          const matrix = new Reality();
                     </div>
-                    <div className="absolute top-1/3 left-1/2 text-coderun-pink-light font-mono text-xs opacity-25 animate-glitch">
+                    <div className="absolute top-1/3 left-1/2 text-coderun-pink-light font-mono text-xs opacity-25 ">
                          console.log("Neo awakens");
                     </div>
-                    <div className="absolute bottom-1/3 right-1/4 text-coderun-accent font-mono text-xs opacity-40 animate-glitch-2">
+                    <div className="absolute bottom-1/3 right-1/4 text-coderun-accent font-mono text-xs opacity-40 ">
                          Array.from(∞).forEach(code)
                     </div>
-                    <div className="absolute top-20 right-1/2 text-coderun-pink font-mono text-xs opacity-35 animate-glitch">
+                    <div className="absolute top-20 right-1/2 text-coderun-pink font-mono text-xs opacity-35 ">
                          export default Cyberpunk;
                     </div>
-                    <div className="absolute bottom-1/2 left-10 text-coderun-purple font-mono text-xs opacity-30 animate-glitch-2">
+                    <div className="absolute bottom-1/2 left-10 text-coderun-purple font-mono text-xs opacity-30 ">
                          const future = true;
                     </div>
 
                     {/* Dynamic glitch text */}
                     {glitchText && (
-                         <div className="absolute top-1/2 left-1/4 transform -translate-y-1/2 text-coderun-pink font-mono text-sm opacity-50 animate-text-glitch">
+                         <div className="absolute top-1/2 left-1/4 transform -translate-y-1/2 text-coderun-pink font-mono text-sm opacity-50 ">
                               {glitchText}
                          </div>
                     )}
@@ -186,11 +182,8 @@ const HeroSection: React.FC = () => {
                                    </h1>
                                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4 pb-16">
                                         <Link href="#">
-                                             <button className="px-12 py-6 bg-gradient-coderun text-white font-bold rounded-full text-xl text-glitch transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-coderun-pink/30 active:scale-95 border-2 border-coderun-accent">
-                                                  Înscrie-te
-                                             </button>
                                              <GradientSlideButton
-                                                  className="px-12 py-6 bg-black text-2xl  font-bold rounded-full  text-white border-2 border-coderun-accent text-glitch"
+                                                  className="px-12 py-6 text-4xl rounded-3xl bg-black text-white border-2 border-coderun-accent text-glitch hover:scale-110 hover:shadow-lg hover:shadow-coderun-pink/30 active:scale-95"
                                                   colorFrom="#FA58B6"
                                                   colorTo="#7A0BC0"
                                              >

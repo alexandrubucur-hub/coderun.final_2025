@@ -14,6 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+     metadataBase: new URL("https://coderun.bestcj.ro/"),
      title: "CodeRun 2025",
      description:
           "Site oficial CodeRun 2025 - Cea mai mare competiție de programare din România",
@@ -22,7 +23,18 @@ export const metadata: Metadata = {
      openGraph: {
           title: "CodeRun 2025",
           description: "Join the CodeRunners!",
-          images: ["/images/logo.png"],
+          url: "https://coderun.bestcj.ro/",
+          siteName: "CodeRun",
+          images: [
+               {
+                    url: "/images/logo.png",
+                    width: 1200,
+                    height: 630,
+                    alt: "CodeRun 2025 Logo",
+               },
+          ],
+          locale: "ro_RO",
+          type: "website",
      },
 };
 
@@ -32,7 +44,7 @@ export default function RootLayout({
      children: React.ReactNode;
 }>) {
      return (
-          <html lang="en">
+          <html lang="en" data-theme="light">
                <head>
                     {/* Google Analytics */}
                     <Script

@@ -2,6 +2,18 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+/* Forțează browserul să ignore dark mode */
+:root {
+     color-scheme: light only !important;
+}
+
+/* Opțional, dezactivează orice media query legat de dark */
+@media (prefers-color-scheme: dark) {
+     :root {
+          color-scheme: light !important;
+     }
+}
+
 @layer base {
      html {
           scroll-behavior: smooth;
@@ -110,42 +122,4 @@
      animation: glitch-2 0.3s infinite;
      color: #7a0bc0;
      z-index: -2;
-}
-
-@keyframes glitch-1 {
-     0%,
-     100% {
-          transform: translate(0);
-     }
-     20% {
-          transform: translate(-2px, 2px);
-     }
-     40% {
-          transform: translate(-2px, -2px);
-     }
-     60% {
-          transform: translate(2px, 2px);
-     }
-     80% {
-          transform: translate(2px, -2px);
-     }
-}
-
-@keyframes glitch-2 {
-     0%,
-     100% {
-          transform: translate(0);
-     }
-     20% {
-          transform: translate(2px, -2px);
-     }
-     40% {
-          transform: translate(2px, 2px);
-     }
-     60% {
-          transform: translate(-2px, -2px);
-     }
-     80% {
-          transform: translate(-2px, 2px);
-     }
 }

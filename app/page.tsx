@@ -18,7 +18,7 @@ export default function Home() {
                     </h2>
                     <Link href="#">
                          <GradientSlideButton
-                              className="px-12 py-6 text-2xl rounded-3xl bg-black text-white border-2 border-fuchsia-500 text-glitch"
+                              className="px-12 py-6 text-2xl rounded-3xl bg-black text-white border-2 border-fuchsia-500 text-glitch hover:scale-110 hover:shadow-lg hover:shadow-coderun-pink/30 active:scale-95"
                               colorFrom="#FA58B6"
                               colorTo="#7A0BC0"
                          >
