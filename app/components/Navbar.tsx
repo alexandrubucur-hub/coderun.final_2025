@@ -57,38 +57,41 @@ const Navbar: React.FC = () => {
                               <div className="flex flex-shrink-0 items-center lg:hidden">
                                    <Link
                                         href="#"
-                                        className="transition-transform duration-300 hover:scale-105"
+                                        className="relative transition-transform duration-500 hover:scale-105"
                                    >
+                                        <div className="absolute -inset-2 bg-gradient-to-r from-coderun-pink/20 via-coderun-purple/20 to-coderun-pink/20 opacity-0 hover:opacity-70 blur-lg rounded-2xl transition-opacity duration-500" />
                                         <Image
                                              src="/images/logo.png"
                                              alt="Coderun Logo"
                                              width={200}
                                              height={64}
-                                             className="h-16 w-auto filter drop-shadow-lg"
+                                             className="h-16 w-auto relative z-10 drop-shadow-[0_0_6px_rgba(250,88,182,0.5)]"
                                         />
                                    </Link>
                               </div>
 
                               {/* Layout Desktop */}
-                              <div className="hidden w-full items-center lg:flex">
+                              {/* Layout Desktop */}
+                              <div className="hidden w-full items-center justify-between lg:flex">
                                    {/* Logo Stânga */}
-                                   <div className="flex-1 justify-start">
+                                   <div className="flex flex-shrink-0 items-center">
                                         <Link
                                              href="#"
-                                             className="transition-transform duration-300 hover:scale-105"
+                                             className="relative transition-transform duration-500 hover:scale-105"
                                         >
+                                             <div className="absolute -inset-2 bg-gradient-to-r from-coderun-pink/20 via-coderun-purple/20 to-coderun-pink/20 opacity-0 hover:opacity-70 blur-lg rounded-2xl transition-opacity duration-500" />
                                              <Image
                                                   src="/images/logo.png"
                                                   alt="Coderun Logo"
                                                   width={200}
                                                   height={64}
-                                                  className="h-16 w-auto filter drop-shadow-lg"
+                                                  className="h-16 w-auto relative z-10 drop-shadow-[0_0_6px_rgba(250,88,182,0.5)]"
                                              />
                                         </Link>
                                    </div>
 
-                                   {/* Navigație Centru */}
-                                   <div className="flex flex-1 justify-center items-center space-x-6">
+                                   {/* Navigare Centru - am adăugat și spațiere responsivă pentru o tranziție mai lină */}
+                                   <div className="flex items-center space-x-2 xl:space-x-6">
                                         {navigation.map((item) => (
                                              <Link
                                                   key={item.name}
@@ -99,22 +102,25 @@ const Navbar: React.FC = () => {
                                                             : undefined
                                                   }
                                                   className={classNames(
-                                                       item.current
-                                                            ? "bg-coderun-purple/30 text-coderun-pink border-b-2 border-coderun-accent"
-                                                            : "text-gray-300 hover:bg-coderun-purple/20 hover:text-coderun-pink-light border-b-2 border-transparent hover:border-coderun-purple/50",
-                                                       "rounded-lg px-4 py-2 text-sm font-medium text-center transition-all duration-300 backdrop-blur-sm"
+                                                       "relative inline-flex items-center justify-center text-center px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 group whitespace-nowrap", // Am adăugat whitespace-nowrap
+                                                       "text-gray-300 hover:text-white",
+                                                       "before:absolute before:inset-0 before:rounded-xl before:bg-gradient-to-r before:from-coderun-pink before:to-coderun-purple before:opacity-0 before:blur before:transition-opacity before:duration-300",
+                                                       "hover:before:opacity-40 hover:scale-105",
+                                                       "shadow-[0_0_10px_rgba(122,11,192,0.2)] hover:shadow-[0_0_20px_rgba(250,88,182,0.5)]"
                                                   )}
                                              >
-                                                  {item.name}
+                                                  <span className="relative z-10 drop-shadow-[0_0_6px_rgba(250,88,182,0.6)]">
+                                                       {item.name}
+                                                  </span>
                                              </Link>
                                         ))}
                                    </div>
 
                                    {/* Buton Dreapta */}
-                                   <div className="flex flex-1 justify-end items-center min-w-0">
+                                   <div className="flex flex-shrink-0 items-center">
                                         <Link href="#">
                                              <GradientSlideButton
-                                                  className="rounded-full bg-coderun-dark text-white border-2 border-coderun-accent hover:border-coderun-pink transition-all duration-300 shadow-lg shadow-coderun-purple/20 hover:shadow-coderun-pink/30"
+                                                  className="rounded-full bg-coderun-dark text-white border-2 border-coderun-accent hover:border-coderun-purple transition-all duration-300 shadow-lg shadow-coderun-purple/20 hover:shadow-coderun-pink/30"
                                                   colorFrom="#FA58B6"
                                                   colorTo="#7A0BC0"
                                              >
@@ -141,7 +147,7 @@ const Navbar: React.FC = () => {
                                    className={classNames(
                                         item.current
                                              ? "bg-coderun-purple/40 text-coderun-pink border-l-4 border-coderun-accent"
-                                             : "text-gray-300 hover:bg-coderun-purple/20 hover:text-coderun-pink-light border-l-4 border-transparent hover:border-coderun-purple/50",
+                                             : "text-gray-300 hover:text-white hover:bg-coderun-purple/20 border-l-4 border-transparent hover:border-coderun-purple/50 hover:shadow-[0_0_15px_rgba(250,88,182,0.4)]",
                                         "block rounded-md px-3 py-3 text-base font-medium text-center transition-all duration-300"
                                    )}
                               >
@@ -151,7 +157,7 @@ const Navbar: React.FC = () => {
                          <div className="px-8 pt-6">
                               <Link href="#">
                                    <GradientSlideButton
-                                        className="w-full rounded-full bg-black text-white border-2 border-coderun-accent hover:border-coderun-pink transition-all duration-300 shadow-lg shadow-coderun-purple/20"
+                                        className="rounded-full bg-coderun-dark text-white border-2 border-coderun-purple hover:border-coderun-pink transition-all duration-300 shadow-lg shadow-coderun-purple/20 hover:shadow-coderun-pink/30"
                                         colorFrom="#FA58B6"
                                         colorTo="#7A0BC0"
                                    >
