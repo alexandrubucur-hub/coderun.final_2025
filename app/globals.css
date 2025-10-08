@@ -123,3 +123,28 @@
      color: #7a0bc0;
      z-index: -2;
 }
+
+@keyframes text-glow {
+     0%,
+     100% {
+          text-shadow: 0 0 10px #fa58b6, 0 0 20px #7a0bc0, 0 0 30px #fa58b6;
+     }
+     50% {
+          text-shadow: 0 0 20px #fa58b6, 0 0 30px #7a0bc0, 0 0 40px #fa58b6;
+     }
+}
+
+.text-glow {
+     animation: text-glow 1.5s infinite alternate;
+}
+
+@font-face {
+     font-family: "FontTest";
+     src: url("/fonts/Closeness-Bold.ttf") format("truetype");
+     font-weight: 400;
+     font-style: normal;
+}
+
+.FontTest {
+     font-family: "FontTest", sans-serif !important;
+}

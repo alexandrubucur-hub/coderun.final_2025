@@ -65,7 +65,7 @@ const HeroSection: React.FC = () => {
                </div>
 
                {/* Glitch Code Overlay */}
-               <div className="absolute inset-0 z-10 pointer-events-none text-glitch">
+               <div className="absolute inset-0 z-10 pointer-events-none text-glitch ">
                     <div className="absolute top-10 left-10 text-coderun-pink font-mono text-xs opacity-40 ">
                          {"{"}code: "reality"{"}"}
                     </div>
@@ -192,8 +192,8 @@ const HeroSection: React.FC = () => {
 
                          <div className="flex justify-center mt-12 lg:mt-16">
                               <div className="text-center space-y-6">
-                                   <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
-                                        <span className="block text-coderun-pink-light animate-pulse">
+                                   <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl text-white leading-tight">
+                                        <span className="block FontTest text-coderun-pink-light animate-pulse text-glow">
                                              JOIN THE CODERUNNERS
                                         </span>
                                    </h1>
