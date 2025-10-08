@@ -8,6 +8,21 @@ import { GradientSlideButton } from "@/components/ui/gradient-slide-button";
 
 const HeroSection: React.FC = () => {
      const [glitchText, setGlitchText] = useState("");
+     const [isLogoVisible, setIsLogoVisible] = useState(false);
+     const logoRef = React.useRef<HTMLDivElement | null>(null);
+
+     useEffect(() => {
+          const observer = new IntersectionObserver(
+               (entries) => {
+                    entries.forEach((entry) =>
+                         setIsLogoVisible(entry.isIntersecting)
+                    );
+               },
+               { threshold: 0.5 }
+          );
+          if (logoRef.current) observer.observe(logoRef.current);
+          return () => observer.disconnect();
+     }, []);
 
      useEffect(() => {
           const codeSnippets = [
@@ -136,9 +151,16 @@ const HeroSection: React.FC = () => {
                          </div>
 
                          {/* Mobile Layout */}
-                         <div className="lg:hidden flex flex-col items-center justify-center space-y-10">
+                         <div className="lg:hidden flex flex-col items-center justify-center pt-8">
                               <div className="flex justify-center">
-                                   <div className="relative">
+                                   <div
+                                        className="relative transition-transform duration-500 ease-out"
+                                        style={{
+                                             transform: isLogoVisible
+                                                  ? "scale(1.25)"
+                                                  : "scale(1)",
+                                        }}
+                                   >
                                         <Image
                                              src="/images/fatacr.PNG"
                                              alt="CodeRun Mascot"
@@ -151,14 +173,17 @@ const HeroSection: React.FC = () => {
                                    </div>
                               </div>
 
-                              <div className="flex justify-center">
+                              <div
+                                   ref={logoRef}
+                                   className="flex justify-center pt-6"
+                              >
                                    <div className="relative group">
                                         <Image
                                              src="/images/logo.png"
                                              alt="CodeRun"
                                              width={400}
                                              height={160}
-                                             className="w-auto h-36 sm:h-48 transition-all duration-300 group-hover:scale-105"
+                                             className="w-auto h-44 sm:h-60 transition-all duration-300 group-hover:scale-105"
                                         />
                                         <div className="absolute -inset-4 bg-gradient-to-r from-coderun-pink/10 via-coderun-purple/10 to-coderun-pink/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
                                    </div>
