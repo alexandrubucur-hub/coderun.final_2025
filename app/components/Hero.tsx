@@ -13,7 +13,8 @@ const HeroSection: React.FC = () => {
                `const reality = new Simulation();`,
                `if (you.canCode()) {`,
                `while(true) { dream(); }`,
-               `console.log("Welcome to CodeRun");`,
+               // Aici era problema – am înlocuit cu apostrofuri simple
+               `console.log('Welcome to CodeRun');`,
                `Array.from({length: Infinity}).map(code)`,
                `const cyberpunk = true;`,
                `export default YourFuture;`,
