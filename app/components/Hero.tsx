@@ -1,4 +1,6 @@
 "use client";
+/* eslint-disable react/no-unescaped-entities */
+
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,7 +15,6 @@ const HeroSection: React.FC = () => {
                `const reality = new Simulation();`,
                `if (you.canCode()) {`,
                `while(true) { dream(); }`,
-               // Aici era problema – am înlocuit cu apostrofuri simple
                `console.log('Welcome to CodeRun');`,
                `Array.from({length: Infinity}).map(code)`,
                `const cyberpunk = true;`,
@@ -50,9 +51,8 @@ const HeroSection: React.FC = () => {
 
                {/* Glitch Code Overlay */}
                <div className="absolute inset-0 z-10 pointer-events-none text-glitch">
-                    {/* Animated Matrix-style background elements */}
                     <div className="absolute top-10 left-10 text-coderun-pink font-mono text-xs opacity-40 ">
-                         {"{"}code: 'reality'{"}"}
+                         {"{"}code: "reality"{"}"}
                     </div>
                     <div className="absolute top-32 right-20 text-coderun-purple font-mono text-xs opacity-35 ">
                          function(){`{return dreams;}`}
@@ -82,7 +82,6 @@ const HeroSection: React.FC = () => {
                          const future = true;
                     </div>
 
-                    {/* Dynamic glitch text */}
                     {glitchText && (
                          <div className="absolute top-1/2 left-1/4 transform -translate-y-1/2 text-coderun-pink font-mono text-sm opacity-50 ">
                               {glitchText}
@@ -93,9 +92,8 @@ const HeroSection: React.FC = () => {
                {/* Main Content */}
                <div className="relative z-20 flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8 pt-16">
                     <div className="w-full max-w-7xl mx-auto">
-                         {/* Desktop Layout (lg and above) */}
+                         {/* Desktop Layout */}
                          <div className="hidden lg:grid lg:grid-cols-3 lg:gap-8 lg:items-center lg:justify-items-center">
-                              {/* Left - Code Logo */}
                               <div className="flex justify-center lg:justify-end">
                                    <div className="relative group">
                                         <Image
@@ -109,7 +107,6 @@ const HeroSection: React.FC = () => {
                                    </div>
                               </div>
 
-                              {/* Center - CR Character */}
                               <div className="flex justify-center">
                                    <div className="relative">
                                         <Image
@@ -119,13 +116,11 @@ const HeroSection: React.FC = () => {
                                              height={800}
                                              className="w-auto h-[450px] xl:h-[550px] 2xl:h-[650px] animate-float animate-glow-pulse"
                                         />
-                                        {/* Extra glow effects */}
                                         <div className="absolute inset-0 bg-gradient-radial from-coderun-pink/30 via-coderun-purple/20 to-transparent opacity-60 blur-2xl animate-pulse" />
                                         <div className="absolute -inset-8 bg-gradient-to-r from-coderun-accent/10 via-coderun-purple/10 to-coderun-pink/10 blur-3xl opacity-80" />
                                    </div>
                               </div>
 
-                              {/* Right - Run Logo */}
                               <div className="flex justify-center lg:justify-start">
                                    <div className="relative group">
                                         <Image
@@ -140,9 +135,8 @@ const HeroSection: React.FC = () => {
                               </div>
                          </div>
 
-                         {/* Mobile & Tablet Layout (below lg) */}
+                         {/* Mobile Layout */}
                          <div className="lg:hidden flex flex-col items-center justify-center space-y-10">
-                              {/* CR Character */}
                               <div className="flex justify-center">
                                    <div className="relative">
                                         <Image
@@ -152,13 +146,11 @@ const HeroSection: React.FC = () => {
                                              height={490}
                                              className="w-auto h-80 sm:h-96 animate-float animate-glow-pulse"
                                         />
-                                        {/* Mobile glow effects */}
                                         <div className="absolute inset-0 bg-gradient-radial from-coderun-pink/40 via-coderun-purple/20 to-transparent opacity-70 blur-xl animate-pulse" />
                                         <div className="absolute -inset-6 bg-gradient-to-r from-coderun-accent/15 via-coderun-purple/15 to-coderun-pink/15 blur-2xl opacity-90" />
                                    </div>
                               </div>
 
-                              {/* Complete CodeRun Logo */}
                               <div className="flex justify-center">
                                    <div className="relative group">
                                         <Image
@@ -173,11 +165,10 @@ const HeroSection: React.FC = () => {
                               </div>
                          </div>
 
-                         {/* Call to Action - Both layouts */}
                          <div className="flex justify-center mt-12 lg:mt-16">
                               <div className="text-center space-y-6">
                                    <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
-                                        <span className="block text-coderun-pink-light  animate-pulse">
+                                        <span className="block text-coderun-pink-light animate-pulse">
                                              JOIN THE CODERUNNERS
                                         </span>
                                    </h1>
@@ -197,7 +188,6 @@ const HeroSection: React.FC = () => {
                     </div>
                </div>
 
-               {/* Bottom gradient fade */}
                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-coderun-dark to-transparent pointer-events-none z-30" />
           </section>
      );
