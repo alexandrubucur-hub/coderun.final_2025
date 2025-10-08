@@ -7,18 +7,18 @@ import { GradientSlideButton } from "@/components/ui/gradient-slide-button";
 const HeroSection: React.FC = () => {
      const [glitchText, setGlitchText] = useState("");
 
-     const codeSnippets = [
-          `function hackTheMatrix() {`,
-          `const reality = new Simulation();`,
-          `if (you.canCode()) {`,
-          `while(true) { dream(); }`,
-          `console.log("Welcome to CodeRun");`,
-          `Array.from({length: Infinity}).map(code)`,
-          `const cyberpunk = true;`,
-          `export default YourFuture;`,
-     ];
-
      useEffect(() => {
+          const codeSnippets = [
+               `function hackTheMatrix() {`,
+               `const reality = new Simulation();`,
+               `if (you.canCode()) {`,
+               `while(true) { dream(); }`,
+               `console.log("Welcome to CodeRun");`,
+               `Array.from({length: Infinity}).map(code)`,
+               `const cyberpunk = true;`,
+               `export default YourFuture;`,
+          ];
+
           const interval = setInterval(() => {
                const randomSnippet =
                     codeSnippets[
@@ -29,7 +29,7 @@ const HeroSection: React.FC = () => {
           }, 2500);
 
           return () => clearInterval(interval);
-     }, [codeSnippets]);
+     }, []);
 
      return (
           <section className="relative min-h-screen w-full overflow-hidden bg-gradient-cyberpunk">
