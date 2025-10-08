@@ -110,7 +110,7 @@ const HeroSection: React.FC = () => {
                               <div className="flex justify-center">
                                    <div className="relative">
                                         <Image
-                                             src="/images/fatacr.png"
+                                             src="/images/fatacr.PNG"
                                              alt="CodeRun Mascot"
                                              width={700}
                                              height={800}
@@ -140,7 +140,7 @@ const HeroSection: React.FC = () => {
                               <div className="flex justify-center">
                                    <div className="relative">
                                         <Image
-                                             src="/images/fatacr.png"
+                                             src="/images/fatacr.PNG"
                                              alt="CodeRun Mascot"
                                              width={350}
                                              height={490}
