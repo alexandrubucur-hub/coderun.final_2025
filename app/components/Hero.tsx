@@ -209,7 +209,7 @@ const HeroSection: React.FC = () => {
                                         </Link>
                                    </div>
                                    {/* Sponsor Logos */}
-                                   <div className="flex justify-center items-center gap-10 sm:gap-20 lg:gap-24 mt-10 opacity-80 pb-16">
+                                   <div className="flex justify-center items-center gap-10 sm:gap-20 lg:gap-24 mt-10 opacity-80 pb-12">
                                         <Link href="https://bestcj.ro/">
                                              <Image
                                                   src="/images/best.png"
