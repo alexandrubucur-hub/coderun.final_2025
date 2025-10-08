@@ -197,7 +197,7 @@ const HeroSection: React.FC = () => {
                                              JOIN THE CODERUNNERS
                                         </span>
                                    </h1>
-                                   <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4 pb-16">
+                                   <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4 pb-2">
                                         <Link href="#">
                                              <GradientSlideButton
                                                   className="px-12 py-6 text-4xl rounded-3xl bg-black text-white border-2 border-coderun-accent text-glitch hover:scale-110 hover:shadow-lg hover:shadow-coderun-pink/30 active:scale-95"
@@ -206,6 +206,29 @@ const HeroSection: React.FC = () => {
                                              >
                                                   Înscrie-te
                                              </GradientSlideButton>
+                                        </Link>
+                                   </div>
+                                   {/* Sponsor Logos */}
+                                   <div className="flex justify-center items-center gap-10 sm:gap-20 lg:gap-24 mt-10 opacity-80 pb-16">
+                                        <Link href="https://bestcj.ro/">
+                                             <Image
+                                                  src="/images/best.png"
+                                                  alt="Best Logo"
+                                                  width={0}
+                                                  height={0}
+                                                  sizes="100vw"
+                                                  className="w-36 h-auto sm:w-40 md:w-44 lg:w-52 xl:w-60 hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_10px_rgba(250,88,182,0.5)]"
+                                             />
+                                        </Link>
+                                        <Link href="https://www.utcluj.ro/">
+                                             <Image
+                                                  src="/images/ut.png"
+                                                  alt="UTCN Logo"
+                                                  width={0}
+                                                  height={0}
+                                                  sizes="100vw"
+                                                  className="w-24 h-auto sm:w-28 md:w-32 lg:w-40 xl:w-48 hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_10px_rgba(250,88,182,0.5)]"
+                                             />
                                         </Link>
                                    </div>
                               </div>
