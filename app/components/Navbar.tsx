@@ -35,18 +35,23 @@ const Navbar: React.FC = () => {
                     <div className="relative flex h-20 items-center">
                          {/* Buton Hamburger */}
                          <div className="absolute inset-y-0 left-0 flex items-center lg:hidden">
-                              <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-coderun-purple/20 hover:text-coderun-pink transition-all duration-300 focus:ring-2 focus:ring-inset focus:ring-coderun-accent">
-                                   <span className="absolute -inset-0.5" />
+                              <DisclosureButton
+                                   className="relative inline-flex items-center justify-center p-2 rounded-md text-gray-400 transition-all duration-300 group
+                     before:absolute before:inset-0 before:rounded-md before:bg-gradient-to-r before:from-coderun-pink before:to-coderun-purple before:opacity-0 before:blur before:transition-opacity before:duration-300
+                     hover:before:opacity-40 hover:scale-105
+                     shadow-[0_0_10px_rgba(122,11,192,0.2)] hover:shadow-[0_0_20px_rgba(250,88,182,0.5)]
+                     "
+                              >
                                    <span className="sr-only">
                                         Open main menu
                                    </span>
                                    <Bars3Icon
                                         aria-hidden="true"
-                                        className="block h-6 w-6 group-open:hidden"
+                                        className="block h-6 w-6 group-open:hidden relative z-10 drop-shadow-[0_0_6px_rgba(250,88,182,0.6)]"
                                    />
                                    <XMarkIcon
                                         aria-hidden="true"
-                                        className="hidden h-6 w-6 group-open:block"
+                                        className="hidden h-6 w-6 group-open:block relative z-10 drop-shadow-[0_0_6px_rgba(250,88,182,0.6)]"
                                    />
                               </DisclosureButton>
                          </div>
@@ -70,7 +75,6 @@ const Navbar: React.FC = () => {
                                    </Link>
                               </div>
 
-                              {/* Layout Desktop */}
                               {/* Layout Desktop */}
                               <div className="hidden w-full items-center justify-between lg:flex">
                                    {/* Logo Stânga */}
@@ -135,7 +139,7 @@ const Navbar: React.FC = () => {
 
                {/* Meniu mobil */}
                <DisclosurePanel className="lg:hidden bg-coderun-dark/95 backdrop-blur-xl border-t border-coderun-purple/30">
-                    <div className="space-y-1 px-2 pb-3 pt-2">
+                    <div className="space-y-1 px-8 pb-3 pt-2">
                          {navigation.map((item) => (
                               <DisclosureButton
                                    key={item.name}
@@ -148,16 +152,17 @@ const Navbar: React.FC = () => {
                                         item.current
                                              ? "bg-coderun-purple/40 text-coderun-pink border-l-4 border-coderun-accent"
                                              : "text-gray-300 hover:text-white hover:bg-coderun-purple/20 border-l-4 border-transparent hover:border-coderun-purple/50 hover:shadow-[0_0_15px_rgba(250,88,182,0.4)]",
-                                        "block rounded-md px-3 py-3 text-base font-medium text-center transition-all duration-300"
+                                        "flex justify-center rounded-md px-3 py-3 text-base font-medium transition-all duration-300"
                                    )}
                               >
                                    {item.name}
                               </DisclosureButton>
                          ))}
-                         <div className="px-8 pt-6">
-                              <Link href="#">
+                         {/* 2. MODIFICARE: Am eliminat 'px-6' pentru a alinia acest container cu cele de sus */}
+                         <div className="pt-6">
+                              <Link href="#" className="block">
                                    <GradientSlideButton
-                                        className="rounded-full bg-coderun-dark text-white border-2 border-coderun-purple hover:border-coderun-pink transition-all duration-300 shadow-lg shadow-coderun-purple/20 hover:shadow-coderun-pink/30"
+                                        className="w-full rounded-full bg-coderun-dark text-white border-2 border-coderun-purple hover:border-coderun-pink transition-all duration-300 shadow-lg shadow-coderun-purple/20 hover:shadow-coderun-pink/30"
                                         colorFrom="#FA58B6"
                                         colorTo="#7A0BC0"
                                    >
