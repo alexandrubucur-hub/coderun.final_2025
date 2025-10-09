@@ -5,9 +5,9 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { GradientSlideButton } from "@/components/ui/gradient-slide-button";
+import { DynamicGlitchText } from "@/components/ui/DynamicGlitchText";
 
 const HeroSection: React.FC = () => {
-     const [glitchText, setGlitchText] = useState("");
      const [isLogoVisible, setIsLogoVisible] = useState(false);
      const logoRef = React.useRef<HTMLDivElement | null>(null);
 
@@ -24,26 +24,146 @@ const HeroSection: React.FC = () => {
           return () => observer.disconnect();
      }, []);
 
-     useEffect(() => {
-          const codeSnippets = [
-               `function hackTheMatrix() {`,
-               `const reality = new Simulation();`,
-               `if (you.canCode()) {`,
-               `while(true) { dream(); }`,
-               `console.log('Welcome to CodeRun');`,
-               `Array.from({length: Infinity}).map(code)`,
-               `const cyberpunk = true;`,
-               `export default YourFuture;`,
-          ];
+     const [activeGlitches, setActiveGlitches] = useState<
+          Array<{ id: number; row: number; col: number }>
+     >([]);
+     const GRID_SIZE = 6; // Grilă de 6x6. Poți mări pentru mai mult spațiu.
+     const MAX_GLITCHES = 8; // Numărul maxim de texte afișate simultan.
 
+     useEffect(() => {
           const interval = setInterval(() => {
-               const randomSnippet =
-                    codeSnippets[
-                         Math.floor(Math.random() * codeSnippets.length)
-                    ];
-               setGlitchText(randomSnippet);
-               setTimeout(() => setGlitchText(""), 1500);
-          }, 2500);
+               setActiveGlitches((currentGlitches) => {
+                    // Nu adăuga mai multe dacă am atins limita
+                    if (currentGlitches.length >= MAX_GLITCHES) {
+                         return currentGlitches;
+                    }
+
+                    let randomRow: number, randomCol: number;
+                    let isOccupied = true;
+                    let attempts = 0;
+
+                    // Încearcă să găsești o celulă goală
+                    do {
+                         randomRow = Math.floor(Math.random() * GRID_SIZE) + 1;
+                         randomCol = Math.floor(Math.random() * GRID_SIZE) + 1;
+                         isOccupied = currentGlitches.some(
+                              (g) => g.row === randomRow && g.col === randomCol
+                         );
+                         attempts++;
+                    } while (isOccupied && attempts < 20); // Previne un loop infinit
+
+                    // Dacă am găsit o celulă goală, adaugă un glitch nou
+                    if (!isOccupied) {
+                         const newGlitch = {
+                              id: Date.now(),
+                              row: randomRow,
+                              col: randomCol,
+                         };
+
+                         // Setează un timer pentru a șterge acest glitch după câteva secunde
+                         setTimeout(() => {
+                              setActiveGlitches((prev) =>
+                                   prev.filter((g) => g.id !== newGlitch.id)
+                              );
+                         }, 2000 + Math.random() * 3000); // Durata de viață
+
+                         return [...currentGlitches, newGlitch];
+                    }
+
+                    return currentGlitches; // Returnează starea curentă dacă nu s-a găsit loc
+               });
+          }, 700); // Cât de des încearcă să adauge un text nou
+
+          return () => clearInterval(interval);
+     }, []);
+
+     const verticalGlitchSlots = [
+          {
+               position: "top-[15%] left-[12%]",
+               style: "opacity-30 text-coderun-purple",
+          },
+          {
+               position: "top-[60%] left-[22%]",
+               style: "opacity-20 text-coderun-accent",
+          },
+          {
+               position: "top-[20%] left-[35%]",
+               style: "opacity-35 text-coderun-pink-light",
+          },
+          {
+               position: "top-[75%] left-[45%]",
+               style: "opacity-25 text-coderun-purple",
+          },
+          {
+               position: "top-[10%] left-[55%]",
+               style: "opacity-35 text-coderun-pink",
+          },
+          {
+               position: "top-[55%] left-[68%]",
+               style: "opacity-25 text-coderun-accent",
+          },
+          {
+               position: "top-[30%] left-[78%]",
+               style: "opacity-30 text-coderun-pink-light",
+          },
+          {
+               position: "top-[85%] left-[85%]",
+               style: "opacity-20 text-coderun-purple",
+          },
+          {
+               position: "top-[45%] left-[90%]",
+               style: "opacity-25 text-coderun-pink",
+          },
+          {
+               position: "top-[80%] left-[5%]",
+               style: "opacity-20 text-coderun-accent",
+          },
+     ];
+     const MAX_VERTICAL_GLITCHES = 5; // Max 5 din 8 sloturi active simultan
+
+     // 2. State-ul care ține evidența sloturilor active (rămâne la fel)
+     const [activeVerticalGlitches, setActiveVerticalGlitches] = useState<
+          Array<{ id: number; slotIndex: number }>
+     >([]);
+
+     // 3. Efectul care adaugă și șterge glitch-urile verticale (rămâne la fel)
+     useEffect(() => {
+          const interval = setInterval(() => {
+               setActiveVerticalGlitches((current) => {
+                    if (current.length >= MAX_VERTICAL_GLITCHES) {
+                         return current;
+                    }
+
+                    const availableSlots = verticalGlitchSlots
+                         .map((_, index) => index)
+                         .filter(
+                              (index) =>
+                                   !current.some((g) => g.slotIndex === index)
+                         );
+
+                    if (availableSlots.length === 0) {
+                         return current;
+                    }
+
+                    const randomSlotIndex =
+                         availableSlots[
+                              Math.floor(Math.random() * availableSlots.length)
+                         ];
+
+                    const newGlitch = {
+                         id: Date.now(),
+                         slotIndex: randomSlotIndex,
+                    };
+
+                    setTimeout(() => {
+                         setActiveVerticalGlitches((prev) =>
+                              prev.filter((g) => g.id !== newGlitch.id)
+                         );
+                    }, 3000 + Math.random() * 2000);
+
+                    return [...current, newGlitch];
+               });
+          }, 1200); // Am micșorat intervalul pentru un ritm mai alert
 
           return () => clearInterval(interval);
      }, []);
@@ -66,42 +186,126 @@ const HeroSection: React.FC = () => {
 
                {/* Glitch Code Overlay */}
                <div className="absolute inset-0 z-10 pointer-events-none text-glitch ">
-                    <div className="absolute top-10 left-10 text-coderun-pink font-mono text-xs opacity-40 ">
+                    {/* --- Textele Statice Rearanjate --- */}
+
+                    {/* -- Colțuri Stânga Sus & Dreapta Sus -- */}
+                    <div className="absolute top-[6%] left-[5%] text-coderun-pink font-mono text-xs opacity-40 ">
                          {"{"}code: "reality"{"}"}
                     </div>
-                    <div className="absolute top-32 right-20 text-coderun-purple font-mono text-xs opacity-35 ">
-                         function(){`{return dreams;}`}
-                    </div>
-                    <div className="absolute bottom-40 left-32 text-coderun-pink-light font-mono text-xs opacity-40 ">
-                         while(true){`{challenge();}`}
-                    </div>
-                    <div className="absolute bottom-20 right-10 text-coderun-accent font-mono text-xs opacity-45">
-                         const future = await code();
-                    </div>
-                    <div className="absolute top-1/4 right-1/3 text-coderun-pink font-mono text-xs opacity-35">
-                         if(dream.isReal()) {`{hack();}`}
-                    </div>
-                    <div className="absolute top-3/4 left-1/4 text-coderun-purple font-mono text-xs opacity-30 ">
-                         const matrix = new Reality();
-                    </div>
-                    <div className="absolute top-1/3 left-1/2 text-coderun-pink-light font-mono text-xs opacity-25 ">
-                         console.log('Neo awakens');
-                    </div>
-                    <div className="absolute bottom-1/3 right-1/4 text-coderun-accent font-mono text-xs opacity-40 ">
-                         Array.from(∞).forEach(code)
-                    </div>
-                    <div className="absolute top-20 right-1/2 text-coderun-pink font-mono text-xs opacity-35 ">
+                    <div className="absolute top-[12%] left-[15%] text-coderun-purple font-mono text-xs opacity-30 ">
                          export default Cyberpunk;
                     </div>
-                    <div className="absolute bottom-1/2 left-10 text-coderun-purple font-mono text-xs opacity-30 ">
-                         const future = true;
+                    <div className="absolute top-[7%] right-[5%] text-coderun-purple font-mono text-[10px] opacity-25">
+                         // 0xDEADBEEF
+                    </div>
+                    <div className="absolute top-[15%] right-[10%] text-coderun-pink font-mono text-xs opacity-35">
+                         if(dream.isReal()) {`{hack();}`}
                     </div>
 
-                    {glitchText && (
-                         <div className="absolute top-1/2 left-1/4 transform -translate-y-1/2 text-coderun-pink font-mono text-sm opacity-50 ">
-                              {glitchText}
-                         </div>
-                    )}
+                    {/* -- Margini Laterale (Vertical) -- */}
+                    <div className="absolute top-[25%] left-8 font-mono text-xs opacity-30 text-coderun-purple [writing-mode:vertical-rl] tracking-widest">
+                         ::SYSTEM.STATUS:ONLINE_AWAITING_INPUT::
+                    </div>
+                    <div className="absolute top-[30%] right-8 font-mono text-xs opacity-35 text-coderun-pink [writing-mode:vertical-rl] tracking-widest">
+                         //--REALITY_CHECKSUM_VALIDATED--//
+                    </div>
+
+                    {/* -- Elemente "Plutitoare" pe Margini -- */}
+                    <div className="absolute top-[40%] left-[8%] text-coderun-pink-light font-mono text-xs opacity-30">
+                         ...system_override...
+                    </div>
+                    <div className="absolute top-[60%] right-[10%] text-coderun-accent font-mono text-xs opacity-40">
+                         [initiate_protocol_7]
+                    </div>
+                    <div className="absolute top-[75%] left-[15%] text-coderun-purple font-mono text-xs opacity-25 ">
+                         const matrix = new Reality();
+                    </div>
+                    <div className="absolute top-[70%] right-[15%] text-coderun-pink-light font-mono text-xs opacity-20">
+                         // REBOOT SEQUENCE
+                    </div>
+
+                    {/* -- Colțuri Stânga Jos & Dreapta Jos -- */}
+                    <div className="absolute bottom-[20%] left-[10%] text-coderun-pink-light font-mono text-xs opacity-40 ">
+                         while(true){`{challenge();}`}
+                    </div>
+                    <div className="absolute bottom-[8%] left-[20%] text-coderun-purple font-mono text-xs opacity-25">
+                         err: reality_not_found
+                    </div>
+                    <div className="absolute bottom-[10%] right-[5%] text-coderun-accent font-mono text-xs opacity-45">
+                         const future = await code();
+                    </div>
+                    <div className="absolute bottom-[18%] right-[12%] text-coderun-pink font-mono text-[10px] opacity-30">
+                         {`{> access_granted}`}
+                    </div>
+
+                    {/* --- Elemente Statice Extra, Doar pentru Desktop (Poziții Ajustate) --- */}
+                    {/* Plasat în stânga-sus a zonei centrale */}
+                    <div className="hidden lg:block absolute top-[25%] left-[30%] text-coderun-accent font-mono text-[10px] opacity-20">
+                         [core_memory_unlocked]
+                    </div>
+
+                    {/* Plasat în dreapta-mijloc a zonei centrale */}
+                    <div className="hidden lg:block absolute top-[55%] right-[28%] text-coderun-purple font-mono text-xs opacity-30">
+                         new Thread().start();
+                    </div>
+
+                    {/* Plasat deasupra logo-urilor de sponsori, pe centru */}
+                    <div className="hidden lg:block absolute bottom-[30%] left-[48%] text-coderun-pink-light font-mono text-xs opacity-35">
+                         ...compiling_dreams...
+                    </div>
+
+                    {/* Plasat în stânga-jos a zonei centrale */}
+                    <div className="hidden lg:block absolute bottom-[35%] left-[25%] text-coderun-purple font-mono text-xs opacity-25">
+                         function(){`{return dreams;}`}
+                    </div>
+
+                    {/* Plasat în dreapta-sus a zonei centrale */}
+                    <div className="hidden lg:block absolute top-[35%] right-[30%] text-coderun-pink font-mono text-[10px] opacity-20">
+                         process.exit(0);
+                    </div>
+                    <div className="hidden lg:block absolute top-[50%] left-[35%] text-coderun-accent font-mono text-[10px] opacity-25">
+                         //--REALITY_CHECKSUM_VALIDATED--//
+                    </div>
+
+                    {/* Plasat deasupra zonei de jos, în dreapta */}
+                    <div className="hidden lg:block absolute bottom-[40%] right-[32%] text-coderun-pink font-mono text-xs opacity-20">
+                         [initiate_protocol_7]
+                    </div>
+
+                    {/* Plasat în partea de sus, spre centru */}
+                    <div className="hidden lg:block absolute top-[20%] left-[48%] text-coderun-purple font-mono text-xs opacity-25">
+                         ...system_override...
+                    </div>
+
+                    {/* Plasat în dreapta-jos, mai spre interior */}
+                    <div className="hidden lg:block absolute bottom-[25%] right-[45%] text-coderun-pink-light font-mono text-[10px] opacity-30">
+                         {`{> access_granted}`}
+                    </div>
+
+                    {/* Plasat în stânga, sub mijloc */}
+                    <div className="hidden lg:block absolute top-[68%] left-[28%] text-coderun-accent font-mono text-xs opacity-20">
+                         const matrix = new Reality();
+                    </div>
+                    {/* --- Containerul pentru Grila de Glitch-uri Dinamice --- */}
+                    {/* Acesta va plasa textele dinamice în centrul liber, fără a se suprapune cu cele de mai sus */}
+                    <div
+                         className="absolute inset-0 grid"
+                         style={{
+                              gridTemplateColumns: `repeat(${GRID_SIZE}, 1fr)`,
+                              gridTemplateRows: `repeat(${GRID_SIZE}, 1fr)`,
+                         }}
+                    >
+                         {activeVerticalGlitches.map((glitch) => {
+                              const slot =
+                                   verticalGlitchSlots[glitch.slotIndex];
+                              return (
+                                   <DynamicGlitchText
+                                        key={glitch.id}
+                                        className={`absolute font-mono text-xs [writing-mode:vertical-rl] tracking-widest ${slot.position} ${slot.style}`}
+                                   />
+                              );
+                         })}
+                    </div>
                </div>
 
                {/* Main Content */}
@@ -116,9 +320,9 @@ const HeroSection: React.FC = () => {
                                              alt="Code"
                                              width={400}
                                              height={200}
-                                             className="w-auto h-56 xl:h-72 2xl:h-80 transition-all duration-300 group-hover:scale-110"
+                                             className="w-auto h-56 xl:h-72 2xl:h-80 transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-glow-pink" // <-- MODIFICARE AICI
                                         />
-                                        <div className="absolute -inset-4 bg-gradient-to-r from-coderun-pink/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
+                                        {/* Am șters div-ul de aici care crea efectul pătrat */}
                                    </div>
                               </div>
 
@@ -143,9 +347,9 @@ const HeroSection: React.FC = () => {
                                              alt="Run"
                                              width={400}
                                              height={200}
-                                             className="w-auto h-56 xl:h-72 2xl:h-80 transition-all duration-300 group-hover:scale-110"
+                                             className="w-auto h-56 xl:h-72 2xl:h-80 transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-glow-purple" // <-- MODIFICARE AICI
                                         />
-                                        <div className="absolute -inset-4 bg-gradient-to-l from-coderun-purple/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
+                                        {/* Am șters div-ul de aici care crea efectul pătrat */}
                                    </div>
                               </div>
                          </div>
@@ -183,9 +387,9 @@ const HeroSection: React.FC = () => {
                                              alt="CodeRun"
                                              width={400}
                                              height={160}
-                                             className="w-auto h-44 sm:h-60 transition-all duration-300 group-hover:scale-105"
+                                             className="w-auto h-44 sm:h-60 transition-all duration-300 group-hover:scale-105 group-hover:drop-shadow-glow-pink" // <-- MODIFICARE AICI
                                         />
-                                        <div className="absolute -inset-4 bg-gradient-to-r from-coderun-pink/10 via-coderun-purple/10 to-coderun-pink/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
+                                        {/* Am șters div-ul de aici care crea efectul pătrat */}
                                    </div>
                               </div>
                          </div>

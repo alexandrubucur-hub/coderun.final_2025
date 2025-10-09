@@ -8,6 +8,10 @@ module.exports = {
      ],
      theme: {
           extend: {
+               dropShadow: {
+                    "glow-pink": "0 0 20px rgba(250, 88, 182, 0.8)",
+                    "glow-purple": "0 0 20px rgba(122, 11, 192, 0.8)",
+               },
                colors: {
                     coderun: {
                          "pink-light": "#FC9BD3",
