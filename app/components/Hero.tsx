@@ -119,7 +119,7 @@ const HeroSection: React.FC = () => {
                style: "opacity-20 text-coderun-accent",
           },
      ];
-     const MAX_VERTICAL_GLITCHES = 5; // Max 5 din 8 sloturi active simultan
+     const MAX_VERTICAL_GLITCHES = 7; // <-- AM MODIFICAT AICI la 7 (poți pune și 8)
 
      // 2. State-ul care ține evidența sloturilor active (rămâne la fel)
      const [activeVerticalGlitches, setActiveVerticalGlitches] = useState<
@@ -163,7 +163,7 @@ const HeroSection: React.FC = () => {
 
                     return [...current, newGlitch];
                });
-          }, 1200); // Am micșorat intervalul pentru un ritm mai alert
+          }, 1000); // Am micșorat intervalul pentru a umple ecranul mai repede
 
           return () => clearInterval(interval);
      }, []);
@@ -190,101 +190,103 @@ const HeroSection: React.FC = () => {
 
                     {/* -- Colțuri Stânga Sus & Dreapta Sus -- */}
                     <div className="absolute top-[6%] left-[5%] text-coderun-pink font-mono text-xs opacity-40 ">
-                         {"{"}code: "reality"{"}"}
+                         <span>
+                              {"{"}code: "reality"{"}"}
+                         </span>
                     </div>
                     <div className="absolute top-[12%] left-[15%] text-coderun-purple font-mono text-xs opacity-30 ">
-                         export default Cyberpunk;
+                         <span>export default Cyberpunk;</span>
                     </div>
                     <div className="absolute top-[7%] right-[5%] text-coderun-purple font-mono text-[10px] opacity-25">
-                         // 0xDEADBEEF
+                         <span>// 0xDEADBEEF</span>
                     </div>
                     <div className="absolute top-[15%] right-[10%] text-coderun-pink font-mono text-xs opacity-35">
-                         if(dream.isReal()) {`{hack();}`}
+                         <span>if(dream.isReal()) {`{hack();}`}</span>
                     </div>
 
                     {/* -- Margini Laterale (Vertical) -- */}
                     <div className="absolute top-[25%] left-8 font-mono text-xs opacity-30 text-coderun-purple [writing-mode:vertical-rl] tracking-widest">
-                         ::SYSTEM.STATUS:ONLINE_AWAITING_INPUT::
+                         <span>::SYSTEM.STATUS:ONLINE_AWAITING_INPUT::</span>
                     </div>
                     <div className="absolute top-[30%] right-8 font-mono text-xs opacity-35 text-coderun-pink [writing-mode:vertical-rl] tracking-widest">
-                         //--REALITY_CHECKSUM_VALIDATED--//
+                         <span>--REALITY_CHECKSUM_VALIDATED--//</span>
                     </div>
 
                     {/* -- Elemente "Plutitoare" pe Margini -- */}
                     <div className="absolute top-[40%] left-[8%] text-coderun-pink-light font-mono text-xs opacity-30">
-                         ...system_override...
+                         <span>...system_override...</span>
                     </div>
                     <div className="absolute top-[60%] right-[10%] text-coderun-accent font-mono text-xs opacity-40">
-                         [initiate_protocol_7]
+                         <span>[initiate_protocol_7]</span>
                     </div>
                     <div className="absolute top-[75%] left-[15%] text-coderun-purple font-mono text-xs opacity-25 ">
-                         const matrix = new Reality();
+                         <span>const matrix = new Reality();</span>
                     </div>
                     <div className="absolute top-[70%] right-[15%] text-coderun-pink-light font-mono text-xs opacity-20">
-                         // REBOOT SEQUENCE
+                         <span>// REBOOT SEQUENCE</span>
                     </div>
 
                     {/* -- Colțuri Stânga Jos & Dreapta Jos -- */}
                     <div className="absolute bottom-[20%] left-[10%] text-coderun-pink-light font-mono text-xs opacity-40 ">
-                         while(true){`{challenge();}`}
+                         <span>while(true){`{challenge();}`}</span>
                     </div>
                     <div className="absolute bottom-[8%] left-[20%] text-coderun-purple font-mono text-xs opacity-25">
-                         err: reality_not_found
+                         <span>err: reality_not_found</span>
                     </div>
                     <div className="absolute bottom-[10%] right-[5%] text-coderun-accent font-mono text-xs opacity-45">
-                         const future = await code();
+                         <span>const future = await code();</span>
                     </div>
                     <div className="absolute bottom-[18%] right-[12%] text-coderun-pink font-mono text-[10px] opacity-30">
-                         {`{> access_granted}`}
+                         <span>{`{> access_granted}`}</span>
                     </div>
 
                     {/* --- Elemente Statice Extra, Doar pentru Desktop (Poziții Ajustate) --- */}
                     {/* Plasat în stânga-sus a zonei centrale */}
                     <div className="hidden lg:block absolute top-[25%] left-[30%] text-coderun-accent font-mono text-[10px] opacity-20">
-                         [core_memory_unlocked]
+                         <span>[core_memory_unlocked]</span>
                     </div>
 
                     {/* Plasat în dreapta-mijloc a zonei centrale */}
                     <div className="hidden lg:block absolute top-[55%] right-[28%] text-coderun-purple font-mono text-xs opacity-30">
-                         new Thread().start();
+                         <span>new Thread().start();</span>
                     </div>
 
                     {/* Plasat deasupra logo-urilor de sponsori, pe centru */}
                     <div className="hidden lg:block absolute bottom-[30%] left-[48%] text-coderun-pink-light font-mono text-xs opacity-35">
-                         ...compiling_dreams...
+                         <span>...compiling_dreams...</span>
                     </div>
 
                     {/* Plasat în stânga-jos a zonei centrale */}
                     <div className="hidden lg:block absolute bottom-[35%] left-[25%] text-coderun-purple font-mono text-xs opacity-25">
-                         function(){`{return dreams;}`}
+                         <span>function(){`{return dreams;}`}</span>
                     </div>
 
                     {/* Plasat în dreapta-sus a zonei centrale */}
                     <div className="hidden lg:block absolute top-[35%] right-[30%] text-coderun-pink font-mono text-[10px] opacity-20">
-                         process.exit(0);
+                         <span>process.exit(0);</span>
                     </div>
                     <div className="hidden lg:block absolute top-[50%] left-[35%] text-coderun-accent font-mono text-[10px] opacity-25">
-                         //--REALITY_CHECKSUM_VALIDATED--//
+                         <span>--REALITY_CHECKSUM_VALIDATED--</span>
                     </div>
 
                     {/* Plasat deasupra zonei de jos, în dreapta */}
                     <div className="hidden lg:block absolute bottom-[40%] right-[32%] text-coderun-pink font-mono text-xs opacity-20">
-                         [initiate_protocol_7]
+                         <span>[initiate_protocol_7]</span>
                     </div>
 
                     {/* Plasat în partea de sus, spre centru */}
                     <div className="hidden lg:block absolute top-[20%] left-[48%] text-coderun-purple font-mono text-xs opacity-25">
-                         ...system_override...
+                         <span>...system_override...</span>
                     </div>
 
                     {/* Plasat în dreapta-jos, mai spre interior */}
                     <div className="hidden lg:block absolute bottom-[25%] right-[45%] text-coderun-pink-light font-mono text-[10px] opacity-30">
-                         {`{> access_granted}`}
+                         <span>{`{> access_granted}`}</span>
                     </div>
 
                     {/* Plasat în stânga, sub mijloc */}
                     <div className="hidden lg:block absolute top-[68%] left-[28%] text-coderun-accent font-mono text-xs opacity-20">
-                         const matrix = new Reality();
+                         <span>const matrix = new Reality();</span>
                     </div>
                     {/* --- Containerul pentru Grila de Glitch-uri Dinamice --- */}
                     {/* Acesta va plasa textele dinamice în centrul liber, fără a se suprapune cu cele de mai sus */}
@@ -295,6 +297,17 @@ const HeroSection: React.FC = () => {
                               gridTemplateRows: `repeat(${GRID_SIZE}, 1fr)`,
                          }}
                     >
+                         {activeGlitches.map((glitch) => (
+                              <DynamicGlitchText
+                                   key={glitch.id}
+                                   className="flex items-center justify-center text-center text-coderun-pink font-mono text-xs p-2 animate-pulse"
+                                   style={{
+                                        gridRow: glitch.row,
+                                        gridColumn: glitch.col,
+                                        opacity: Math.random() * 0.4 + 0.2, // Opacitate aleatorie
+                                   }}
+                              />
+                         ))}
                          {activeVerticalGlitches.map((glitch) => {
                               const slot =
                                    verticalGlitchSlots[glitch.slotIndex];
@@ -322,7 +335,6 @@ const HeroSection: React.FC = () => {
                                              height={200}
                                              className="w-auto h-56 xl:h-72 2xl:h-80 transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-glow-pink" // <-- MODIFICARE AICI
                                         />
-                                        {/* Am șters div-ul de aici care crea efectul pătrat */}
                                    </div>
                               </div>
 

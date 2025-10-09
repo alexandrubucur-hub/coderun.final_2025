@@ -158,7 +158,6 @@ const Navbar: React.FC = () => {
                                    {item.name}
                               </DisclosureButton>
                          ))}
-                         {/* 2. MODIFICARE: Am eliminat 'px-6' pentru a alinia acest container cu cele de sus */}
                          <div className="pt-6">
                               <Link href="#" className="block">
                                    <GradientSlideButton
