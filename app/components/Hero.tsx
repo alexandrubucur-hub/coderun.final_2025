@@ -198,7 +198,7 @@ const HeroSection: React.FC = () => {
                          <span>export default Cyberpunk;</span>
                     </div>
                     <div className="absolute top-[7%] right-[5%] text-coderun-purple font-mono text-[10px] opacity-25">
-                         <span>// 0xDEADBEEF</span>
+                         <span>{"// 0xDEADBEEF"}</span>
                     </div>
                     <div className="absolute top-[15%] right-[10%] text-coderun-pink font-mono text-xs opacity-35">
                          <span>if(dream.isReal()) {`{hack();}`}</span>
@@ -223,7 +223,7 @@ const HeroSection: React.FC = () => {
                          <span>const matrix = new Reality();</span>
                     </div>
                     <div className="absolute top-[70%] right-[15%] text-coderun-pink-light font-mono text-xs opacity-20">
-                         <span>// REBOOT SEQUENCE</span>
+                         <span>{"// REBOOT SEQUENCE"}</span>
                     </div>
 
                     {/* -- Colțuri Stânga Jos & Dreapta Jos -- */}
