@@ -155,7 +155,7 @@ const CmFct: React.FC = () => {
      }, [verticalGlitchSlots]);
 
      return (
-          <section className="relative min-h-screen w-full bg-gradient-cyberpunk">
+          <section className="relative min-h-screen w-full overflow-hidden bg-gradient-cyberpunk">
                <div className="absolute inset-0 z-0">
                     <div
                          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
