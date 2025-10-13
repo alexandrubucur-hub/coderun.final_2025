@@ -26,7 +26,6 @@ module.exports = {
                     mono: ["JetBrains Mono", "monospace"],
                     sans: ["Inter", "sans-serif"],
                },
-
                animation: {
                     "glitch-1": "glitch-1 2s infinite",
                     "glitch-2": "glitch-2 2s infinite",
@@ -49,7 +48,6 @@ module.exports = {
                          "60%": { transform: "translate(-2px, -2px)" },
                          "80%": { transform: "translate(-2px, 2px)" },
                     },
-
                     float: {
                          "0%, 100%": { transform: "translateY(0px)" },
                          "50%": { transform: "translateY(-20px)" },

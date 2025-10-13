@@ -15,9 +15,8 @@ const navigation = [
      { name: "Despre", href: "#about", current: false },
      { name: "Cum funcționează", href: "#how-it-works", current: false },
      { name: "Program", href: "#program", current: false },
-     { name: "Parteneri", href: "#partners", current: false },
-     { name: "Premii", href: "#awards", current: false },
      { name: "FAQ", href: "#faq", current: false },
+     { name: "Parteneri", href: "#partners", current: false },
      { name: "Contact", href: "#contact", current: false },
 ];
 
