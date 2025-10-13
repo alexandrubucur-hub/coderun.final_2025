@@ -6,7 +6,7 @@ import Link from "next/link";
 import InfoCard from "@/components/ui/InfoCard";
 import { DynamicGlitchText } from "@/components/ui/DynamicGlitchText";
 
-const Despre: React.FC = () => {
+const CmFct: React.FC = () => {
      const [isLogoVisible, setIsLogoVisible] = useState(false);
      const logoRef = React.useRef<HTMLDivElement | null>(null);
 
@@ -346,4 +346,4 @@ const Despre: React.FC = () => {
      );
 };
 
-export default Despre;
+export default CmFct;
