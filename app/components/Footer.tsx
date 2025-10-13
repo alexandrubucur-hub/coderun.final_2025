@@ -12,22 +12,19 @@ import {
 
 const Footer = () => {
      const footerLinks = {
-          evenimente: [
+          eveniment: [
                { name: "Despre CodeRun", href: "/despre" },
                { name: "Cum funcționează", href: "/cum-functioneaza" },
                { name: "Program", href: "/program" },
-               { name: "Premii", href: "/premii" },
           ],
           participanti: [
                { name: "Înscriere", href: "/inscriere" },
-               { name: "Guidelines", href: "/cum-functioneaza/guidelines" },
                { name: "FAQ", href: "/faq" },
                { name: "Regulament", href: "/cum-functioneaza/regulament" },
           ],
           contact: [
                { name: "Contact", href: "/contact" },
                { name: "Parteneri", href: "/parteneri" },
-               { name: "Suport", href: "/contact" },
           ],
      };
 
@@ -92,10 +89,10 @@ const Footer = () => {
                               {/* Evenimente */}
                               <div>
                                    <h3 className="text-lg font-semibold mb-4">
-                                        Evenimente
+                                        Eveniment
                                    </h3>
                                    <ul className="space-y-3">
-                                        {footerLinks.evenimente.map((link) => (
+                                        {footerLinks.eveniment.map((link) => (
                                              <li key={link.name}>
                                                   <Link
                                                        href={link.href}
