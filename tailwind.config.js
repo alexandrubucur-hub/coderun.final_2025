@@ -32,6 +32,7 @@ module.exports = {
                     float: "float 6s ease-in-out infinite",
                     "glow-pulse":
                          "glow-pulse 2s ease-in-out infinite alternate",
+                    "pulse-glow": "pulse-glow 2.5s infinite ease-in-out",
                },
                keyframes: {
                     "glitch-1": {
@@ -58,6 +59,16 @@ module.exports = {
                          },
                          "100%": {
                               filter: "drop-shadow(0 0 40px #FA58B6) drop-shadow(0 0 80px #7A0BC0)",
+                         },
+                    },
+                    "pulse-glow": {
+                         "0%, 100%": {
+                              transform: "scale(1)",
+                              boxShadow: "0 0 15px 2px rgba(250, 88, 182, 0.5)",
+                         },
+                         "50%": {
+                              transform: "scale(1.05)",
+                              boxShadow: "0 0 25px 8px rgba(250, 88, 182, 0.7)",
                          },
                     },
                },

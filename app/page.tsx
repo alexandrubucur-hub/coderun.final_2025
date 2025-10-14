@@ -7,6 +7,8 @@ import Link from "next/link";
 import React from "react";
 import Despre from "./components/home/Despre";
 import CmFct from "./components/home/CmFct";
+import Program from "./components/home/Program";
+import Faq from "./components/home/Faq";
 
 export default function Home() {
      return (
@@ -15,6 +17,8 @@ export default function Home() {
                <Hero />
                <Despre />
                <CmFct />
+               <Program />
+               <Faq />
                <Footer />
           </main>
      );

@@ -1,5 +1,3 @@
-// components/InfoCard.js
-
 import React from "react";
 
 type InfoCardProps = {

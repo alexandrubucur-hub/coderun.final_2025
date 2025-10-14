@@ -155,7 +155,10 @@ const CmFct: React.FC = () => {
      }, [verticalGlitchSlots]);
 
      return (
-          <section className="relative min-h-screen w-full overflow-hidden bg-gradient-cyberpunk">
+          <section
+               id="how-it-works"
+               className="relative min-h-screen w-full overflow-hidden bg-coderun-dark pt-16 pb-4 md:pb-16"
+          >
                <div className="absolute inset-0 z-0">
                     <div
                          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -170,15 +173,16 @@ const CmFct: React.FC = () => {
                </div>
                <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-coderun-dark to-transparent pointer-events-none z-30" />
 
-               <div className="absolute inset-0 z-10 pointer-events-none text-glitch">
-                    <div className="absolute top-[6%] left-[5%] text-coderun-pink font-mono text-xs opacity-40">
+               {/* Glitch Code Overlay */}
+               <div className="absolute inset-0 z-10 pointer-events-none text-glitch ">
+                    {/* --- Textele Statice Rearanjate --- */}
+
+                    {/* -- Colțuri Stânga Sus & Dreapta Sus -- */}
+                    <div className="absolute top-[6%] left-[5%] text-coderun-pink font-mono text-xs opacity-40 ">
                          <span>
-                              {/* ▼▼▼ SOLUȚIA PENTRU EROAREA DE GHILIMELE ▼▼▼ */}
-                              {`{code: 'reality'}`}
+                              {"{"}code: "reality"{"}"}
                          </span>
                     </div>
-
-                    {/* Restul codului tău static rămâne la fel */}
                     <div className="absolute top-[12%] left-[15%] text-coderun-purple font-mono text-xs opacity-30 ">
                          <span>export default Cyberpunk;</span>
                     </div>
@@ -186,17 +190,95 @@ const CmFct: React.FC = () => {
                          <span>{"// 0xDEADBEEF"}</span>
                     </div>
                     <div className="absolute top-[15%] right-[10%] text-coderun-pink font-mono text-xs opacity-35">
-                         <span>{`if(dream.isReal()) {hack();}`}</span>
+                         <span>if(dream.isReal()) {`{hack();}`}</span>
                     </div>
+
+                    {/* -- Margini Laterale (Vertical) -- */}
                     <div className="absolute top-[25%] left-8 font-mono text-xs opacity-30 text-coderun-purple [writing-mode:vertical-rl] tracking-widest">
                          <span>::SYSTEM.STATUS:ONLINE_AWAITING_INPUT::</span>
                     </div>
                     <div className="absolute top-[30%] right-8 font-mono text-xs opacity-35 text-coderun-pink [writing-mode:vertical-rl] tracking-widest">
                          <span>--REALITY_CHECKSUM_VALIDATED--//</span>
                     </div>
-                    {/* ... și așa mai departe ... */}
 
-                    {/* Containerul pentru Glitch-uri Dinamice */}
+                    {/* -- Elemente "Plutitoare" pe Margini -- */}
+                    <div className="absolute top-[40%] left-[8%] text-coderun-pink-light font-mono text-xs opacity-30">
+                         <span>...system_override...</span>
+                    </div>
+                    <div className="absolute top-[60%] right-[10%] text-coderun-accent font-mono text-xs opacity-40">
+                         <span>[initiate_protocol_7]</span>
+                    </div>
+                    <div className="absolute top-[75%] left-[15%] text-coderun-purple font-mono text-xs opacity-25 ">
+                         <span>const matrix = new Reality();</span>
+                    </div>
+                    <div className="absolute top-[70%] right-[15%] text-coderun-pink-light font-mono text-xs opacity-20">
+                         <span>{"// REBOOT SEQUENCE"}</span>
+                    </div>
+
+                    {/* -- Colțuri Stânga Jos & Dreapta Jos -- */}
+                    <div className="absolute bottom-[20%] left-[10%] text-coderun-pink-light font-mono text-xs opacity-40 ">
+                         <span>while(true){`{challenge();}`}</span>
+                    </div>
+                    <div className="absolute bottom-[8%] left-[20%] text-coderun-purple font-mono text-xs opacity-25">
+                         <span>err: reality_not_found</span>
+                    </div>
+                    <div className="absolute bottom-[10%] right-[5%] text-coderun-accent font-mono text-xs opacity-45">
+                         <span>const future = await code();</span>
+                    </div>
+                    <div className="absolute bottom-[18%] right-[12%] text-coderun-pink font-mono text-[10px] opacity-30">
+                         <span>{`{> access_granted}`}</span>
+                    </div>
+
+                    {/* --- Elemente Statice Extra, Doar pentru Desktop (Poziții Ajustate) --- */}
+                    {/* Plasat în stânga-sus a zonei centrale */}
+                    <div className="hidden lg:block absolute top-[25%] left-[30%] text-coderun-accent font-mono text-[10px] opacity-20">
+                         <span>[core_memory_unlocked]</span>
+                    </div>
+
+                    {/* Plasat în dreapta-mijloc a zonei centrale */}
+                    <div className="hidden lg:block absolute top-[55%] right-[28%] text-coderun-purple font-mono text-xs opacity-30">
+                         <span>new Thread().start();</span>
+                    </div>
+
+                    {/* Plasat deasupra logo-urilor de sponsori, pe centru */}
+                    <div className="hidden lg:block absolute bottom-[30%] left-[48%] text-coderun-pink-light font-mono text-xs opacity-35">
+                         <span>...compiling_dreams...</span>
+                    </div>
+
+                    {/* Plasat în stânga-jos a zonei centrale */}
+                    <div className="hidden lg:block absolute bottom-[35%] left-[25%] text-coderun-purple font-mono text-xs opacity-25">
+                         <span>function(){`{return dreams;}`}</span>
+                    </div>
+
+                    {/* Plasat în dreapta-sus a zonei centrale */}
+                    <div className="hidden lg:block absolute top-[35%] right-[30%] text-coderun-pink font-mono text-[10px] opacity-20">
+                         <span>process.exit(0);</span>
+                    </div>
+                    <div className="hidden lg:block absolute top-[50%] left-[35%] text-coderun-accent font-mono text-[10px] opacity-25">
+                         <span>--REALITY_CHECKSUM_VALIDATED--</span>
+                    </div>
+
+                    {/* Plasat deasupra zonei de jos, în dreapta */}
+                    <div className="hidden lg:block absolute bottom-[40%] right-[32%] text-coderun-pink font-mono text-xs opacity-20">
+                         <span>[initiate_protocol_7]</span>
+                    </div>
+
+                    {/* Plasat în partea de sus, spre centru */}
+                    <div className="hidden lg:block absolute top-[20%] left-[48%] text-coderun-purple font-mono text-xs opacity-25">
+                         <span>...system_override...</span>
+                    </div>
+
+                    {/* Plasat în dreapta-jos, mai spre interior */}
+                    <div className="hidden lg:block absolute bottom-[25%] right-[45%] text-coderun-pink-light font-mono text-[10px] opacity-30">
+                         <span>{`{> access_granted}`}</span>
+                    </div>
+
+                    {/* Plasat în stânga, sub mijloc */}
+                    <div className="hidden lg:block absolute top-[68%] left-[28%] text-coderun-accent font-mono text-xs opacity-20">
+                         <span>const matrix = new Reality();</span>
+                    </div>
+                    {/* --- Containerul pentru Grila de Glitch-uri Dinamice --- */}
+                    {/* Acesta va plasa textele dinamice în centrul liber, fără a se suprapune cu cele de mai sus */}
                     <div
                          className="absolute inset-0 grid"
                          style={{
@@ -211,7 +293,7 @@ const CmFct: React.FC = () => {
                                    style={{
                                         gridRow: glitch.row,
                                         gridColumn: glitch.col,
-                                        opacity: Math.random() * 0.4 + 0.2,
+                                        opacity: Math.random() * 0.4 + 0.2, // Opacitate aleatorie
                                    }}
                               />
                          ))}
@@ -228,8 +310,13 @@ const CmFct: React.FC = () => {
                     </div>
                </div>
 
-               <div className="relative z-20 flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8 pt-16">
+               <div className="relative z-20 flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
                     <div className="w-full max-w-7xl mx-auto">
+                         <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl text-white leading-tight text-center mb-16 md:mb-24 pt-4">
+                              <span className="block FontTest text-coderun-pink-light animate-pulse text-glow">
+                                   CUM FUNCTIONEAZA?
+                              </span>
+                         </h2>
                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                               <InfoCard title="Ce este Coderun?">
                                    O competiție de programare intensă unde îți
