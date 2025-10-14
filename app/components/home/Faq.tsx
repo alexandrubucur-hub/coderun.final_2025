@@ -183,10 +183,9 @@ const Faq: React.FC = () => {
                <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-coderun-dark to-transparent pointer-events-none z-30" />
 
                <div className="absolute inset-0 z-10 pointer-events-none text-glitch">
+                    {/* MODIFICARE: Am înlocuit ghilimelele duble cu simple pentru a rezolva eroarea */}
                     <div className="absolute top-[6%] left-[5%] text-coderun-pink font-mono text-xs opacity-40 ">
-                         <span>
-                              {"{"}code: "reality"{"}"}
-                         </span>
+                         <span>{`{code: 'reality'}`}</span>
                     </div>
                     <div className="absolute top-[12%] left-[15%] text-coderun-purple font-mono text-xs opacity-30 ">
                          <span>export default Cyberpunk;</span>
@@ -304,7 +303,6 @@ const Faq: React.FC = () => {
                                    ÎNTREBĂRI FRECVENTE
                               </span>
                          </motion.h2>
-
                          <motion.div
                               className="space-y-4"
                               variants={faqItemVariants}
