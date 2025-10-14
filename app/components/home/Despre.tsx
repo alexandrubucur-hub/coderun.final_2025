@@ -5,7 +5,6 @@ import Image from "next/image";
 import InfoCard from "@/components/ui/InfoCard";
 import { motion, Variants } from "framer-motion";
 
-// Variantele de animație definite în afara componentei
 const containerVariants: Variants = {
      hidden: { opacity: 0 },
      visible: {
@@ -49,7 +48,6 @@ const Despre: React.FC = () => {
                          </motion.h2>
 
                          <div className="space-y-12 md:space-y-20">
-                              {/* --- Rândul 1: Card stânga, Imagine dreapta --- */}
                               <motion.div
                                    className="flex flex-col md:flex-row items-center gap-8 md:gap-12"
                                    variants={itemVariants}
@@ -80,7 +78,6 @@ const Despre: React.FC = () => {
                                    </div>
                               </motion.div>
 
-                              {/* --- Rândul 2: Imagine stânga, Card dreapta --- */}
                               <motion.div
                                    className="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-12"
                                    variants={itemVariants}
@@ -118,7 +115,6 @@ const Despre: React.FC = () => {
                                    </div>
                               </motion.div>
 
-                              {/* --- Rândul 3: Card stânga, Imagine dreapta --- */}
                               <motion.div
                                    className="flex flex-col md:flex-row items-center gap-8 md:gap-12"
                                    variants={itemVariants}
@@ -154,7 +150,6 @@ const Despre: React.FC = () => {
                          </div>
                     </motion.div>
                </div>
-
                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-coderun-dark to-transparent pointer-events-none z-30" />
           </section>
      );

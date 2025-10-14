@@ -1,7 +1,7 @@
 "use client";
 /* eslint-disable react/no-unescaped-entities */
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { GradientSlideButton } from "@/components/ui/gradient-slide-button";
@@ -40,12 +40,13 @@ const HeroSection: React.FC = () => {
                },
                { threshold: 0.5 }
           );
-          if (logoRef.current) {
-               observer.observe(logoRef.current);
+          const node = logoRef.current;
+          if (node) {
+               observer.observe(node);
           }
           return () => {
-               if (logoRef.current) {
-                    observer.unobserve(logoRef.current);
+               if (node) {
+                    observer.unobserve(node);
                }
           };
      }, []);
@@ -92,50 +93,53 @@ const HeroSection: React.FC = () => {
           return () => clearInterval(interval);
      }, []);
 
-     const verticalGlitchSlots = [
-          {
-               position: "top-[15%] left-[12%]",
-               style: "opacity-30 text-coderun-purple",
-          },
-          {
-               position: "top-[60%] left-[22%]",
-               style: "opacity-20 text-coderun-accent",
-          },
-          {
-               position: "top-[20%] left-[35%]",
-               style: "opacity-35 text-coderun-pink-light",
-          },
-          {
-               position: "top-[75%] left-[45%]",
-               style: "opacity-25 text-coderun-purple",
-          },
-          {
-               position: "top-[10%] left-[55%]",
-               style: "opacity-35 text-coderun-pink",
-          },
-          {
-               position: "top-[55%] left-[68%]",
-               style: "opacity-25 text-coderun-accent",
-          },
-          {
-               position: "top-[30%] left-[78%]",
-               style: "opacity-30 text-coderun-pink-light",
-          },
-          {
-               position: "top-[85%] left-[85%]",
-               style: "opacity-20 text-coderun-purple",
-          },
-          {
-               position: "top-[45%] left-[90%]",
-               style: "opacity-25 text-coderun-pink",
-          },
-          {
-               position: "top-[80%] left-[5%]",
-               style: "opacity-20 text-coderun-accent",
-          },
-     ];
-     const MAX_VERTICAL_GLITCHES = 7;
+     const verticalGlitchSlots = useMemo(
+          () => [
+               {
+                    position: "top-[15%] left-[12%]",
+                    style: "opacity-30 text-coderun-purple",
+               },
+               {
+                    position: "top-[60%] left-[22%]",
+                    style: "opacity-20 text-coderun-accent",
+               },
+               {
+                    position: "top-[20%] left-[35%]",
+                    style: "opacity-35 text-coderun-pink-light",
+               },
+               {
+                    position: "top-[75%] left-[45%]",
+                    style: "opacity-25 text-coderun-purple",
+               },
+               {
+                    position: "top-[10%] left-[55%]",
+                    style: "opacity-35 text-coderun-pink",
+               },
+               {
+                    position: "top-[55%] left-[68%]",
+                    style: "opacity-25 text-coderun-accent",
+               },
+               {
+                    position: "top-[30%] left-[78%]",
+                    style: "opacity-30 text-coderun-pink-light",
+               },
+               {
+                    position: "top-[85%] left-[85%]",
+                    style: "opacity-20 text-coderun-purple",
+               },
+               {
+                    position: "top-[45%] left-[90%]",
+                    style: "opacity-25 text-coderun-pink",
+               },
+               {
+                    position: "top-[80%] left-[5%]",
+                    style: "opacity-20 text-coderun-accent",
+               },
+          ],
+          []
+     );
 
+     const MAX_VERTICAL_GLITCHES = 7;
      const [activeVerticalGlitches, setActiveVerticalGlitches] = useState<
           Array<{ id: number; slotIndex: number }>
      >([]);
@@ -168,7 +172,7 @@ const HeroSection: React.FC = () => {
                });
           }, 1000);
           return () => clearInterval(interval);
-     }, []);
+     }, [verticalGlitchSlots]);
 
      return (
           <section className="relative min-h-screen w-full overflow-hidden bg-gradient-cyberpunk">
@@ -185,9 +189,7 @@ const HeroSection: React.FC = () => {
 
                <div className="absolute inset-0 z-10 pointer-events-none text-glitch ">
                     <div className="absolute top-[6%] left-[5%] text-coderun-pink font-mono text-xs opacity-40 ">
-                         <span>
-                              {"{"}code: "reality"{"}"}
-                         </span>
+                         <span>{`{code: 'reality'}`}</span>
                     </div>
                     <div className="absolute top-[12%] left-[15%] text-coderun-purple font-mono text-xs opacity-30 ">
                          <span>export default Cyberpunk;</span>
@@ -311,7 +313,6 @@ const HeroSection: React.FC = () => {
                                         />
                                    </div>
                               </motion.div>
-
                               <motion.div
                                    className="flex justify-center"
                                    variants={itemVariants}
@@ -328,7 +329,6 @@ const HeroSection: React.FC = () => {
                                         <div className="absolute -inset-8 bg-gradient-to-r from-coderun-accent/10 via-coderun-purple/10 to-coderun-pink/10 blur-3xl opacity-80" />
                                    </div>
                               </motion.div>
-
                               <motion.div
                                    className="flex justify-center lg:justify-start"
                                    variants={itemVariants}
@@ -344,7 +344,6 @@ const HeroSection: React.FC = () => {
                                    </div>
                               </motion.div>
                          </div>
-
                          <div className="lg:hidden flex flex-col items-center justify-center pt-8">
                               <motion.div
                                    className="flex justify-center"
@@ -385,7 +384,6 @@ const HeroSection: React.FC = () => {
                                    </div>
                               </motion.div>
                          </div>
-
                          <motion.div
                               className="flex justify-center mt-12 lg:mt-16"
                               variants={itemVariants}
@@ -433,7 +431,6 @@ const HeroSection: React.FC = () => {
                          </motion.div>
                     </motion.div>
                </div>
-
                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-coderun-dark to-transparent pointer-events-none z-30" />
           </section>
      );
