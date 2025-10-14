@@ -1,14 +1,15 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+
+import React from "react";
+import dynamic from "next/dynamic";
 import Navbar from "./components/Navbar";
 import Hero from "./components/home/Hero";
 import Footer from "./components/Footer";
-import Link from "next/link";
-import React from "react";
-import Despre from "./components/home/Despre";
-import CmFct from "./components/home/CmFct";
-import Program from "./components/home/Program";
-import Faq from "./components/home/Faq";
+
+const Despre = dynamic(() => import("./components/home/Despre"));
+const CmFct = dynamic(() => import("./components/home/CmFct"));
+const Program = dynamic(() => import("./components/home/Program"));
+const Faq = dynamic(() => import("./components/home/Faq"));
 
 export default function Home() {
      return (
