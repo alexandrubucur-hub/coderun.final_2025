@@ -148,3 +148,7 @@
 .FontTest {
      font-family: "FontTest", sans-serif !important;
 }
+
+.will-change-transform {
+     will-change: transform;
+}

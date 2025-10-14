@@ -1,56 +1,39 @@
 "use client";
 
-import React, { useEffect, useState, useMemo } from "react";
-import { DynamicGlitchText } from "@/components/ui/DynamicGlitchText"; // Asigură-te că ai această componentă
+import React, { useEffect, useState, useMemo, useRef } from "react";
+import { DynamicGlitchText } from "@/components/ui/DynamicGlitchText";
 
 interface CyberpunkBackgroundProps {
      children: React.ReactNode;
 }
 
+// Am extins tipul pentru a include un timestamp de dispariție
+type Glitch = { id: number; row: number; col: number; disappearAt: number };
+type VerticalGlitch = { id: number; slotIndex: number; disappearAt: number };
+
 const CyberpunkBackground: React.FC<CyberpunkBackgroundProps> = ({
      children,
 }) => {
-     const [activeGlitches, setActiveGlitches] = useState<
-          Array<{ id: number; row: number; col: number }>
+     const [activeGlitches, setActiveGlitches] = useState<Glitch[]>([]);
+     const [activeVerticalGlitches, setActiveVerticalGlitches] = useState<
+          VerticalGlitch[]
      >([]);
+
+     // AICI ESTE CORECTURA: Am adăugat valoarea inițială `null` și am ajustat tipul
+     const animationFrameId = useRef<number | null>(null);
+     const lastGlitchTime = useRef<number>(0);
+     const lastVerticalGlitchTime = useRef<number>(0);
+
      const GRID_SIZE = 6;
      const MAX_GLITCHES = 8;
+     const GLITCH_INTERVAL = 700; // ms
+     const GLITCH_LIFESPAN_MIN = 2000;
+     const GLITCH_LIFESPAN_MAX = 5000;
 
-     useEffect(() => {
-          const interval = setInterval(() => {
-               setActiveGlitches((currentGlitches) => {
-                    if (currentGlitches.length >= MAX_GLITCHES) {
-                         return currentGlitches;
-                    }
-                    let randomRow: number, randomCol: number;
-                    let isOccupied = true;
-                    let attempts = 0;
-                    do {
-                         randomRow = Math.floor(Math.random() * GRID_SIZE) + 1;
-                         randomCol = Math.floor(Math.random() * GRID_SIZE) + 1;
-                         isOccupied = currentGlitches.some(
-                              (g) => g.row === randomRow && g.col === randomCol
-                         );
-                         attempts++;
-                    } while (isOccupied && attempts < 20);
-                    if (!isOccupied) {
-                         const newGlitch = {
-                              id: Date.now(),
-                              row: randomRow,
-                              col: randomCol,
-                         };
-                         setTimeout(() => {
-                              setActiveGlitches((prev) =>
-                                   prev.filter((g) => g.id !== newGlitch.id)
-                              );
-                         }, 2000 + Math.random() * 3000);
-                         return [...currentGlitches, newGlitch];
-                    }
-                    return currentGlitches;
-               });
-          }, 700);
-          return () => clearInterval(interval);
-     }, []);
+     const MAX_VERTICAL_GLITCHES = 7;
+     const VERTICAL_GLITCH_INTERVAL = 1000; // ms
+     const VERTICAL_GLITCH_LIFESPAN_MIN = 3000;
+     const VERTICAL_GLITCH_LIFESPAN_MAX = 5000;
 
      const verticalGlitchSlots = useMemo(
           () => [
@@ -98,39 +81,112 @@ const CyberpunkBackground: React.FC<CyberpunkBackgroundProps> = ({
           []
      );
 
-     const MAX_VERTICAL_GLITCHES = 7;
-     const [activeVerticalGlitches, setActiveVerticalGlitches] = useState<
-          Array<{ id: number; slotIndex: number }>
-     >([]);
-
      useEffect(() => {
-          const interval = setInterval(() => {
-               setActiveVerticalGlitches((current) => {
-                    if (current.length >= MAX_VERTICAL_GLITCHES) return current;
-                    const availableSlots = verticalGlitchSlots
-                         .map((_, index) => index)
-                         .filter(
-                              (index) =>
-                                   !current.some((g) => g.slotIndex === index)
+          const animate = (timestamp: number) => {
+               // Gestionează glitch-urile orizontale
+               if (timestamp - lastGlitchTime.current > GLITCH_INTERVAL) {
+                    lastGlitchTime.current = timestamp;
+                    setActiveGlitches((currentGlitches) => {
+                         // Elimină glitch-urile vechi
+                         const freshGlitches = currentGlitches.filter(
+                              (g) => g.disappearAt > timestamp
                          );
-                    if (availableSlots.length === 0) return current;
-                    const randomSlotIndex =
-                         availableSlots[
-                              Math.floor(Math.random() * availableSlots.length)
-                         ];
-                    const newGlitch = {
-                         id: Date.now(),
-                         slotIndex: randomSlotIndex,
-                    };
-                    setTimeout(() => {
-                         setActiveVerticalGlitches((prev) =>
-                              prev.filter((g) => g.id !== newGlitch.id)
+
+                         if (freshGlitches.length >= MAX_GLITCHES) {
+                              return freshGlitches;
+                         }
+
+                         // Adaugă un glitch nou dacă e loc
+                         let randomRow: number, randomCol: number;
+                         let isOccupied = true;
+                         let attempts = 0;
+                         do {
+                              randomRow =
+                                   Math.floor(Math.random() * GRID_SIZE) + 1;
+                              randomCol =
+                                   Math.floor(Math.random() * GRID_SIZE) + 1;
+                              isOccupied = freshGlitches.some(
+                                   (g) =>
+                                        g.row === randomRow &&
+                                        g.col === randomCol
+                              );
+                              attempts++;
+                         } while (isOccupied && attempts < 20);
+
+                         if (!isOccupied) {
+                              const newGlitch: Glitch = {
+                                   id: timestamp + Math.random(),
+                                   row: randomRow,
+                                   col: randomCol,
+                                   disappearAt:
+                                        timestamp +
+                                        GLITCH_LIFESPAN_MIN +
+                                        Math.random() *
+                                             (GLITCH_LIFESPAN_MAX -
+                                                  GLITCH_LIFESPAN_MIN),
+                              };
+                              return [...freshGlitches, newGlitch];
+                         }
+                         return freshGlitches;
+                    });
+               }
+
+               // Gestionează glitch-urile verticale
+               if (
+                    timestamp - lastVerticalGlitchTime.current >
+                    VERTICAL_GLITCH_INTERVAL
+               ) {
+                    lastVerticalGlitchTime.current = timestamp;
+                    setActiveVerticalGlitches((current) => {
+                         // Elimină glitch-urile vechi
+                         const freshGlitches = current.filter(
+                              (g) => g.disappearAt > timestamp
                          );
-                    }, 3000 + Math.random() * 2000);
-                    return [...current, newGlitch];
-               });
-          }, 1000);
-          return () => clearInterval(interval);
+
+                         if (freshGlitches.length >= MAX_VERTICAL_GLITCHES)
+                              return freshGlitches;
+
+                         const availableSlots = verticalGlitchSlots
+                              .map((_, index) => index)
+                              .filter(
+                                   (index) =>
+                                        !freshGlitches.some(
+                                             (g) => g.slotIndex === index
+                                        )
+                              );
+
+                         if (availableSlots.length === 0) return freshGlitches;
+
+                         const randomSlotIndex =
+                              availableSlots[
+                                   Math.floor(
+                                        Math.random() * availableSlots.length
+                                   )
+                              ];
+                         const newGlitch: VerticalGlitch = {
+                              id: timestamp + Math.random(),
+                              slotIndex: randomSlotIndex,
+                              disappearAt:
+                                   timestamp +
+                                   VERTICAL_GLITCH_LIFESPAN_MIN +
+                                   Math.random() *
+                                        (VERTICAL_GLITCH_LIFESPAN_MAX -
+                                             VERTICAL_GLITCH_LIFESPAN_MIN),
+                         };
+                         return [...freshGlitches, newGlitch];
+                    });
+               }
+
+               animationFrameId.current = requestAnimationFrame(animate);
+          };
+
+          animationFrameId.current = requestAnimationFrame(animate);
+
+          return () => {
+               if (animationFrameId.current) {
+                    cancelAnimationFrame(animationFrameId.current);
+               }
+          };
      }, [verticalGlitchSlots]);
 
      return (
