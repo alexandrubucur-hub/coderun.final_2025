@@ -169,7 +169,7 @@ const Faq: React.FC = () => {
      };
 
      return (
-          <section className="relative w-full overflow-hidden bg-gradient-cyberpunk">
+          <section className="relative w-full overflow-hidden bg-gradient-cyberpunk py-8">
                <div className="absolute inset-0 z-0">
                     <div
                          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
