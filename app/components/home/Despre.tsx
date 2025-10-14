@@ -1,9 +1,11 @@
+// app/components/home/Despre.tsx
 "use client";
 
 import React from "react";
 import Image from "next/image";
 import InfoCard from "@/components/ui/InfoCard";
 import { motion, Variants } from "framer-motion";
+import PlexusBackground from "@/components/ui/PlexusBackground";
 
 const containerVariants: Variants = {
      hidden: { opacity: 0 },
@@ -30,6 +32,10 @@ const Despre: React.FC = () => {
                id="about"
                className="relative min-h-screen w-full overflow-hidden bg-coderun-dark pt-16 pb-4 md:pb-16"
           >
+               <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-coderun-dark to-transparent pointer-events-none z-30" />
+               <PlexusBackground />
+
+               {/* --- CONTINUTUL PAGINII --- */}
                <div className="relative z-20 flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
                     <motion.div
                          className="w-full max-w-7xl mx-auto"
@@ -48,6 +54,7 @@ const Despre: React.FC = () => {
                          </motion.h2>
 
                          <div className="space-y-12 md:space-y-20">
+                              {/* --- Restul continutului ramane neschimbat --- */}
                               <motion.div
                                    className="flex flex-col md:flex-row items-center gap-8 md:gap-12"
                                    variants={itemVariants}

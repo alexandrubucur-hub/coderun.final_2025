@@ -14,13 +14,13 @@ import {
 const Footer = () => {
      const footerLinks = {
           eveniment: [
-               { name: "Despre CodeRun", href: "/despre" },
-               { name: "Cum funcționează", href: "/cum-functioneaza" },
-               { name: "Program", href: "/program" },
+               { name: "Despre CodeRun", href: "#about" },
+               { name: "Cum funcționează", href: "#how-it-works" },
+               { name: "Program", href: "#program" },
           ],
           participanti: [
                { name: "Înscriere", href: "/inscriere" },
-               { name: "FAQ", href: "/faq" },
+               { name: "FAQ", href: "#faq" },
                { name: "Regulament", href: "/cum-functioneaza/regulament" },
           ],
           contact: [
