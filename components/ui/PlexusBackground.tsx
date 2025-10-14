@@ -10,7 +10,7 @@ const MOUSE_INTERACTION_RADIUS = 200;
 const PARTICLE_BASE_SPEED = 0.4;
 
 // Paleta de culori pentru consistență
-const PARTICLE_COLOR = "rgba(236, 72, 153, 0.9)"; // Coderun Pink
+const PARTICLE_COLOR = "rgba(250, 88, 182, 0.9)"; // Coderun Pink
 const LINK_COLOR = "rgba(122, 11, 192, 0.7)"; // Coderun Purple
 const MOUSE_HIGHLIGHT_COLOR = "rgba(0, 204, 255, 1)"; // Accent electric blue
 
