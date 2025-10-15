@@ -91,7 +91,6 @@ const Program: React.FC = () => {
                          </span>
                     </h2>
 
-                    {/* MODIFICARE: Am schimbat 'sm:' în 'lg:' pentru a forța suprapunerea mai devreme */}
                     <motion.ol
                          className="relative lg:flex lg:justify-center lg:gap-x-6"
                          initial="hidden"
@@ -134,21 +133,22 @@ const Program: React.FC = () => {
                                         ></div>
 
                                         <div className="mt-5 lg:pe-4 transition-all duration-300 group-hover:-translate-y-2">
+                                             {/* AICI SUNT MODIFICĂRILE */}
                                              <div
-                                                  className={`p-5 rounded-lg border bg-coderun-dark-purple/30 backdrop-blur-sm transition-all duration-300 
+                                                  className={`p-6 rounded-2xl backdrop-blur-sm bg-[#1A1A40]/40 transition-all duration-300 
                                                   ${
                                                        isActive
-                                                            ? "border-coderun-pink shadow-[0_0_25px_rgba(250,88,182,0.7)]"
-                                                            : "border-coderun-purple/50 shadow-[0_0_15px_rgba(122,11,192,1)] group-hover:border-coderun-pink group-hover:shadow-[0_0_25px_rgba(250,88,182,0.7)]"
+                                                            ? "border border-[#FA58B6] shadow-[0_0_25px_rgba(250,88,182,0.7)]"
+                                                            : "border border-[#270082] shadow-[0_0_15px_rgba(122,11,192,1)] group-hover:border-[#FA58B6] group-hover:shadow-[0_0_25px_rgba(250,88,182,0.7)]"
                                                   }`}
                                              >
                                                   <time className="block mb-2 text-sm font-normal font-mono leading-none text-white/70">
                                                        {item.date}
                                                   </time>
-                                                  <h3 className="text-xl font-bold text-coderun-pink-light FontTest">
+                                                  <h3 className="text-xl font-bold text-[#FC9BD3] FontTest">
                                                        {item.title}
                                                   </h3>
-                                                  <p className="mt-2 text-base font-normal text-white/90">
+                                                  <p className="mt-2 text-base font-normal text-gray-300 leading-relaxed">
                                                        {item.description}
                                                   </p>
                                              </div>

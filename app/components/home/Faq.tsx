@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import CyberpunkBackground from "@/components/ui/CyberpunkBackground";
 
@@ -76,15 +76,22 @@ const Faq: React.FC = () => {
                                    {faqData.map((item, index) => (
                                         <div
                                              key={index}
-                                             className="overflow-hidden rounded-lg border border-coderun-dark-purple shadow-[0_0_15px_rgba(122,11,192,1)] transition-all duration-300 hover:border-coderun-pink hover:shadow-[0_0_25px_rgba(250,88,182,0.7)]"
+                                             // AICI AM APLICAT STILUL DIN INFOCARD
+                                             className="bg-[#1A1A40]/40 backdrop-blur-sm rounded-2xl border border-[#270082] shadow-[0_0_15px_rgba(122,11,192,1)] transition-all duration-300 hover:border-[#FA58B6] hover:shadow-[0_0_25px_rgba(250,88,182,0.7)]"
                                         >
                                              <button
                                                   onClick={() =>
                                                        toggleFAQ(index)
                                                   }
-                                                  className="flex w-full items-center justify-between p-6 text-left transition-colors duration-300 hover:bg-coderun-dark-purple/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-coderun-pink"
+                                                  className="flex w-full items-center justify-between p-6 text-left focus:outline-none"
                                              >
-                                                  <span className="text-lg md:text-xl FontTest text-coderun-pink-light">
+                                                  <span
+                                                       className="text-2xl font-bold text-[#FC9BD3]"
+                                                       style={{
+                                                            fontFamily:
+                                                                 "sans-serif",
+                                                       }}
+                                                  >
                                                        {item.question}
                                                   </span>
                                                   <motion.div
@@ -136,28 +143,13 @@ const Faq: React.FC = () => {
                                                                  ease: "easeInOut",
                                                             }}
                                                        >
-                                                            <motion.div
-                                                                 className="px-6 pb-6"
-                                                                 initial={{
-                                                                      opacity: 0,
-                                                                 }}
-                                                                 animate={{
-                                                                      opacity: 1,
-                                                                      transition:
-                                                                           {
-                                                                                delay: 0.1,
-                                                                           },
-                                                                 }}
-                                                                 exit={{
-                                                                      opacity: 0,
-                                                                 }}
-                                                            >
-                                                                 <p className="font-sans text-white/80 leading-relaxed pt-4">
+                                                            <div className="px-6 pb-6">
+                                                                 <p className="text-gray-300 leading-relaxed border-t border-coderun-dark-purple/50 pt-4">
                                                                       {
                                                                            item.answer
                                                                       }
                                                                  </p>
-                                                            </motion.div>
+                                                            </div>
                                                        </motion.div>
                                                   )}
                                              </AnimatePresence>

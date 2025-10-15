@@ -9,18 +9,17 @@ const InfoCard = ({ title, children }: InfoCardProps) => {
      return (
           <div
                className="
-      bg-[#1A1A40] 
+      bg-[#1A1A40]/40
       border border-[#270082] 
       rounded-2xl
       p-6 
       max-w-sm 
       mx-auto 
+       backdrop-blur-sm
       transition-all 
       duration-300 
-      text-white
-      
+      text-white   
       shadow-[0_0_15px_rgba(122,11,192,1)] // Am folosit #7A0BC0 (mov vibrant)
-      
       hover:border-[#FA58B6] 
       hover:shadow-[0_0_25px_rgba(250,88,182,0.7)] 
     "
