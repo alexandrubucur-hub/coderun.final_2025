@@ -151,4 +151,5 @@
 
 .will-change-transform {
      will-change: transform;
+     transform: translateZ(0);
 }

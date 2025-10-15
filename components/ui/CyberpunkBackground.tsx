@@ -1,197 +1,20 @@
+// components/ui/CyberpunkBackground.tsx
+
 "use client";
 
-import React, { useEffect, useState, useMemo, useRef } from "react";
-import { DynamicGlitchText } from "@/components/ui/DynamicGlitchText";
+import React from "react";
+import { GlitchEffectsLayer } from "./GlitchEffectsLayer";
 
 interface CyberpunkBackgroundProps {
      children: React.ReactNode;
 }
 
-// Am extins tipul pentru a include un timestamp de dispariție
-type Glitch = { id: number; row: number; col: number; disappearAt: number };
-type VerticalGlitch = { id: number; slotIndex: number; disappearAt: number };
-
 const CyberpunkBackground: React.FC<CyberpunkBackgroundProps> = ({
      children,
 }) => {
-     const [activeGlitches, setActiveGlitches] = useState<Glitch[]>([]);
-     const [activeVerticalGlitches, setActiveVerticalGlitches] = useState<
-          VerticalGlitch[]
-     >([]);
-
-     // AICI ESTE CORECTURA: Am adăugat valoarea inițială `null` și am ajustat tipul
-     const animationFrameId = useRef<number | null>(null);
-     const lastGlitchTime = useRef<number>(0);
-     const lastVerticalGlitchTime = useRef<number>(0);
-
-     const GRID_SIZE = 6;
-     const MAX_GLITCHES = 8;
-     const GLITCH_INTERVAL = 700; // ms
-     const GLITCH_LIFESPAN_MIN = 2000;
-     const GLITCH_LIFESPAN_MAX = 5000;
-
-     const MAX_VERTICAL_GLITCHES = 7;
-     const VERTICAL_GLITCH_INTERVAL = 1000; // ms
-     const VERTICAL_GLITCH_LIFESPAN_MIN = 3000;
-     const VERTICAL_GLITCH_LIFESPAN_MAX = 5000;
-
-     const verticalGlitchSlots = useMemo(
-          () => [
-               {
-                    position: "top-[15%] left-[12%]",
-                    style: "opacity-30 text-coderun-purple",
-               },
-               {
-                    position: "top-[60%] left-[22%]",
-                    style: "opacity-20 text-coderun-accent",
-               },
-               {
-                    position: "top-[20%] left-[35%]",
-                    style: "opacity-35 text-coderun-pink-light",
-               },
-               {
-                    position: "top-[75%] left-[45%]",
-                    style: "opacity-25 text-coderun-purple",
-               },
-               {
-                    position: "top-[10%] left-[55%]",
-                    style: "opacity-35 text-coderun-pink",
-               },
-               {
-                    position: "top-[55%] left-[68%]",
-                    style: "opacity-25 text-coderun-accent",
-               },
-               {
-                    position: "top-[30%] left-[78%]",
-                    style: "opacity-30 text-coderun-pink-light",
-               },
-               {
-                    position: "top-[85%] left-[85%]",
-                    style: "opacity-20 text-coderun-purple",
-               },
-               {
-                    position: "top-[45%] left-[90%]",
-                    style: "opacity-25 text-coderun-pink",
-               },
-               {
-                    position: "top-[80%] left-[5%]",
-                    style: "opacity-20 text-coderun-accent",
-               },
-          ],
-          []
-     );
-
-     useEffect(() => {
-          const animate = (timestamp: number) => {
-               // Gestionează glitch-urile orizontale
-               if (timestamp - lastGlitchTime.current > GLITCH_INTERVAL) {
-                    lastGlitchTime.current = timestamp;
-                    setActiveGlitches((currentGlitches) => {
-                         // Elimină glitch-urile vechi
-                         const freshGlitches = currentGlitches.filter(
-                              (g) => g.disappearAt > timestamp
-                         );
-
-                         if (freshGlitches.length >= MAX_GLITCHES) {
-                              return freshGlitches;
-                         }
-
-                         // Adaugă un glitch nou dacă e loc
-                         let randomRow: number, randomCol: number;
-                         let isOccupied = true;
-                         let attempts = 0;
-                         do {
-                              randomRow =
-                                   Math.floor(Math.random() * GRID_SIZE) + 1;
-                              randomCol =
-                                   Math.floor(Math.random() * GRID_SIZE) + 1;
-                              isOccupied = freshGlitches.some(
-                                   (g) =>
-                                        g.row === randomRow &&
-                                        g.col === randomCol
-                              );
-                              attempts++;
-                         } while (isOccupied && attempts < 20);
-
-                         if (!isOccupied) {
-                              const newGlitch: Glitch = {
-                                   id: timestamp + Math.random(),
-                                   row: randomRow,
-                                   col: randomCol,
-                                   disappearAt:
-                                        timestamp +
-                                        GLITCH_LIFESPAN_MIN +
-                                        Math.random() *
-                                             (GLITCH_LIFESPAN_MAX -
-                                                  GLITCH_LIFESPAN_MIN),
-                              };
-                              return [...freshGlitches, newGlitch];
-                         }
-                         return freshGlitches;
-                    });
-               }
-
-               // Gestionează glitch-urile verticale
-               if (
-                    timestamp - lastVerticalGlitchTime.current >
-                    VERTICAL_GLITCH_INTERVAL
-               ) {
-                    lastVerticalGlitchTime.current = timestamp;
-                    setActiveVerticalGlitches((current) => {
-                         // Elimină glitch-urile vechi
-                         const freshGlitches = current.filter(
-                              (g) => g.disappearAt > timestamp
-                         );
-
-                         if (freshGlitches.length >= MAX_VERTICAL_GLITCHES)
-                              return freshGlitches;
-
-                         const availableSlots = verticalGlitchSlots
-                              .map((_, index) => index)
-                              .filter(
-                                   (index) =>
-                                        !freshGlitches.some(
-                                             (g) => g.slotIndex === index
-                                        )
-                              );
-
-                         if (availableSlots.length === 0) return freshGlitches;
-
-                         const randomSlotIndex =
-                              availableSlots[
-                                   Math.floor(
-                                        Math.random() * availableSlots.length
-                                   )
-                              ];
-                         const newGlitch: VerticalGlitch = {
-                              id: timestamp + Math.random(),
-                              slotIndex: randomSlotIndex,
-                              disappearAt:
-                                   timestamp +
-                                   VERTICAL_GLITCH_LIFESPAN_MIN +
-                                   Math.random() *
-                                        (VERTICAL_GLITCH_LIFESPAN_MAX -
-                                             VERTICAL_GLITCH_LIFESPAN_MIN),
-                         };
-                         return [...freshGlitches, newGlitch];
-                    });
-               }
-
-               animationFrameId.current = requestAnimationFrame(animate);
-          };
-
-          animationFrameId.current = requestAnimationFrame(animate);
-
-          return () => {
-               if (animationFrameId.current) {
-                    cancelAnimationFrame(animationFrameId.current);
-               }
-          };
-     }, [verticalGlitchSlots]);
-
      return (
           <div>
-               {/* Background Image and Gradient */}
+               {/* Strat 0: Imaginea de fundal și gradientul */}
                <div className="absolute inset-0 z-0">
                     <div
                          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -203,118 +26,16 @@ const CyberpunkBackground: React.FC<CyberpunkBackgroundProps> = ({
                     />
                </div>
 
-               {/* Glitch Effects Layer */}
-               <div className="absolute inset-0 z-10 pointer-events-none text-glitch">
-                    <div className="absolute top-[6%] left-[5%] text-coderun-pink font-mono text-xs opacity-40 ">
-                         <span>{`{code: 'reality'}`}</span>
-                    </div>
-                    <div className="absolute top-[12%] left-[15%] text-coderun-purple font-mono text-xs opacity-30 ">
-                         <span>export default Cyberpunk;</span>
-                    </div>
-                    <div className="absolute top-[7%] right-[5%] text-coderun-purple font-mono text-[10px] opacity-25">
-                         <span>{"// 0xDEADBEEF"}</span>
-                    </div>
-                    <div className="absolute top-[15%] right-[10%] text-coderun-pink font-mono text-xs opacity-35">
-                         <span>if(dream.isReal()) {`{hack();}`}</span>
-                    </div>
-                    <div className="absolute top-[25%] left-8 font-mono text-xs opacity-30 text-coderun-purple [writing-mode:vertical-rl] tracking-widest">
-                         <span>::SYSTEM.STATUS:ONLINE_AWAITING_INPUT::</span>
-                    </div>
-                    <div className="absolute top-[30%] right-8 font-mono text-xs opacity-35 text-coderun-pink [writing-mode:vertical-rl] tracking-widest">
-                         <span>--REALITY_CHECKSUM_VALIDATED--//</span>
-                    </div>
-                    <div className="absolute top-[40%] left-[8%] text-coderun-pink-light font-mono text-xs opacity-30">
-                         <span>...system_override...</span>
-                    </div>
-                    <div className="absolute top-[60%] right-[10%] text-coderun-accent font-mono text-xs opacity-40">
-                         <span>[initiate_protocol_7]</span>
-                    </div>
-                    <div className="absolute top-[75%] left-[15%] text-coderun-purple font-mono text-xs opacity-25 ">
-                         <span>const matrix = new Reality();</span>
-                    </div>
-                    <div className="absolute top-[70%] right-[15%] text-coderun-pink-light font-mono text-xs opacity-20">
-                         <span>{"// REBOOT SEQUENCE"}</span>
-                    </div>
-                    <div className="absolute bottom-[20%] left-[10%] text-coderun-pink-light font-mono text-xs opacity-40 ">
-                         <span>while(true){`{challenge();}`}</span>
-                    </div>
-                    <div className="absolute bottom-[8%] left-[20%] text-coderun-purple font-mono text-xs opacity-25">
-                         <span>err: reality_not_found</span>
-                    </div>
-                    <div className="absolute bottom-[10%] right-[5%] text-coderun-accent font-mono text-xs opacity-45">
-                         <span>const future = await code();</span>
-                    </div>
-                    <div className="absolute bottom-[18%] right-[12%] text-coderun-pink font-mono text-[10px] opacity-30">
-                         <span>{`{> access_granted}`}</span>
-                    </div>
-                    <div className="hidden lg:block absolute top-[25%] left-[30%] text-coderun-accent font-mono text-[10px] opacity-20">
-                         <span>[core_memory_unlocked]</span>
-                    </div>
-                    <div className="hidden lg:block absolute top-[55%] right-[28%] text-coderun-purple font-mono text-xs opacity-30">
-                         <span>new Thread().start();</span>
-                    </div>
-                    <div className="hidden lg:block absolute bottom-[30%] left-[48%] text-coderun-pink-light font-mono text-xs opacity-35">
-                         <span>...compiling_dreams...</span>
-                    </div>
-                    <div className="hidden lg:block absolute bottom-[35%] left-[25%] text-coderun-purple font-mono text-xs opacity-25">
-                         <span>function(){`{return dreams;}`}</span>
-                    </div>
-                    <div className="hidden lg:block absolute top-[35%] right-[30%] text-coderun-pink font-mono text-[10px] opacity-20">
-                         <span>process.exit(0);</span>
-                    </div>
-                    <div className="hidden lg:block absolute top-[50%] left-[35%] text-coderun-accent font-mono text-[10px] opacity-25">
-                         <span>--REALITY_CHECKSUM_VALIDATED--</span>
-                    </div>
-                    <div className="hidden lg:block absolute bottom-[40%] right-[32%] text-coderun-pink font-mono text-xs opacity-20">
-                         <span>[initiate_protocol_7]</span>
-                    </div>
-                    <div className="hidden lg:block absolute top-[20%] left-[48%] text-coderun-purple font-mono text-xs opacity-25">
-                         <span>...system_override...</span>
-                    </div>
-                    <div className="hidden lg:block absolute bottom-[25%] right-[45%] text-coderun-pink-light font-mono text-[10px] opacity-30">
-                         <span>{`{> access_granted}`}</span>
-                    </div>
-                    <div className="hidden lg:block absolute top-[68%] left-[28%] text-coderun-accent font-mono text-xs opacity-20">
-                         <span>const matrix = new Reality();</span>
-                    </div>
-                    <div
-                         className="absolute inset-0 grid"
-                         style={{
-                              gridTemplateColumns: `repeat(${GRID_SIZE}, 1fr)`,
-                              gridTemplateRows: `repeat(${GRID_SIZE}, 1fr)`,
-                         }}
-                    >
-                         {activeGlitches.map((glitch) => (
-                              <DynamicGlitchText
-                                   key={glitch.id}
-                                   className="flex items-center justify-center text-center text-coderun-pink font-mono text-xs p-2 animate-pulse"
-                                   style={{
-                                        gridRow: glitch.row,
-                                        gridColumn: glitch.col,
-                                        opacity: Math.random() * 0.4 + 0.2,
-                                   }}
-                              />
-                         ))}
-                         {activeVerticalGlitches.map((glitch) => {
-                              const slot =
-                                   verticalGlitchSlots[glitch.slotIndex];
-                              return (
-                                   <DynamicGlitchText
-                                        key={glitch.id}
-                                        className={`absolute font-mono text-xs [writing-mode:vertical-rl] tracking-widest ${slot.position} ${slot.style}`}
-                                   />
-                              );
-                         })}
-                    </div>
-               </div>
+               {/* Strat 1: Animațiile de tip glitch (componenta optimizată) */}
+               <GlitchEffectsLayer />
 
-               {/* Content Layer */}
+               {/* Strat 2: Conținutul tău */}
                <div className="relative z-20">{children}</div>
 
-               {/* Bottom Gradient */}
+               {/* Strat 3: Gradientul de la bază */}
                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-coderun-dark to-transparent pointer-events-none z-30" />
           </div>
      );
 };
 
-export default CyberpunkBackground;
+export default React.memo(CyberpunkBackground);
