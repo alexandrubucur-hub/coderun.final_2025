@@ -162,7 +162,7 @@ const HeroSection: React.FC = () => {
                                         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4 pb-2">
                                              <Link href="#">
                                                   <GradientSlideButton
-                                                       className="px-12 py-6 text-4xl rounded-3xl bg-black text-white border-2 border-coderun-accent text-glitch hover:scale-110 hover:shadow-lg hover:shadow-coderun-pink/30 active:scale-95"
+                                                       className="px-12 py-6 h-10 text-4xl rounded-3xl bg-black text-white border-2 border-coderun-accent text-glitch hover:scale-110 hover:shadow-lg hover:shadow-coderun-pink/30 active:scale-95"
                                                        colorFrom="#FA58B6"
                                                        colorTo="#7A0BC0"
                                                   >
