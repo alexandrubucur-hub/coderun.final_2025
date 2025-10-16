@@ -60,14 +60,9 @@ const Despre: React.FC = () => {
                               >
                                    <div className="w-full md:w-1/2">
                                         <InfoCard title="What is Coderun?">
-                                             CodeRun is a free IT marathon, now
-                                             in its 6th edition, taking place
-                                             between November 10-23, 2025. The
-                                             event challenges students to grow
-                                             in a competitive setting, as they
-                                             advance through checkpoints around
-                                             Cluj-Napoca, moving from one
-                                             company to another.
+                                             {
+                                                  "CodeRun is a free IT marathon, now in its 6th edition, taking place between November 10–23, 2025. The event challenges students to grow in a competitive setting, as they advance through checkpoints around Cluj-Napoca, moving from one company to another."
+                                             }
                                         </InfoCard>
                                    </div>
                                    <div className="w-full md:w-1/2 flex justify-center group">
@@ -89,17 +84,9 @@ const Despre: React.FC = () => {
                               >
                                    <div className="w-full md:w-1/2">
                                         <InfoCard title="Preparation and Challenges">
-                                             Before the competition days,
-                                             participants will join online
-                                             training sessions led by
-                                             professionals from our partner
-                                             companies, so they can start the
-                                             challenge fully prepared. Each
-                                             company's challenge will have two
-                                             difficulty levels: easy and hard,
-                                             giving participants the chance to
-                                             choose their pace or push their
-                                             limits.
+                                             {
+                                                  "Before the competition days, participants will join online training sessions led by professionals from our partner companies, so they can start the challenge fully prepared. Each company’s challenge will have two difficulty levels: easy and hard, giving participants the chance to choose their pace or push their limits."
+                                             }
                                         </InfoCard>
                                    </div>
                                    <div className="w-full md:w-1/2 flex justify-center group">
@@ -121,13 +108,9 @@ const Despre: React.FC = () => {
                               >
                                    <div className="w-full md:w-1/2">
                                         <InfoCard title="The Coding Marathon">
-                                             With six checkpoints in total,
-                                             CodeRun tests both technical skills
-                                             and the ability to adapt and apply
-                                             knowledge from the trainings.The
-                                             event highlights participants who
-                                             complete the challenges with
-                                             consistency and resilience.
+                                             {
+                                                  "With six checkpoints in total, CodeRun tests both technical skills and the ability to adapt and apply knowledge from the trainings.The event highlights participants who complete the challenges with consistency and resilience."
+                                             }
                                         </InfoCard>
                                    </div>
                                    <div className="w-full md:w-1/2 flex justify-center group">
