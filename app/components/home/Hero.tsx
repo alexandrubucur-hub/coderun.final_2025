@@ -127,7 +127,7 @@ const HeroSection: React.FC = () => {
                                                   alt="CodeRun Mascot"
                                                   width={350}
                                                   height={490}
-                                                  className="w-auto h-80 sm:h-96 animate-float animate-glow-pulse"
+                                                  className="w-auto h-80 sm:h-96 animate-pulse-and-glow"
                                              />
                                              <div className="absolute inset-0 bg-gradient-radial from-coderun-pink/40 via-coderun-purple/20 to-transparent opacity-70 blur-xl animate-pulse" />
                                              <div className="absolute -inset-6 bg-gradient-to-r from-coderun-accent/15 via-coderun-purple/15 to-coderun-pink/15 blur-2xl opacity-90" />
@@ -155,7 +155,7 @@ const HeroSection: React.FC = () => {
                               >
                                    <div className="text-center space-y-6">
                                         <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl text-white leading-tight">
-                                             <span className="block FontGradient text-coderun-pink-light animate-pulse text-glow">
+                                             <span className="block FontGradient text-coderun-pink-light animate-pulse-and-glow">
                                                   JOIN THE CODERUNNERS
                                              </span>
                                         </h1>
