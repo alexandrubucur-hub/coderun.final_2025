@@ -10,7 +10,7 @@ export default function Contact() {
      return (
           <main>
                <Navbar />
-               <section className="relative min-h-screen w-full overflow-hidden">
+               <section className="relative min-h-screen w-full overflow-hidden pt-16">
                     <CyberpunkBackground>
                          <Form />
                     </CyberpunkBackground>
