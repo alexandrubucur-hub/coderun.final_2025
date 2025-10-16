@@ -30,7 +30,6 @@ const PlexusBackground: React.FC = () => {
           y: undefined,
      });
 
-     // --- Funcția de inițializare a particulelor, adaptabilă la dimensiunea ecranului ---
      const initializeParticles = useCallback(() => {
           const canvas = canvasRef.current;
           if (!canvas) return;
@@ -38,18 +37,15 @@ const PlexusBackground: React.FC = () => {
           const width = canvas.clientWidth;
           const height = canvas.clientHeight;
 
-          // Setăm rezoluția canvas-ului ținând cont de densitatea pixelilor ecranului (DPI)
           const dpr = window.devicePixelRatio || 1;
           canvas.width = width * dpr;
           canvas.height = height * dpr;
 
           const ctx = canvas.getContext("2d");
           if (ctx) {
-               // Scalăm contextul pentru a putea desena folosind aceleași coordonate ca înainte
                ctx.scale(dpr, dpr);
           }
 
-          // Ajustăm numărul de particule în funcție de suprafața ecranului
           const particleCount = Math.floor(
                ((width * height) / (1920 * 1080)) * BASE_PARTICLE_COUNT
           );
@@ -76,7 +72,6 @@ const PlexusBackground: React.FC = () => {
           particlesRef.current = tempParticles;
      }, []);
 
-     // --- Gestionarea evenimentelor (mouse, resize) ---
      useEffect(() => {
           initializeParticles();
           const handleMouseMove = (event: MouseEvent) => {
@@ -103,7 +98,6 @@ const PlexusBackground: React.FC = () => {
           };
      }, [initializeParticles]);
 
-     // --- Bucla principală de animație și desenare ---
      useAnimationFrame(() => {
           const particles = particlesRef.current;
           const canvas = canvasRef.current;
@@ -112,25 +106,20 @@ const PlexusBackground: React.FC = () => {
           const ctx = canvas.getContext("2d");
           if (!ctx) return;
 
-          // Deoarece contextul este scalat, trebuie să curățăm canvas-ul folosind dimensiunile CSS
           ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
 
           particles.forEach((p) => {
-               // Mișcarea particulei
                p.x += p.speedX;
                p.y += p.speedY;
 
-               // Folosim dimensiunile CSS (clientWidth) pentru logica de coliziune
                if (p.x < 0 || p.x > canvas.clientWidth) p.speedX *= -1;
                if (p.y < 0 || p.y > canvas.clientHeight) p.speedY *= -1;
 
-               // Actualizăm istoricul pentru coadă
                p.history.push({ x: p.x, y: p.y });
                if (p.history.length > 5) {
                     p.history.shift();
                }
 
-               // Desenăm coada
                ctx.beginPath();
                ctx.moveTo(p.history[0].x, p.history[0].y);
                for (let i = 1; i < p.history.length; i++) {
@@ -140,13 +129,11 @@ const PlexusBackground: React.FC = () => {
                ctx.lineWidth = 2;
                ctx.stroke();
 
-               // Desenăm particula principală
                ctx.beginPath();
                ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
                ctx.fillStyle = PARTICLE_COLOR;
                ctx.fill();
 
-               // Desenăm legăturile și gestionăm interacțiunea cu mouse-ul
                let isNearMouse = false;
                if (mouse.x !== undefined && mouse.y !== undefined) {
                     const dxMouse = p.x - mouse.x;
@@ -189,11 +176,8 @@ const PlexusBackground: React.FC = () => {
      });
 
      return (
-          // Păstrăm overflow-hidden pentru a "tăia" marginile blurate care depășesc containerul
           <div className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none overflow-hidden">
-               {/* --- FUNDAL ÎMBUNĂTĂȚIT: 4 pete de culoare cu animații distincte --- */}
-
-               {/* Pata 1 (Roz Principal) - Mai mare și mai intensă */}
+               {/* Pata 1 (Roz Principal) */}
                <motion.div
                     className="absolute z-0"
                     style={{
@@ -219,7 +203,7 @@ const PlexusBackground: React.FC = () => {
                     }}
                />
 
-               {/* Pata 2 (Mov Principal) - De asemenea, mai prezentă */}
+               {/* Pata 2 (Mov Principal) */}
                <motion.div
                     className="absolute z-0"
                     style={{
@@ -245,7 +229,7 @@ const PlexusBackground: React.FC = () => {
                     }}
                />
 
-               {/* Pata 3 (NOUĂ: Albastru Electric) - Adaugă un accent vibrant */}
+               {/* Pata 3 (NOUĂ: Albastru Electric)*/}
                <motion.div
                     className="absolute z-0"
                     style={{
@@ -271,7 +255,7 @@ const PlexusBackground: React.FC = () => {
                     }}
                />
 
-               {/* Pata 4 (NOUĂ: Roz Secundar) - Creează profunzime */}
+               {/* Pata 4 (NOUĂ: Roz Secundar) */}
                <motion.div
                     className="absolute z-0"
                     style={{

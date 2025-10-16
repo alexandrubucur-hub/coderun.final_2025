@@ -4,7 +4,6 @@ import React from "react";
 import { motion, Variants } from "framer-motion";
 import PlexusBackground from "@/components/ui/PlexusBackground";
 
-// Definim tipul pentru un element din timeline
 interface TimelineItemProps {
      startDate: Date;
      endDate: Date;
@@ -13,7 +12,6 @@ interface TimelineItemProps {
      description: string;
 }
 
-// O listă cu datele pentru timeline
 const timelineData: Omit<TimelineItemProps, "isLast">[] = [
      {
           startDate: new Date("2025-10-24"),
@@ -67,7 +65,6 @@ const itemVariants: Variants = {
      },
 };
 
-// Componenta principală pentru Timeline
 const Program: React.FC = () => {
      const today = new Date();
      today.setHours(0, 0, 0, 0);
@@ -103,7 +100,6 @@ const Program: React.FC = () => {
                               return (
                                    <motion.li
                                         key={index}
-                                        // AM MODIFICAT: Am adăugat 'flex flex-col' pentru a permite elementelor interne să se extindă
                                         className="relative mb-10 lg:mb-0 group flex flex-col"
                                         variants={itemVariants}
                                    >
@@ -143,7 +139,6 @@ const Program: React.FC = () => {
                                         {/* --- Cardul de conținut --- */}
                                         <div className="relative pl-12 lg:pl-0 transition-all duration-300 group-hover:-translate-y-2 flex-grow">
                                              <div
-                                                  // AM MODIFICAT: 'h-full' și 'flex flex-col' asigură umplerea spațiului
                                                   className={`p-6 rounded-2xl backdrop-blur-sm bg-[#1A1A40]/40 transition-all duration-300 h-full flex flex-col
                                                   ${
                                                        isActive

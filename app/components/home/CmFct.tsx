@@ -47,13 +47,10 @@ const CmFct: React.FC = () => {
                                         HOW DOES IT WORK?
                                    </span>
                               </motion.h2>
-
-                              {/* MODIFICARE AICI: Aplicam containerVariants pentru a orchestra copiii */}
                               <motion.div
                                    className="flex flex-col lg:flex-row justify-center items-stretch gap-8"
                                    variants={containerVariants}
                               >
-                                   {/* Fiecare card este acum un copil animat individual */}
                                    <motion.div
                                         variants={itemVariants}
                                         className="flex"

@@ -1,8 +1,5 @@
-// app/components/Navbar.tsx
-
 "use client";
 import React from "react";
-// AM ADĂUGAT: usePathname pentru a detecta ruta curentă
 import { usePathname } from "next/navigation";
 import {
      Disclosure,
@@ -32,7 +29,6 @@ function classNames(...classes: string[]) {
 }
 
 const Navbar: React.FC = () => {
-     // AM ADĂUGAT: Obținem calea curentă (ex: "/", "/Contact")
      const pathname = usePathname();
 
      return (
@@ -42,8 +38,6 @@ const Navbar: React.FC = () => {
           >
                <div className="max-w-8xl mx-auto px-2 sm:px-6 lg:px-8">
                     <div className="relative flex h-20 items-center">
-                         {/* ... restul codului pentru butonul Hamburger și logo ... */}
-
                          {/* Buton Hamburger */}
                          <div className="absolute inset-y-0 left-0 flex items-center lg:hidden">
                               <DisclosureButton
@@ -108,19 +102,17 @@ const Navbar: React.FC = () => {
                                    {/* Navigare Centru */}
                                    <div className="flex items-center space-x-2 xl:space-x-6">
                                         {navigation.map((item) => {
-                                             // AM MODIFICAT: Logica de "current" se bazează pe href
                                              const isCurrent =
                                                   pathname === item.href;
 
-                                             // AM MODIFICAT: Gestionăm linkurile ancore pentru pagina principală
                                              let finalHref = item.href;
-                                             // Dacă suntem pe pagina principală și linkul e o ancoră, eliminăm "/" de la început
+
                                              if (
                                                   pathname === "/" &&
                                                   item.href.startsWith("/#")
                                              ) {
                                                   finalHref =
-                                                       item.href.substring(1); // transformă "/#about" in "#about"
+                                                       item.href.substring(1);
                                              }
 
                                              return (

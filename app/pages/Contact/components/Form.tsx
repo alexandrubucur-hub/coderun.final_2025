@@ -76,7 +76,7 @@ export default function ContactForm() {
                          </span>
                     </h2>
                     <p className="mt-2 FontBold text-lg leading-8 text-gray-400">
-                         Have a question? We'd love to hear from you.
+                         {"Have a question? We'd love to hear from you."}
                     </p>
                </motion.div>
 
@@ -206,7 +206,7 @@ export default function ContactForm() {
                                         <div className="flex items-center gap-4">
                                              <Phone className="w-6 h-6 text-coderun-pink" />
                                              <span className="text-gray-300 FontBold">
-                                                  +40 123 456 789
+                                                  +40 740 151 222
                                              </span>
                                         </div>
                                         <div className="flex items-center gap-4">
