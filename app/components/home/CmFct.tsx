@@ -1,8 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useMemo } from "react";
 import InfoCard from "@/components/ui/InfoCard";
-import { DynamicGlitchText } from "@/components/ui/DynamicGlitchText";
 import CyberpunkBackground from "@/components/ui/CyberpunkBackground";
 
 const CmFct: React.FC = () => {
@@ -22,35 +20,19 @@ const CmFct: React.FC = () => {
                               </h2>
                               <div className="flex flex-col lg:flex-row justify-center items-stretch gap-8">
                                    <InfoCard title="Learn, Train & Compete">
-                                        CodeRun is a team-based IT competition
-                                        where participants can register
-                                        individually or in teams of up to three.
-                                        The competition unfolds in two main
-                                        stages: a training phase and a
-                                        competition phase. During the first
-                                        eleven days, participants attend online
-                                        training sessions hosted by our partners
-                                        to prepare for the upcoming tasks.
+                                        {
+                                             "CodeRun is a team-based IT competition where participants can register individually or in teams of up to three. The competition unfolds in two main stages: a training phase and a competition phase. During the first eleven days, participants attend online training sessions hosted by our partners to prepare for the upcoming tasks."
+                                        }
                                    </InfoCard>
                                    <InfoCard title="Six Checkpoints to Victory">
-                                        In the second stage, the teams take on a
-                                        series of challenges at six checkpoints
-                                        spread across Cluj-Napoca. Each
-                                        checkpoint represents a partner company
-                                        or the BEST x UT challenge and offers
-                                        two levels of difficulty, easy and hard.
-                                        Teams must complete all challenges in
-                                        order, earning points for both accuracy
-                                        and speed.
+                                        {
+                                             "In the second stage, the teams take on a series of challenges at six checkpoints spread across Cluj-Napoca. Each checkpoint represents a partner company or the BEST x UT challenge and offers two levels of difficulty, easy and hard. Teams must complete all challenges in order, earning points for both accuracy and speed."
+                                        }
                                    </InfoCard>
                                    <InfoCard title="Points, Bonuses, and Ranking">
-                                        The scoring system rewards technical
-                                        skill and efficiency, each challenge has
-                                        a maximum score, bonus points for quick
-                                        completion, and partial credit for
-                                        correct progress. At the end of the
-                                        route, the cumulative score determines
-                                        the final ranking.
+                                        {
+                                             "The scoring system rewards technical skill and efficiency, each challenge has a maximum score, bonus points for quick completion, and partial credit for correct progress. At the end of the route, the cumulative score determines the final ranking. "
+                                        }
                                    </InfoCard>
                               </div>
                          </div>
