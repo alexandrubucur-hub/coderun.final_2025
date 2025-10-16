@@ -1,5 +1,9 @@
+// app/components/Navbar.tsx
+
 "use client";
 import React from "react";
+// AM ADĂUGAT: usePathname pentru a detecta ruta curentă
+import { usePathname } from "next/navigation";
 import {
      Disclosure,
      DisclosureButton,
@@ -11,13 +15,16 @@ import Image from "next/image";
 import { GradientSlideButton } from "@/components/ui/gradient-slide-button";
 
 const navigation = [
-     { name: "Acasă", href: "#", current: false },
-     { name: "Despre", href: "#about", current: false },
-     { name: "Cum funcționează", href: "#how-it-works", current: false },
-     { name: "Program", href: "#program", current: false },
-     { name: "FAQ", href: "#faq", current: false },
-     { name: "Parteneri", href: "#partners", current: false },
-     { name: "Contact", href: "#contact", current: false },
+     // Duce la pagina principală
+     { name: "Home", href: "/#home" },
+     // Ancore pe pagina principală
+     { name: "About", href: "/#about" },
+     { name: "How It Works", href: "/#how-it-works" },
+     { name: "Schedule", href: "/#program" },
+     { name: "FAQ", href: "/#faq" },
+     // Link-uri către pagini separate
+     { name: "Partners", href: "/pages/Sponsori" },
+     { name: "Contact", href: "/pages/Contact" },
 ];
 
 function classNames(...classes: string[]) {
@@ -25,6 +32,9 @@ function classNames(...classes: string[]) {
 }
 
 const Navbar: React.FC = () => {
+     // AM ADĂUGAT: Obținem calea curentă (ex: "/", "/Contact")
+     const pathname = usePathname();
+
      return (
           <Disclosure
                as="nav"
@@ -32,6 +42,8 @@ const Navbar: React.FC = () => {
           >
                <div className="max-w-8xl mx-auto px-2 sm:px-6 lg:px-8">
                     <div className="relative flex h-20 items-center">
+                         {/* ... restul codului pentru butonul Hamburger și logo ... */}
+
                          {/* Buton Hamburger */}
                          <div className="absolute inset-y-0 left-0 flex items-center lg:hidden">
                               <DisclosureButton
@@ -60,7 +72,7 @@ const Navbar: React.FC = () => {
                               {/* Logo Mobile */}
                               <div className="flex flex-shrink-0 items-center lg:hidden">
                                    <Link
-                                        href="#"
+                                        href="/"
                                         className="relative transition-transform duration-500 hover:scale-105"
                                    >
                                         <div className="absolute -inset-2 bg-gradient-to-r from-coderun-pink/20 via-coderun-purple/20 to-coderun-pink/20 opacity-0 hover:opacity-70 blur-lg rounded-2xl transition-opacity duration-500" />
@@ -79,7 +91,7 @@ const Navbar: React.FC = () => {
                                    {/* Logo Stânga */}
                                    <div className="flex flex-shrink-0 items-center">
                                         <Link
-                                             href="#"
+                                             href="/"
                                              className="relative transition-transform duration-500 hover:scale-105"
                                         >
                                              <div className="absolute -inset-2 bg-gradient-to-r from-coderun-pink/20 via-coderun-purple/20 to-coderun-pink/20 opacity-0 hover:opacity-70 blur-lg rounded-2xl transition-opacity duration-500" />
@@ -93,41 +105,60 @@ const Navbar: React.FC = () => {
                                         </Link>
                                    </div>
 
-                                   {/* Navigare Centru - am adăugat și spațiere responsivă pentru o tranziție mai lină */}
+                                   {/* Navigare Centru */}
                                    <div className="flex items-center space-x-2 xl:space-x-6">
-                                        {navigation.map((item) => (
-                                             <Link
-                                                  key={item.name}
-                                                  href={item.href}
-                                                  aria-current={
-                                                       item.current
-                                                            ? "page"
-                                                            : undefined
-                                                  }
-                                                  className={classNames(
-                                                       "relative inline-flex items-center justify-center text-center px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 group whitespace-nowrap", // Am adăugat whitespace-nowrap
-                                                       "text-gray-300 hover:text-white",
-                                                       "before:absolute before:inset-0 before:rounded-xl before:bg-gradient-to-r before:from-coderun-pink before:to-coderun-purple before:opacity-0 before:blur before:transition-opacity before:duration-300",
-                                                       "hover:before:opacity-40 hover:scale-105",
-                                                       "shadow-[0_0_10px_rgba(122,11,192,0.2)] hover:shadow-[0_0_20px_rgba(250,88,182,0.5)]"
-                                                  )}
-                                             >
-                                                  <span className="relative z-10 drop-shadow-[0_0_6px_rgba(250,88,182,0.6)]">
-                                                       {item.name}
-                                                  </span>
-                                             </Link>
-                                        ))}
+                                        {navigation.map((item) => {
+                                             // AM MODIFICAT: Logica de "current" se bazează pe href
+                                             const isCurrent =
+                                                  pathname === item.href;
+
+                                             // AM MODIFICAT: Gestionăm linkurile ancore pentru pagina principală
+                                             let finalHref = item.href;
+                                             // Dacă suntem pe pagina principală și linkul e o ancoră, eliminăm "/" de la început
+                                             if (
+                                                  pathname === "/" &&
+                                                  item.href.startsWith("/#")
+                                             ) {
+                                                  finalHref =
+                                                       item.href.substring(1); // transformă "/#about" in "#about"
+                                             }
+
+                                             return (
+                                                  <Link
+                                                       key={item.name}
+                                                       href={finalHref}
+                                                       aria-current={
+                                                            isCurrent
+                                                                 ? "page"
+                                                                 : undefined
+                                                       }
+                                                       className={classNames(
+                                                            "relative inline-flex items-center justify-center text-center px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 group whitespace-nowrap",
+                                                            "text-gray-300 hover:text-white",
+                                                            "before:absolute before:inset-0 before:rounded-xl before:bg-gradient-to-r before:from-coderun-pink before:to-coderun-purple before:opacity-0 before:blur before:transition-opacity before:duration-300",
+                                                            "hover:before:opacity-40 hover:scale-105",
+                                                            "shadow-[0_0_10px_rgba(122,11,192,0.2)] hover:shadow-[0_0_20px_rgba(250,88,182,0.5)]"
+                                                       )}
+                                                  >
+                                                       <span className="relative z-10 drop-shadow-[0_0_6px_rgba(250,88,182,0.6)]">
+                                                            {item.name}
+                                                       </span>
+                                                  </Link>
+                                             );
+                                        })}
                                    </div>
 
                                    {/* Buton Dreapta */}
                                    <div className="flex flex-shrink-0 items-center">
-                                        <Link href="#">
+                                        <Link href="/inscriere">
+                                             {" "}
+                                             {/* Presupunem că vrei o pagină de înscriere */}
                                              <GradientSlideButton
                                                   className="rounded-full bg-coderun-dark text-white border-2 border-coderun-accent hover:border-coderun-purple transition-all duration-300 shadow-lg shadow-coderun-purple/20 hover:shadow-coderun-pink/30"
                                                   colorFrom="#FA58B6"
                                                   colorTo="#7A0BC0"
                                              >
-                                                  Înscrie-te
+                                                  Register Now
                                              </GradientSlideButton>
                                         </Link>
                                    </div>
@@ -139,32 +170,44 @@ const Navbar: React.FC = () => {
                {/* Meniu mobil */}
                <DisclosurePanel className="lg:hidden bg-coderun-dark/95 backdrop-blur-xl border-t border-coderun-purple/30">
                     <div className="space-y-1 px-8 pb-3 pt-2">
-                         {navigation.map((item) => (
-                              <DisclosureButton
-                                   key={item.name}
-                                   as={Link}
-                                   href={item.href}
-                                   aria-current={
-                                        item.current ? "page" : undefined
-                                   }
-                                   className={classNames(
-                                        item.current
-                                             ? "bg-coderun-purple/40 text-coderun-pink border-l-4 border-coderun-accent"
-                                             : "text-gray-300 hover:text-white hover:bg-coderun-purple/20 border-l-4 border-transparent hover:border-coderun-purple/50 hover:shadow-[0_0_15px_rgba(250,88,182,0.4)]",
-                                        "flex justify-center rounded-md px-3 py-3 text-base font-medium transition-all duration-300"
-                                   )}
-                              >
-                                   {item.name}
-                              </DisclosureButton>
-                         ))}
+                         {navigation.map((item) => {
+                              const isCurrent = pathname === item.href;
+
+                              let finalHref = item.href;
+                              if (
+                                   pathname === "/" &&
+                                   item.href.startsWith("/#")
+                              ) {
+                                   finalHref = item.href.substring(1);
+                              }
+
+                              return (
+                                   <DisclosureButton
+                                        key={item.name}
+                                        as={Link}
+                                        href={finalHref}
+                                        aria-current={
+                                             isCurrent ? "page" : undefined
+                                        }
+                                        className={classNames(
+                                             isCurrent
+                                                  ? "bg-coderun-purple/40 text-coderun-pink border-l-4 border-coderun-accent"
+                                                  : "text-gray-300 hover:text-white hover:bg-coderun-purple/20 border-l-4 border-transparent hover:border-coderun-purple/50 hover:shadow-[0_0_15px_rgba(250,88,182,0.4)]",
+                                             "flex justify-center rounded-md px-3 py-3 text-base font-medium transition-all duration-300"
+                                        )}
+                                   >
+                                        {item.name}
+                                   </DisclosureButton>
+                              );
+                         })}
                          <div className="pt-6">
-                              <Link href="#" className="block">
+                              <Link href="/inscriere" className="block">
                                    <GradientSlideButton
                                         className="w-full rounded-full bg-coderun-dark text-white border-2 border-coderun-purple hover:border-coderun-pink transition-all duration-300 shadow-lg shadow-coderun-purple/20 hover:shadow-coderun-pink/30"
                                         colorFrom="#FA58B6"
                                         colorTo="#7A0BC0"
                                    >
-                                        Înscrie-te
+                                        Register Now
                                    </GradientSlideButton>
                               </Link>
                          </div>

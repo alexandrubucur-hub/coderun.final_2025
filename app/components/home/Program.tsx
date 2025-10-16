@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion, Variants } from "framer-motion";
-import PlexusBackground from "@/components/ui/PlexusBackground"; // Am păstrat fundalul care ți-a plăcut
+import PlexusBackground from "@/components/ui/PlexusBackground";
 
 // Definim tipul pentru un element din timeline
 interface TimelineItemProps {
@@ -16,36 +16,36 @@ interface TimelineItemProps {
 // O listă cu datele pentru timeline
 const timelineData: Omit<TimelineItemProps, "isLast">[] = [
      {
+          startDate: new Date("2025-10-24"),
+          endDate: new Date("2025-11-05"),
+          date: "24 October - 5 November",
+          title: "Register",
+          description:
+               "Coderunners sign up individually or in teams of up to three to join the competition.",
+     },
+     {
           startDate: new Date("2025-11-10"),
-          endDate: new Date("2025-11-14"),
-          date: "10-14 Noiembrie 2025",
-          title: "Sesiuni de Training",
+          endDate: new Date("2025-11-21"),
+          date: "10-21 November",
+          title: "Training Phase",
           description:
-               "Participanții se familiarizează cu tehnologiile și uneltele necesare pentru probe, direct de la experții companiilor partenere.",
+               "Participants take part in online sessions led by partner companies to prepare for the challenges ahead.",
      },
      {
-          startDate: new Date("2025-11-15"),
-          endDate: new Date("2025-11-15"),
-          date: "15 Noiembrie 2025",
-          title: "Startul Maratonului",
-          description:
-               "Începe cursa! Primul checkpoint este deschis, iar echipele își pot demonstra abilitățile dobândite.",
-     },
-     {
-          startDate: new Date("2025-11-16"),
-          endDate: new Date("2025-11-22"),
-          date: "16-22 Noiembrie 2025",
-          title: "Desfășurarea Probelor",
-          description:
-               "Participanții navighează prin cele 6 checkpoint-uri, rezolvând provocări de la parteneri și acumulând puncte.",
-     },
-     {
-          startDate: new Date("2025-11-23"),
+          startDate: new Date("2025-11-22"),
           endDate: new Date("2025-11-23"),
-          date: "23 Noiembrie 2025",
-          title: "Marea Finală & Premierea",
+          date: "22-23 November",
+          title: "Competition Phase",
           description:
-               "Cele mai rezistente și rapide echipe sunt premiate. Oportunități de networking cu reprezentanții companiilor.",
+               "Teams move across checkpoints in Cluj-Napoca, solving real coding problems designed by our partners.",
+     },
+     {
+          startDate: new Date("2025-12-04"),
+          endDate: new Date("2025-12-05"),
+          date: "4 December",
+          title: "Award Ceremony",
+          description:
+               "The best teams are recognized and rewarded for their performance, creativity, and consistency throughout the event.",
      },
 ];
 
@@ -79,20 +79,20 @@ const Program: React.FC = () => {
      return (
           <section
                id="program"
-               className="relative w-full overflow-hidden bg-coderun-dark py-20 px-4"
+               className="relative w-full overflow-hidden bg-coderun-dark pt-20 lg:pt-28 pb-8 lg:pb-28 px-4"
           >
-               <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-coderun-dark to-transparent pointer-events-none z-30" />
+               <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-coderun-dark to-transparent pointer-events-none z-30" />
                <PlexusBackground />
 
                <div className="relative z-20 max-w-7xl mx-auto">
                     <h2 className="text-3xl sm:text-4xl lg:text-5xl text-white leading-tight text-center mb-16">
-                         <span className="block FontTest text-coderun-pink-light animate-pulse text-glow">
-                              CALENDARUL EVENIMENTULUI
+                         <span className="block FontGradient text-coderun-pink-light animate-pulse text-glow">
+                              EVENT CALENDAR
                          </span>
                     </h2>
 
                     <motion.ol
-                         className="relative lg:flex lg:justify-center lg:gap-x-6"
+                         className="relative lg:grid lg:grid-cols-4 lg:gap-x-6"
                          initial="hidden"
                          whileInView="visible"
                          viewport={{ once: true, amount: 0.2 }}
@@ -103,10 +103,12 @@ const Program: React.FC = () => {
                               return (
                                    <motion.li
                                         key={index}
-                                        className="relative mb-10 lg:mb-0 group w-full lg:max-w-xs"
+                                        // AM MODIFICAT: Am adăugat 'flex flex-col' pentru a permite elementelor interne să se extindă
+                                        className="relative mb-10 lg:mb-0 group flex flex-col"
                                         variants={itemVariants}
                                    >
-                                        <div className="flex items-center">
+                                        {/* --- Linia și punctul --- */}
+                                        <div className="flex items-center mb-5">
                                              <div
                                                   className={`z-10 flex items-center justify-center w-8 h-8 rounded-full ring-4 lg:ring-8 ring-coderun-dark shrink-0 transition-all duration-300 group-hover:scale-125 animate-pulse-glow ${
                                                        isActive
@@ -124,18 +126,25 @@ const Program: React.FC = () => {
                                              )}
                                         </div>
 
-                                        <div
-                                             className={`lg:hidden absolute left-4 top-8 h-full border-l-2 border-dashed ${
-                                                  isActive
-                                                       ? "border-coderun-pink"
-                                                       : "border-coderun-purple/50"
-                                             }`}
-                                        ></div>
-
-                                        <div className="mt-5 lg:pe-4 transition-all duration-300 group-hover:-translate-y-2">
-                                             {/* AICI SUNT MODIFICĂRILE */}
+                                        {/* --- Linia punctată (doar pe mobil) --- */}
+                                        {!(
+                                             index ===
+                                             timelineData.length - 1
+                                        ) && (
                                              <div
-                                                  className={`p-6 rounded-2xl backdrop-blur-sm bg-[#1A1A40]/40 transition-all duration-300 
+                                                  className={`lg:hidden absolute left-4 top-8 h-full border-l-2 border-dashed ${
+                                                       isActive
+                                                            ? "border-coderun-pink"
+                                                            : "border-coderun-purple/50"
+                                                  }`}
+                                             ></div>
+                                        )}
+
+                                        {/* --- Cardul de conținut --- */}
+                                        <div className="relative pl-12 lg:pl-0 transition-all duration-300 group-hover:-translate-y-2 flex-grow">
+                                             <div
+                                                  // AM MODIFICAT: 'h-full' și 'flex flex-col' asigură umplerea spațiului
+                                                  className={`p-6 rounded-2xl backdrop-blur-sm bg-[#1A1A40]/40 transition-all duration-300 h-full flex flex-col
                                                   ${
                                                        isActive
                                                             ? "border border-[#FA58B6] shadow-[0_0_25px_rgba(250,88,182,0.7)]"

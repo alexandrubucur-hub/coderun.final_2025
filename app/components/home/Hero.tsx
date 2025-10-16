@@ -51,7 +51,10 @@ const HeroSection: React.FC = () => {
      }, []);
 
      return (
-          <section className="relative min-h-screen w-full overflow-hidden bg-gradient-cyberpunk">
+          <section
+               id="home"
+               className="relative min-h-screen w-full overflow-hidden bg-gradient-cyberpunk"
+          >
                <CyberpunkBackground>
                     <div className="relative z-20 flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8 pt-16">
                          <motion.div
@@ -152,7 +155,7 @@ const HeroSection: React.FC = () => {
                               >
                                    <div className="text-center space-y-6">
                                         <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl text-white leading-tight">
-                                             <span className="block FontTest text-coderun-pink-light animate-pulse text-glow">
+                                             <span className="block FontGradient text-coderun-pink-light animate-pulse text-glow">
                                                   JOIN THE CODERUNNERS
                                              </span>
                                         </h1>
@@ -163,7 +166,7 @@ const HeroSection: React.FC = () => {
                                                        colorFrom="#FA58B6"
                                                        colorTo="#7A0BC0"
                                                   >
-                                                       Înscrie-te
+                                                       Register Now
                                                   </GradientSlideButton>
                                              </Link>
                                         </div>

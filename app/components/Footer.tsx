@@ -14,18 +14,18 @@ import {
 const Footer = () => {
      const footerLinks = {
           eveniment: [
-               { name: "Despre CodeRun", href: "#about" },
-               { name: "Cum funcționează", href: "#how-it-works" },
-               { name: "Program", href: "#program" },
+               { name: "About CodeRun", href: "/#about" },
+               { name: "How It Works", href: "/#how-it-works" },
+               { name: "Schedule", href: "/#program" },
           ],
           participanti: [
-               { name: "Înscriere", href: "/inscriere" },
-               { name: "FAQ", href: "#faq" },
-               { name: "Regulament", href: "/cum-functioneaza/regulament" },
+               { name: "Registration", href: "/inscriere" },
+               { name: "FAQ", href: "/#faq" },
+               { name: "Rules", href: "/cum-functioneaza/regulament" },
           ],
           contact: [
-               { name: "Contact", href: "/contact" },
-               { name: "Parteneri", href: "/parteneri" },
+               { name: "Contact", href: "/pages/Contact" },
+               { name: "Partners", href: "/pages/Sponsori" },
           ],
      };
 
@@ -51,7 +51,7 @@ const Footer = () => {
           <>
                {/* Linia delimitatoare față de conținut */}
 
-               <footer className="bg-coderun-dark text-white">
+               <footer className="bg-coderun-dark FontTest text-white">
                     <div className="max-w-7xl mx-auto px-6 lg:px-8">
                          <div className="border-t border-gray-700 mb-6"></div>
                     </div>
@@ -64,21 +64,20 @@ const Footer = () => {
                                         className="flex justify-center items-center space-x-2 mb-4"
                                    >
                                         <Code2 className="h-8 w-8 text-coderun-accent" />
-                                        <span className="text-xl font-bold">
+                                        <span className="text-xl FontBold">
                                              CodeRun
                                         </span>
                                    </Link>
                                    <p className="text-gray-300 mb-6 leading-relaxed">
-                                        Evenimentul tech care îți testează
-                                        limitele și îți oferă șansa să te
-                                        conectezi cu cei mai buni developeri.
+                                        A programming challenge that tests your
+                                        skills and sparks new connections.
                                    </p>
                                    <div className="flex justify-center space-x-4">
                                         {socialLinks.map((social) => (
                                              <a
                                                   key={social.name}
                                                   href={social.href}
-                                                  className="text-gray-400 hover:text-coderun-accent transition-colors"
+                                                  className="text-gray-400  hover:text-coderun-accent transition-colors"
                                                   aria-label={social.name}
                                              >
                                                   <social.icon className="h-5 w-5" />
@@ -89,8 +88,8 @@ const Footer = () => {
 
                               {/* Evenimente */}
                               <div>
-                                   <h3 className="text-lg font-semibold mb-4">
-                                        Eveniment
+                                   <h3 className="text-lg FontBold mb-4">
+                                        Event
                                    </h3>
                                    <ul className="space-y-3">
                                         {footerLinks.eveniment.map((link) => (
@@ -108,8 +107,8 @@ const Footer = () => {
 
                               {/* Participanți */}
                               <div>
-                                   <h3 className="text-lg font-semibold mb-4">
-                                        Participanți
+                                   <h3 className="text-lg FontBold mb-4">
+                                        Participants
                                    </h3>
                                    <ul className="space-y-3">
                                         {footerLinks.participanti.map(
@@ -129,7 +128,7 @@ const Footer = () => {
 
                               {/* Contact */}
                               <div>
-                                   <h3 className="text-lg font-semibold mb-4">
+                                   <h3 className="text-lg FontBold mb-4">
                                         Contact
                                    </h3>
                                    <ul className="space-y-3 mb-6">
@@ -166,8 +165,7 @@ const Footer = () => {
                          <div className="border-t border-gray-700 mt-12 pt-6">
                               <div className="flex flex-col items-center justify-center space-y-4">
                                    <p className="text-gray-400 text-sm text-center">
-                                        © 2025 CodeRun. Toate drepturile
-                                        rezervate.
+                                        © 2025 CodeRun. All rights reserved.
                                    </p>
                               </div>
                          </div>

@@ -63,7 +63,7 @@ export default function RootLayout({
                     <link rel="icon" href="/images/logo.png" sizes="any" />
                </head>
                <body
-                    className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-black`}
+                    className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-black `}
                >
                     <LazyMotion features={domAnimation}>{children}</LazyMotion>
                </body>

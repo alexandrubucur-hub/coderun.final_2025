@@ -24,10 +24,7 @@ const InfoCard = ({ title, children }: InfoCardProps) => {
       hover:shadow-[0_0_25px_rgba(250,88,182,0.7)] 
     "
           >
-               <h3
-                    className="text-2xl font-bold mb-4 text-[#FC9BD3]"
-                    style={{ fontFamily: "sans-serif" }}
-               >
+               <h3 className="text-2xl FontBold mb-4 text-[#FC9BD3]">
                     {title}
                </h3>
                <p className="text-gray-300 leading-relaxed">{children}</p>

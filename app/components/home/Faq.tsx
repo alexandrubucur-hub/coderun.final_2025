@@ -6,20 +6,20 @@ import CyberpunkBackground from "@/components/ui/CyberpunkBackground";
 
 const faqData = [
      {
-          question: "Cine poate participa la CodeRun?",
-          answer: "CodeRun este deschis tuturor studenților pasionați de programare, indiferent de anul de studiu sau specializare. Tot ce contează este dorința de a învăța și de a concura.",
+          question: "Who can participate in CodeRun?",
+          answer: "CodeRun is open to all university students passionate about IT and programming, regardless of their faculty or experience level.",
      },
      {
-          question: "Este necesară formarea unei echipe?",
-          answer: "Da, competiția se desfășoară în echipe de 3 persoane. Vă încurajăm să vă formați echipa din timp, dar vom oferi și o platformă de matchmaking pentru cei care își caută coechipieri.",
+          question: "Is it necessary to form a team?",
+          answer: "You can join either individually or in a team of up to three members. While solo participation is allowed, teamwork is encouraged to combine different skills and make the experience more fun.",
      },
      {
-          question: "Există o taxă de participare?",
-          answer: "Nu, participarea la CodeRun este complet gratuită. Evenimentul este susținut de companiile partenere, care doresc să investească în viitoarea generație de programatori.",
+          question: "Is there a participation fee?",
+          answer: "No, CodeRun is completely free to join!",
      },
      {
-          question: "Ce tehnologii vor fi folosite în cadrul probelor?",
-          answer: "Tehnologiile specifice variază de la o ediție la alta și sunt alese de companiile partenere. Participanții vor beneficia de sesiuni de training înainte de începerea probelor pentru a se familiariza cu tool-urile necesare.",
+          question: "What technologies will be used in the challenges?",
+          answer: "Each challenge is designed by our partners and may involve various programming languages and technologies depending on their specific field. The exact tools and frameworks will be introduced during the training sessions.",
      },
 ];
 
@@ -49,9 +49,9 @@ const Faq: React.FC = () => {
      return (
           <section
                id="faq"
-               className="relative w-full overflow-hidden bg-gradient-cyberpunk py-8"
+               className="relative w-full overflow-hidden bg-gradient-cyberpunk py-12 lg:py-20"
           >
-               <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-coderun-dark to-transparent pointer-events-none z-30" />
+               <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-coderun-dark to-transparent pointer-events-none z-30" />
                <CyberpunkBackground>
                     <div className="relative z-20 w-full py-20 px-4">
                          <motion.div
@@ -65,8 +65,8 @@ const Faq: React.FC = () => {
                                    className="text-3xl sm:text-4xl lg:text-5xl text-white leading-tight text-center mb-12"
                                    variants={faqItemVariants}
                               >
-                                   <span className="block FontTest text-coderun-pink-light animate-pulse text-glow">
-                                        ÎNTREBĂRI FRECVENTE
+                                   <span className="block FontGradient text-coderun-pink-light animate-pulse text-glow">
+                                        FREQUENTLY ASKED QUESTIONS
                                    </span>
                               </motion.h2>
                               <motion.div
@@ -85,13 +85,7 @@ const Faq: React.FC = () => {
                                                   }
                                                   className="flex w-full items-center justify-between p-6 text-left focus:outline-none"
                                              >
-                                                  <span
-                                                       className="text-2xl font-bold text-[#FC9BD3]"
-                                                       style={{
-                                                            fontFamily:
-                                                                 "sans-serif",
-                                                       }}
-                                                  >
+                                                  <span className="text-2xl FontBold text-[#FC9BD3]">
                                                        {item.question}
                                                   </span>
                                                   <motion.div

@@ -32,7 +32,7 @@ const Despre: React.FC = () => {
                id="about"
                className="relative min-h-screen w-full overflow-hidden bg-coderun-dark pt-16 pb-4 md:pb-16"
           >
-               <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-coderun-dark to-transparent pointer-events-none z-30" />
+               <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-coderun-dark to-transparent pointer-events-none z-30" />
                <PlexusBackground />
 
                {/* --- CONTINUTUL PAGINII --- */}
@@ -48,28 +48,26 @@ const Despre: React.FC = () => {
                               className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl text-white leading-tight text-center mb-16 md:mb-24 pt-4"
                               variants={itemVariants}
                          >
-                              <span className="block FontTest text-coderun-pink-light animate-pulse text-glow">
-                                   DESPRE
+                              <span className="block FontGradient text-coderun-pink-light animate-pulse text-glow">
+                                   ABOUT CODERUN
                               </span>
                          </motion.h2>
 
                          <div className="space-y-12 md:space-y-20">
-                              {/* --- Restul continutului ramane neschimbat --- */}
                               <motion.div
                                    className="flex flex-col md:flex-row items-center gap-8 md:gap-12"
                                    variants={itemVariants}
                               >
                                    <div className="w-full md:w-1/2">
-                                        <InfoCard title="Ce este Coderun?">
-                                             CodeRun este un maraton IT gratuit,
-                                             aflat la cea de a 6-a ediție, care
-                                             se va desfășura în perioada 10-23
-                                             noiembrie 2025. Evenimentul
-                                             dezvoltă studenții într-un cadru
-                                             competitiv, participantii avansând
-                                             prin punctele de control
-                                             (checkpoints) din Cluj-Napoca, de
-                                             la companie la companie.
+                                        <InfoCard title="What is Coderun?">
+                                             CodeRun is a free IT marathon, now
+                                             in its 6th edition, taking place
+                                             between November 10-23, 2025. The
+                                             event challenges students to grow
+                                             in a competitive setting, as they
+                                             advance through checkpoints around
+                                             Cluj-Napoca, moving from one
+                                             company to another.
                                         </InfoCard>
                                    </div>
                                    <div className="w-full md:w-1/2 flex justify-center group">
@@ -90,23 +88,18 @@ const Despre: React.FC = () => {
                                    variants={itemVariants}
                               >
                                    <div className="w-full md:w-1/2">
-                                        <InfoCard title="Pregătire și Provocări">
-                                             Pentru a porni la drum echipați cu
-                                             toată informația de care au nevoie,
-                                             participanții vor beneficia de
-                                             sesiuni de training online
-                                             susținute de reprezentanții
-                                             companiilor partenere. Evenimentul
-                                             se remarcă prin flexibilitatea
-                                             oferită de probe, atât
-                                             participanților, cât și
-                                             companiilor. Fiecare probă va avea
-                                             doua nivele de dificultate: easy și
-                                             hard. Prin structura propusă în
-                                             secțiunile de mai jos, noi
-                                             încurajăm participanții să iasă din
-                                             zona de confort și să își asume
-                                             riscuri.
+                                        <InfoCard title="Preparation and Challenges">
+                                             Before the competition days,
+                                             participants will join online
+                                             training sessions led by
+                                             professionals from our partner
+                                             companies, so they can start the
+                                             challenge fully prepared. Each
+                                             company's challenge will have two
+                                             difficulty levels: easy and hard,
+                                             giving participants the chance to
+                                             choose their pace or push their
+                                             limits.
                                         </InfoCard>
                                    </div>
                                    <div className="w-full md:w-1/2 flex justify-center group">
@@ -127,19 +120,14 @@ const Despre: React.FC = () => {
                                    variants={itemVariants}
                               >
                                    <div className="w-full md:w-1/2">
-                                        <InfoCard title="Maratonul de Coding">
-                                             CodeRun prezintă un traseu cu 6
-                                             puncte de control (checkpoints),
-                                             menite să supună participanții
-                                             probelor create de companiile
-                                             partenere, solicitându-le
-                                             capacitățile de coding, dar și de
-                                             asimilare și aplicare a
-                                             informațiilor din cadrul sesiunilor
-                                             de training. Evenimentul
-                                             evidențiază participanții care duc
-                                             la final probele, cu cadență și
-                                             reziliență.
+                                        <InfoCard title="The Coding Marathon">
+                                             With six checkpoints in total,
+                                             CodeRun tests both technical skills
+                                             and the ability to adapt and apply
+                                             knowledge from the trainings.The
+                                             event highlights participants who
+                                             complete the challenges with
+                                             consistency and resilience.
                                         </InfoCard>
                                    </div>
                                    <div className="w-full md:w-1/2 flex justify-center group">

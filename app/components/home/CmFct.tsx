@@ -9,35 +9,48 @@ const CmFct: React.FC = () => {
      return (
           <section
                id="how-it-works"
-               className="relative w-full overflow-hidden bg-gradient-cyberpunk py-8"
+               className="relative w-full overflow-hidden bg-gradient-cyberpunk  py-20 lg:py-32"
           >
-               <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-coderun-dark to-transparent pointer-events-none z-30" />
+               <div className="absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-coderun-dark to-transparent pointer-events-none z-30" />
                <CyberpunkBackground>
-                    <div className="relative z-20 flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
+                    <div className="relative z-20 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
                          <div className="w-full max-w-7xl mx-auto">
                               <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl text-white leading-tight text-center mb-16 md:mb-24 pt-4">
-                                   <span className="block FontTest text-coderun-pink-light animate-pulse text-glow">
-                                        CUM FUNCTIONEAZA?
+                                   <span className="block FontGradient text-coderun-pink-light animate-pulse text-glow">
+                                        HOW DOES IT WORK?
                                    </span>
                               </h2>
-                              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                                   <InfoCard title="Ce este Coderun?">
-                                        O competiție de programare intensă unde
-                                        îți poți testa limitele și
-                                        creativitatea. Intră în arenă și
-                                        demonstrează-ți abilitățile!
+                              <div className="flex flex-col lg:flex-row justify-center items-stretch gap-8">
+                                   <InfoCard title="Learn, Train & Compete">
+                                        CodeRun is a team-based IT competition
+                                        where participants can register
+                                        individually or in teams of up to three.
+                                        The competition unfolds in two main
+                                        stages: a training phase and a
+                                        competition phase. During the first
+                                        eleven days, participants attend online
+                                        training sessions hosted by our partners
+                                        to prepare for the upcoming tasks.
                                    </InfoCard>
-                                   <InfoCard title="Programul Evenimentului">
-                                        De la workshop-uri de pregătire până la
-                                        marea finală, descoperă calendarul
-                                        complet și nu rata nicio etapă
-                                        importantă.
+                                   <InfoCard title="Six Checkpoints to Victory">
+                                        In the second stage, the teams take on a
+                                        series of challenges at six checkpoints
+                                        spread across Cluj-Napoca. Each
+                                        checkpoint represents a partner company
+                                        or the BEST x UT challenge and offers
+                                        two levels of difficulty, easy and hard.
+                                        Teams must complete all challenges in
+                                        order, earning points for both accuracy
+                                        and speed.
                                    </InfoCard>
-                                   <InfoCard title="Înscrie-te Acum!">
-                                        Ești gata să intri în joc? Butonul de
-                                        înscriere te așteaptă. Creează-ți contul
-                                        și pregătește-te pentru o nouă
-                                        realitate.
+                                   <InfoCard title="Points, Bonuses, and Ranking">
+                                        The scoring system rewards technical
+                                        skill and efficiency, each challenge has
+                                        a maximum score, bonus points for quick
+                                        completion, and partial credit for
+                                        correct progress. At the end of the
+                                        route, the cumulative score determines
+                                        the final ranking.
                                    </InfoCard>
                               </div>
                          </div>
