@@ -71,7 +71,7 @@ export default function ContactForm() {
                     variants={itemVariants}
                >
                     <h2 className="text-4xl sm:text-5xl">
-                         <span className="block FontGradient text-coderun-pink-light animate-pulse-and-glow">
+                         <span className="block FontGradient text-coderun-pink-light animate-pulse text-glow">
                               CONTACT US
                          </span>
                     </h2>

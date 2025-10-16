@@ -33,9 +33,6 @@ module.exports = {
                     "glow-pulse":
                          "glow-pulse 2s ease-in-out infinite alternate",
                     "pulse-glow": "pulse-glow 2.5s infinite ease-in-out",
-                    // 👇 Am înlocuit 'text-glow' cu noua animație combinată
-                    "pulse-and-glow":
-                         "pulse-and-glow 2s ease-in-out infinite alternate",
                },
                keyframes: {
                     "glitch-1": {
@@ -62,19 +59,6 @@ module.exports = {
                          },
                          "100%": {
                               filter: "drop-shadow(0 0 40px #FA58B6) drop-shadow(0 0 80px #7A0BC0)",
-                         },
-                    },
-                    // 👇 Am creat un nou keyframe care combină pulsul și strălucirea
-                    "pulse-and-glow": {
-                         "0%, 100%": {
-                              opacity: 1,
-                              textShadow:
-                                   "0 0 10px #fa58b6, 0 0 20px #7a0bc0, 0 0 30px #fa58b6",
-                         },
-                         "50%": {
-                              opacity: 0.7, // Efectul de puls
-                              textShadow:
-                                   "0 0 20px #fa58b6, 0 0 30px #7a0bc0, 0 0 40px #fa58b6",
                          },
                     },
                     "pulse-glow": {

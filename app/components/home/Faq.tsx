@@ -65,7 +65,7 @@ const Faq: React.FC = () => {
                                    className="text-3xl sm:text-4xl lg:text-5xl text-white leading-tight text-center mb-12"
                                    variants={faqItemVariants}
                               >
-                                   <span className="block FontGradient text-coderun-pink-light animate-pulse-and-glow">
+                                   <span className="block FontGradient text-coderun-pink-light animate-pulse text-glow">
                                         FREQUENTLY ASKED QUESTIONS
                                    </span>
                               </motion.h2>
@@ -76,7 +76,7 @@ const Faq: React.FC = () => {
                                    {faqData.map((item, index) => (
                                         <div
                                              key={index}
-                                             className="bg-[#1A1A40]/40 backdrop-blur-sm fallback-bg rounded-2xl border border-[#270082] shadow-[0_0_15px_rgba(122,11,192,1)] transition-all duration-300 hover:border-[#FA58B6] hover:shadow-[0_0_25px_rgba(250,88,182,0.7)]"
+                                             className="bg-[#1A1A40]/40 backdrop-blur-sm rounded-2xl border border-[#270082] shadow-[0_0_15px_rgba(122,11,192,1)] transition-all duration-300 hover:border-[#FA58B6] hover:shadow-[0_0_25px_rgba(250,88,182,0.7)]"
                                         >
                                              <button
                                                   onClick={() =>

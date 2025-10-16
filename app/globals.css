@@ -34,11 +34,25 @@
           background: radial-gradient(circle, var(--tw-gradient-stops));
      }
 
-     /* Fallback pentru browsere care nu suportă backdrop-filter */
-     @supports not (backdrop-filter: blur(1px)) {
-          .fallback-bg {
-               background-color: #1a1a40; /* Fundal solid opac */
-          }
+     .text-shadow-glow {
+          text-shadow: 0 0 10px currentColor, 0 0 20px currentColor,
+               0 0 30px currentColor;
+     }
+
+     .cyberpunk-border {
+          position: relative;
+          background: linear-gradient(45deg, #fa58b6, #7a0bc0);
+          padding: 2px;
+          border-radius: 8px;
+     }
+
+     .cyberpunk-border::before {
+          content: "";
+          position: absolute;
+          inset: 2px;
+          background: inherit;
+          border-radius: 6px;
+          background: #1a1a40;
      }
 }
 
@@ -58,6 +72,29 @@
 
 ::-webkit-scrollbar-thumb:hover {
      background: linear-gradient(to bottom, #7a0bc0, #fa58b6);
+}
+
+/* Animation improvements */
+@keyframes matrix-rain {
+     0% {
+          transform: translateY(-100vh);
+          opacity: 0;
+     }
+     10% {
+          opacity: 1;
+     }
+     90% {
+          opacity: 1;
+     }
+     100% {
+          transform: translateY(100vh);
+          opacity: 0;
+     }
+}
+
+.matrix-char {
+     animation: matrix-rain 3s linear infinite;
+     animation-delay: calc(var(--delay) * 0.1s);
 }
 
 /* Glitch effect enhancements */
@@ -85,6 +122,20 @@
      animation: glitch-2 0.3s infinite;
      color: #7a0bc0;
      z-index: -2;
+}
+
+@keyframes text-glow {
+     0%,
+     100% {
+          text-shadow: 0 0 10px #fa58b6, 0 0 20px #7a0bc0, 0 0 30px #fa58b6;
+     }
+     50% {
+          text-shadow: 0 0 20px #fa58b6, 0 0 30px #7a0bc0, 0 0 40px #fa58b6;
+     }
+}
+
+.text-glow {
+     animation: text-glow 1.5s infinite alternate;
 }
 
 @font-face {

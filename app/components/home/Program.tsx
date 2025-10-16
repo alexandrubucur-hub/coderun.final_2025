@@ -83,7 +83,7 @@ const Program: React.FC = () => {
 
                <div className="relative z-20 max-w-7xl mx-auto">
                     <h2 className="text-3xl sm:text-4xl lg:text-5xl text-white leading-tight text-center mb-16">
-                         <span className="block FontGradient text-coderun-pink-light animate-pulse-and-glow">
+                         <span className="block FontGradient text-coderun-pink-light animate-pulse text-glow">
                               EVENT CALENDAR
                          </span>
                     </h2>
