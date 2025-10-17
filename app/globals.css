@@ -54,6 +54,9 @@
           border-radius: 6px;
           background: #1a1a40;
      }
+     .content-isolate {
+          contain: content;
+     }
 }
 
 /* Custom scrollbar */
@@ -116,12 +119,14 @@
      animation: glitch-1 0.3s infinite;
      color: #fa58b6;
      z-index: -1;
+     will-change: transform;
 }
 
 .glitch-container::after {
      animation: glitch-2 0.3s infinite;
      color: #7a0bc0;
      z-index: -2;
+     will-change: transform;
 }
 
 @keyframes text-glow {
@@ -136,6 +141,7 @@
 
 .text-glow {
      animation: text-glow 1.5s infinite alternate;
+     will-change: text-shadow;
 }
 
 @font-face {
@@ -177,5 +183,4 @@ body {
 
 .will-change-transform {
      will-change: transform;
-     transform: translateZ(0);
 }

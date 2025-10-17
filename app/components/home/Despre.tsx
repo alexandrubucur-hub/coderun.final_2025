@@ -73,6 +73,10 @@ const Despre: React.FC = () => {
                                                   width={700}
                                                   height={800}
                                                   className="w-full h-full object-contain object-center transition-all duration-300 group-hover:scale-105 group-hover:drop-shadow-glow-purple"
+                                                  style={{
+                                                       willChange:
+                                                            "transform, filter",
+                                                  }}
                                              />
                                         </div>
                                    </div>
@@ -97,6 +101,10 @@ const Despre: React.FC = () => {
                                                   width={400}
                                                   height={200}
                                                   className="w-full h-full object-contain object-center transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-glow-pink"
+                                                  style={{
+                                                       willChange:
+                                                            "transform, filter",
+                                                  }}
                                              />
                                         </div>
                                    </div>
@@ -121,6 +129,10 @@ const Despre: React.FC = () => {
                                                   width={400}
                                                   height={200}
                                                   className="w-full h-full object-contain object-center transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-glow-purple"
+                                                  style={{
+                                                       willChange:
+                                                            "transform, filter",
+                                                  }}
                                              />
                                         </div>
                                    </div>

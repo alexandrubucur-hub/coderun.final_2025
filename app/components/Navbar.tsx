@@ -35,6 +35,7 @@ const Navbar: React.FC = () => {
           <Disclosure
                as="nav"
                className="fixed top-0 left-0 w-full z-50 bg-coderun-dark/70 backdrop-blur-xl border-b border-coderun-purple/20 shadow-lg shadow-coderun-purple/10"
+               style={{ willChange: "backdrop-filter" }} // Optimizare pentru blur
           >
                <div className="max-w-8xl mx-auto px-2 sm:px-6 lg:px-8">
                     <div className="relative flex h-20 items-center">
@@ -46,6 +47,10 @@ const Navbar: React.FC = () => {
                      hover:before:opacity-40 hover:scale-105
                      shadow-[0_0_10px_rgba(122,11,192,0.2)] hover:shadow-[0_0_20px_rgba(250,88,182,0.5)]
                      "
+                                   style={{
+                                        willChange:
+                                             "transform, opacity, box-shadow",
+                                   }} // Optimizare
                               >
                                    <span className="sr-only">
                                         Open main menu
@@ -68,6 +73,7 @@ const Navbar: React.FC = () => {
                                    <Link
                                         href="/"
                                         className="relative transition-transform duration-500 hover:scale-105"
+                                        style={{ willChange: "transform" }} // Optimizare
                                    >
                                         <div className="absolute -inset-2 bg-gradient-to-r from-coderun-pink/20 via-coderun-purple/20 to-coderun-pink/20 opacity-0 hover:opacity-70 blur-lg rounded-2xl transition-opacity duration-500" />
                                         <Image
@@ -87,6 +93,7 @@ const Navbar: React.FC = () => {
                                         <Link
                                              href="/"
                                              className="relative transition-transform duration-500 hover:scale-105"
+                                             style={{ willChange: "transform" }} // Optimizare
                                         >
                                              <div className="absolute -inset-2 bg-gradient-to-r from-coderun-pink/20 via-coderun-purple/20 to-coderun-pink/20 opacity-0 hover:opacity-70 blur-lg rounded-2xl transition-opacity duration-500" />
                                              <Image
@@ -131,6 +138,10 @@ const Navbar: React.FC = () => {
                                                             "hover:before:opacity-40 hover:scale-105",
                                                             "shadow-[0_0_10px_rgba(122,11,192,0.2)] hover:shadow-[0_0_20px_rgba(250,88,182,0.5)]"
                                                        )}
+                                                       style={{
+                                                            willChange:
+                                                                 "transform, opacity, box-shadow",
+                                                       }} // Optimizare
                                                   >
                                                        <span className="relative z-10 drop-shadow-[0_0_6px_rgba(250,88,182,0.6)]">
                                                             {item.name}
@@ -142,7 +153,10 @@ const Navbar: React.FC = () => {
 
                                    {/* Buton Dreapta */}
                                    <div className="flex flex-shrink-0 items-center">
-                                        <Link href="/inscriere">
+                                        <Link
+                                             href="/inscriere"
+                                             style={{ willChange: "transform" }}
+                                        >
                                              {" "}
                                              {/* Presupunem că vrei o pagină de înscriere */}
                                              <GradientSlideButton

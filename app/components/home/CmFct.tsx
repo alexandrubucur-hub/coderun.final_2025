@@ -54,6 +54,10 @@ const CmFct: React.FC = () => {
                                    <motion.div
                                         variants={itemVariants}
                                         className="flex"
+                                        style={{
+                                             willChange:
+                                                  "transform, box-shadow, border-color",
+                                        }} // Optimizare pentru hover-ul InfoCard
                                    >
                                         <InfoCard title="Learn, Train & Compete">
                                              {
@@ -64,6 +68,10 @@ const CmFct: React.FC = () => {
                                    <motion.div
                                         variants={itemVariants}
                                         className="flex"
+                                        style={{
+                                             willChange:
+                                                  "transform, box-shadow, border-color",
+                                        }} // Optimizare pentru hover-ul InfoCard
                                    >
                                         <InfoCard title="Six Checkpoints to Victory">
                                              {
@@ -74,6 +82,10 @@ const CmFct: React.FC = () => {
                                    <motion.div
                                         variants={itemVariants}
                                         className="flex"
+                                        style={{
+                                             willChange:
+                                                  "transform, box-shadow, border-color",
+                                        }} // Optimizare pentru hover-ul InfoCard
                                    >
                                         <InfoCard title="Points, Bonuses, and Ranking">
                                              {

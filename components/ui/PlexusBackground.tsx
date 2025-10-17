@@ -181,7 +181,7 @@ const PlexusBackground: React.FC = () => {
           <div className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none overflow-hidden">
                {/* Pata 1 (Roz Principal) */}
                <motion.div
-                    className="absolute z-0 will-change-transform"
+                    className="absolute z-0"
                     style={{
                          width: "35rem",
                          height: "35rem",
@@ -190,6 +190,7 @@ const PlexusBackground: React.FC = () => {
                          backgroundColor: "rgba(236, 72, 153, 0.3)",
                          borderRadius: "50%",
                          filter: "blur(130px)",
+                         willChange: "transform, filter",
                     }}
                     animate={{
                          x: [0, 100, 50, -50, 0],
@@ -207,7 +208,7 @@ const PlexusBackground: React.FC = () => {
 
                {/* Pata 2 (Mov Principal) */}
                <motion.div
-                    className="absolute z-0 will-change-transform"
+                    className="absolute z-0"
                     style={{
                          width: "30rem",
                          height: "30rem",
@@ -216,6 +217,7 @@ const PlexusBackground: React.FC = () => {
                          backgroundColor: "rgba(122, 11, 192, 0.3)",
                          borderRadius: "50%",
                          filter: "blur(120px)",
+                         willChange: "transform, filter",
                     }}
                     animate={{
                          x: [0, -80, 20, 40, 0],
@@ -233,7 +235,7 @@ const PlexusBackground: React.FC = () => {
 
                {/* Pata 3 (NOUĂ: Albastru Electric)*/}
                <motion.div
-                    className="absolute z-0 will-change-transform"
+                    className="absolute z-0"
                     style={{
                          width: "28rem",
                          height: "28rem",
@@ -242,6 +244,7 @@ const PlexusBackground: React.FC = () => {
                          backgroundColor: "rgba(0, 204, 255, 0.2)",
                          borderRadius: "50%",
                          filter: "blur(130px)",
+                         willChange: "transform, filter",
                     }}
                     animate={{
                          x: [0, 50, -100, 20, 0],
@@ -259,7 +262,7 @@ const PlexusBackground: React.FC = () => {
 
                {/* Pata 4 (NOUĂ: Roz Secundar) */}
                <motion.div
-                    className="absolute z-0 will-change-transform"
+                    className="absolute z-0"
                     style={{
                          width: "20rem",
                          height: "20rem",
@@ -268,6 +271,7 @@ const PlexusBackground: React.FC = () => {
                          backgroundColor: "rgba(236, 72, 153, 0.2)",
                          borderRadius: "50%",
                          filter: "blur(110px)",
+                         willChange: "transform, filter",
                     }}
                     animate={{
                          x: [0, -40, 60, -20, 0],
@@ -285,7 +289,7 @@ const PlexusBackground: React.FC = () => {
                {/* Canvas-ul cu particule rămâne deasupra petelor de culoare */}
                <canvas
                     ref={canvasRef}
-                    className="relative top-0 left-0 w-full h-full z-10"
+                    className="relative top-0 left-0 w-full h-full z-10 will-change-transform"
                />
           </div>
      );

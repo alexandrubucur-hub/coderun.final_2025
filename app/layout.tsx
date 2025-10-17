@@ -61,7 +61,7 @@ export default function RootLayout({
                               gtag('config', 'G-JKXX9WDBB1');
                          `}
                     </Script>
-                    <link rel="icon" href="/images/logo.png" sizes="any" />
+                    <link rel="icon" href="/images/logo.webp" sizes="any" />
                </head>
                <body
                     className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-black `}

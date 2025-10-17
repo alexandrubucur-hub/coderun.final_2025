@@ -3,13 +3,13 @@
 
 import React, { useEffect, useState, useMemo, useRef } from "react";
 import { DynamicGlitchText } from "@/components/ui/DynamicGlitchText";
-import { StaticGlitchText } from "./StaticGlitchText"; // Importăm componenta memoizată
+import { StaticGlitchText } from "./StaticGlitchText";
 
-// Tipuri actualizate
+// Tipuri actualizate - Am înlocuit row/col cu x/y pentru pozitionare precisă
 type Glitch = {
      id: number;
-     row: number;
-     col: number;
+     x: number; // Coordonata X în pixeli
+     y: number; // Coordonata Y în pixeli
      disappearAt: number;
      opacity: number;
 };
@@ -20,19 +20,23 @@ export const GlitchEffectsLayer: React.FC = () => {
      const [activeVerticalGlitches, setActiveVerticalGlitches] = useState<
           VerticalGlitch[]
      >([]);
+
+     // Referință către container pentru a-i citi dimensiunile
+     const containerRef = useRef<HTMLDivElement>(null);
+
      const animationFrameId = useRef<number | null>(null);
      const lastGlitchTime = useRef<number>(0);
      const lastVerticalGlitchTime = useRef<number>(0);
 
      // Constantele pentru configurarea animației
      const GRID_SIZE = 6;
-     const MAX_GLITCHES = 4; // Redus de la 8
-     const GLITCH_INTERVAL = 1200; // Mărit de la 700
+     const MAX_GLITCHES = 4;
+     const GLITCH_INTERVAL = 1200;
      const GLITCH_LIFESPAN_MIN = 2000;
      const GLITCH_LIFESPAN_MAX = 5000;
 
-     const MAX_VERTICAL_GLITCHES = 3; // Redus de la 7
-     const VERTICAL_GLITCH_INTERVAL = 1500; // Mărit de la 1000
+     const MAX_VERTICAL_GLITCHES = 3;
+     const VERTICAL_GLITCH_INTERVAL = 1500;
      const VERTICAL_GLITCH_LIFESPAN_MIN = 3000;
      const VERTICAL_GLITCH_LIFESPAN_MAX = 5000;
 
@@ -84,9 +88,15 @@ export const GlitchEffectsLayer: React.FC = () => {
 
      useEffect(() => {
           const animate = (timestamp: number) => {
-               // Gestionează glitch-urile orizontale (cu opacitate pre-calculată)
                if (timestamp - lastGlitchTime.current > GLITCH_INTERVAL) {
                     lastGlitchTime.current = timestamp;
+
+                    // Citim dimensiunile containerului direct în bucla de animație
+                    const containerWidth =
+                         containerRef.current?.offsetWidth ?? 0;
+                    const containerHeight =
+                         containerRef.current?.offsetHeight ?? 0;
+
                     setActiveGlitches((currentGlitches) => {
                          const freshGlitches = currentGlitches.filter(
                               (g) => g.disappearAt > timestamp
@@ -94,42 +104,30 @@ export const GlitchEffectsLayer: React.FC = () => {
                          if (freshGlitches.length >= MAX_GLITCHES)
                               return freshGlitches;
 
-                         let randomRow: number, randomCol: number;
-                         let isOccupied = true;
-                         let attempts = 0;
-                         do {
-                              randomRow =
-                                   Math.floor(Math.random() * GRID_SIZE) + 1;
-                              randomCol =
-                                   Math.floor(Math.random() * GRID_SIZE) + 1;
-                              isOccupied = freshGlitches.some(
-                                   (g) =>
-                                        g.row === randomRow &&
-                                        g.col === randomCol
-                              );
-                              attempts++;
-                         } while (isOccupied && attempts < 20);
+                         const randomRow = Math.floor(
+                              Math.random() * GRID_SIZE
+                         );
+                         const randomCol = Math.floor(
+                              Math.random() * GRID_SIZE
+                         );
 
-                         if (!isOccupied) {
-                              const newGlitch: Glitch = {
-                                   id: timestamp + Math.random(),
-                                   row: randomRow,
-                                   col: randomCol,
-                                   disappearAt:
-                                        timestamp +
-                                        GLITCH_LIFESPAN_MIN +
-                                        Math.random() *
-                                             (GLITCH_LIFESPAN_MAX -
-                                                  GLITCH_LIFESPAN_MIN),
-                                   opacity: Math.random() * 0.4 + 0.2,
-                              };
-                              return [...freshGlitches, newGlitch];
-                         }
-                         return freshGlitches;
+                         const newGlitch: Glitch = {
+                              id: timestamp + Math.random(),
+                              // Calculăm pozitia în pixeli pentru a o folosi cu `transform`
+                              x: randomCol * (containerWidth / GRID_SIZE),
+                              y: randomRow * (containerHeight / GRID_SIZE),
+                              disappearAt:
+                                   timestamp +
+                                   GLITCH_LIFESPAN_MIN +
+                                   Math.random() *
+                                        (GLITCH_LIFESPAN_MAX -
+                                             GLITCH_LIFESPAN_MIN),
+                              opacity: Math.random() * 0.4 + 0.2,
+                         };
+                         return [...freshGlitches, newGlitch];
                     });
                }
 
-               // Gestionează glitch-urile verticale
                if (
                     timestamp - lastVerticalGlitchTime.current >
                     VERTICAL_GLITCH_INTERVAL
@@ -186,23 +184,23 @@ export const GlitchEffectsLayer: React.FC = () => {
      }, [verticalGlitchSlots]);
 
      return (
-          <div className="absolute inset-0 z-10 pointer-events-none text-glitch">
+          <div
+               ref={containerRef}
+               className="absolute inset-0 z-10 pointer-events-none text-glitch will-change-transform"
+          >
                <StaticGlitchText />
-               <div
-                    className="absolute inset-0 grid"
-                    style={{
-                         gridTemplateColumns: `repeat(${GRID_SIZE}, 1fr)`,
-                         gridTemplateRows: `repeat(${GRID_SIZE}, 1fr)`,
-                    }}
-               >
+
+               {/* Containerul pentru glitch-uri dinamice. Am eliminat grid-ul de aici. */}
+               <div className="absolute inset-0">
                     {activeGlitches.map((glitch) => (
                          <DynamicGlitchText
                               key={glitch.id}
-                              className="flex items-center justify-center text-center text-coderun-pink font-mono text-xs p-2 animate-pulse"
+                              className="absolute flex items-center justify-center text-center text-coderun-pink font-mono text-xs p-2 animate-pulse"
                               style={{
-                                   gridRow: glitch.row,
-                                   gridColumn: glitch.col,
+                                   // Folosim transform pentru a muta elementul, cea mai performantă metodă
+                                   transform: `translate(${glitch.x}px, ${glitch.y}px)`,
                                    opacity: glitch.opacity,
+                                   willChange: "transform, opacity", // Hint suplimentar pentru browser
                               }}
                          />
                     ))}
@@ -212,6 +210,7 @@ export const GlitchEffectsLayer: React.FC = () => {
                               <DynamicGlitchText
                                    key={glitch.id}
                                    className={`absolute font-mono text-xs [writing-mode:vertical-rl] tracking-widest ${slot.position} ${slot.style}`}
+                                   style={{ willChange: "opacity" }} // Adăugăm will-change și aici
                               />
                          );
                     })}

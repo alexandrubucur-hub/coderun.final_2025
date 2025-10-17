@@ -102,6 +102,10 @@ const Program: React.FC = () => {
                                         key={index}
                                         className="relative mb-10 lg:mb-0 group flex flex-col"
                                         variants={itemVariants}
+                                        style={{
+                                             willChange:
+                                                  "transform, box-shadow, border-color",
+                                        }} // Optimizare pentru GPU
                                    >
                                         {/* --- Linia și punctul --- */}
                                         <div className="flex items-center mb-5">

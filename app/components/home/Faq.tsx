@@ -77,6 +77,10 @@ const Faq: React.FC = () => {
                                         <div
                                              key={index}
                                              className="bg-[#1A1A40]/40 backdrop-blur-sm rounded-2xl border border-[#270082] shadow-[0_0_15px_rgba(122,11,192,1)] transition-all duration-300 hover:border-[#FA58B6] hover:shadow-[0_0_25px_rgba(250,88,182,0.7)]"
+                                             style={{
+                                                  willChange:
+                                                       "border-color, box-shadow",
+                                             }} // Optimizare pentru hover
                                         >
                                              <button
                                                   onClick={() =>
@@ -99,6 +103,10 @@ const Faq: React.FC = () => {
                                                             duration: 0.3,
                                                        }}
                                                        className="shrink-0"
+                                                       style={{
+                                                            willChange:
+                                                                 "transform",
+                                                       }} // Optimizare pentru rotație
                                                   >
                                                        <svg
                                                             xmlns="http://www.w3.org/2000/svg"
@@ -120,19 +128,24 @@ const Faq: React.FC = () => {
                                                   {openIndex === index && (
                                                        <motion.div
                                                             initial={{
-                                                                 height: 0,
                                                                  opacity: 0,
+                                                                 height: 0,
+                                                                 scaleY: 0,
+                                                                 transformOrigin:
+                                                                      "top",
                                                             }}
                                                             animate={{
-                                                                 height: "auto",
                                                                  opacity: 1,
+                                                                 height: "auto",
+                                                                 scaleY: 1,
                                                             }}
                                                             exit={{
-                                                                 height: 0,
                                                                  opacity: 0,
+                                                                 height: 0,
+                                                                 scaleY: 0,
                                                             }}
                                                             transition={{
-                                                                 duration: 0.4,
+                                                                 duration: 0.3,
                                                                  ease: "easeInOut",
                                                             }}
                                                        >

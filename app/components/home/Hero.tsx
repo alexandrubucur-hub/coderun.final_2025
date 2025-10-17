@@ -89,6 +89,10 @@ const HeroSection: React.FC = () => {
                                                   width={700}
                                                   height={800}
                                                   className="w-auto h-[450px] xl:h-[550px] 2xl:h-[650px] animate-glow-pulse"
+                                                  style={{
+                                                       willChange:
+                                                            "filter, transform",
+                                                  }}
                                              />
                                              <div className="absolute inset-0 bg-gradient-radial from-coderun-pink/30 via-coderun-purple/20 to-transparent opacity-60 blur-2xl animate-pulse" />
                                              <div className="absolute -inset-8 bg-gradient-to-r from-coderun-accent/10 via-coderun-purple/10 to-coderun-pink/10 blur-3xl opacity-80" />
@@ -162,7 +166,7 @@ const HeroSection: React.FC = () => {
                                         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4 pb-2">
                                              <Link href="#">
                                                   <GradientSlideButton
-                                                       className="px-12 py-6 h-10 text-4xl rounded-3xl bg-black text-white border-2 border-coderun-accent text-glitch hover:scale-110 hover:shadow-lg hover:shadow-coderun-pink/30 active:scale-95"
+                                                       className="px-12 py-6 h-10 text-4xl rounded-3xl bg-black text-white border-2 border-coderun-accent text-glitch hover:scale-110 hover:shadow-lg hover:shadow-coderun-pink/30 active:scale-95 will-change-transform"
                                                        colorFrom="#FA58B6"
                                                        colorTo="#7A0BC0"
                                                   >
@@ -178,7 +182,7 @@ const HeroSection: React.FC = () => {
                                                        width={0}
                                                        height={0}
                                                        sizes="100vw"
-                                                       className="w-36 h-auto sm:w-40 md:w-44 lg:w-52 xl:w-60 hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_10px_rgba(250,88,182,0.5)]"
+                                                       className="w-36 h-auto sm:w-40 md:w-44 lg:w-52 xl:w-60 hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_10px_rgba(250,88,182,0.5)] will-change-transform"
                                                   />
                                              </Link>
                                              <Link href="https://www.utcluj.ro/">
@@ -188,7 +192,7 @@ const HeroSection: React.FC = () => {
                                                        width={0}
                                                        height={0}
                                                        sizes="100vw"
-                                                       className="w-24 h-auto sm:w-28 md:w-32 lg:w-40 xl:w-48 hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_10px_rgba(250,88,182,0.5)]"
+                                                       className="w-24 h-auto sm:w-28 md:w-32 lg:w-40 xl:w-48 hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_10px_rgba(250,88,182,0.5)] will-change-transform"
                                                   />
                                              </Link>
                                         </div>
