@@ -88,7 +88,7 @@ const HeroSection: React.FC = () => {
                                                   alt="CodeRun Mascot"
                                                   width={700}
                                                   height={800}
-                                                  className="w-auto h-[450px] xl:h-[550px] 2xl:h-[650px] animate-float animate-glow-pulse"
+                                                  className="w-auto h-[450px] xl:h-[550px] 2xl:h-[650px] animate-glow-pulse"
                                              />
                                              <div className="absolute inset-0 bg-gradient-radial from-coderun-pink/30 via-coderun-purple/20 to-transparent opacity-60 blur-2xl animate-pulse" />
                                              <div className="absolute -inset-8 bg-gradient-to-r from-coderun-accent/10 via-coderun-purple/10 to-coderun-pink/10 blur-3xl opacity-80" />
@@ -127,7 +127,7 @@ const HeroSection: React.FC = () => {
                                                   alt="CodeRun Mascot"
                                                   width={350}
                                                   height={490}
-                                                  className="w-auto h-80 sm:h-96 animate-float animate-glow-pulse"
+                                                  className="w-auto h-80 sm:h-96 animate-glow-pulse"
                                              />
                                              <div className="absolute inset-0 bg-gradient-radial from-coderun-pink/40 via-coderun-purple/20 to-transparent opacity-70 blur-xl animate-pulse" />
                                              <div className="absolute -inset-6 bg-gradient-to-r from-coderun-accent/15 via-coderun-purple/15 to-coderun-pink/15 blur-2xl opacity-90" />
