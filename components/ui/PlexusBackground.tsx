@@ -1,3 +1,5 @@
+// components/ui/PlexusBackground.tsx
+
 "use client";
 
 import React, { useRef, useEffect, useCallback } from "react";
@@ -179,7 +181,7 @@ const PlexusBackground: React.FC = () => {
           <div className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none overflow-hidden">
                {/* Pata 1 (Roz Principal) */}
                <motion.div
-                    className="absolute z-0"
+                    className="absolute z-0 will-change-transform"
                     style={{
                          width: "35rem",
                          height: "35rem",
@@ -205,7 +207,7 @@ const PlexusBackground: React.FC = () => {
 
                {/* Pata 2 (Mov Principal) */}
                <motion.div
-                    className="absolute z-0"
+                    className="absolute z-0 will-change-transform"
                     style={{
                          width: "30rem",
                          height: "30rem",
@@ -231,7 +233,7 @@ const PlexusBackground: React.FC = () => {
 
                {/* Pata 3 (NOUĂ: Albastru Electric)*/}
                <motion.div
-                    className="absolute z-0"
+                    className="absolute z-0 will-change-transform"
                     style={{
                          width: "28rem",
                          height: "28rem",
@@ -257,7 +259,7 @@ const PlexusBackground: React.FC = () => {
 
                {/* Pata 4 (NOUĂ: Roz Secundar) */}
                <motion.div
-                    className="absolute z-0"
+                    className="absolute z-0 will-change-transform"
                     style={{
                          width: "20rem",
                          height: "20rem",

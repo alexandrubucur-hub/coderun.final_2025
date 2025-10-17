@@ -71,7 +71,7 @@ const Navbar: React.FC = () => {
                                    >
                                         <div className="absolute -inset-2 bg-gradient-to-r from-coderun-pink/20 via-coderun-purple/20 to-coderun-pink/20 opacity-0 hover:opacity-70 blur-lg rounded-2xl transition-opacity duration-500" />
                                         <Image
-                                             src="/images/logo.png"
+                                             src="/images/logo.webp"
                                              alt="Coderun Logo"
                                              width={200}
                                              height={64}
@@ -90,7 +90,7 @@ const Navbar: React.FC = () => {
                                         >
                                              <div className="absolute -inset-2 bg-gradient-to-r from-coderun-pink/20 via-coderun-purple/20 to-coderun-pink/20 opacity-0 hover:opacity-70 blur-lg rounded-2xl transition-opacity duration-500" />
                                              <Image
-                                                  src="/images/logo.png"
+                                                  src="/images/logo.webp"
                                                   alt="Coderun Logo"
                                                   width={200}
                                                   height={64}

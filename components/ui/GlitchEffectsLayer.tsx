@@ -1,3 +1,4 @@
+// components/ui/GlitchEffectsLayer.tsx
 "use client";
 
 import React, { useEffect, useState, useMemo, useRef } from "react";
@@ -25,13 +26,13 @@ export const GlitchEffectsLayer: React.FC = () => {
 
      // Constantele pentru configurarea animației
      const GRID_SIZE = 6;
-     const MAX_GLITCHES = 8;
-     const GLITCH_INTERVAL = 700;
+     const MAX_GLITCHES = 4; // Redus de la 8
+     const GLITCH_INTERVAL = 1200; // Mărit de la 700
      const GLITCH_LIFESPAN_MIN = 2000;
      const GLITCH_LIFESPAN_MAX = 5000;
 
-     const MAX_VERTICAL_GLITCHES = 7;
-     const VERTICAL_GLITCH_INTERVAL = 1000;
+     const MAX_VERTICAL_GLITCHES = 3; // Redus de la 7
+     const VERTICAL_GLITCH_INTERVAL = 1500; // Mărit de la 1000
      const VERTICAL_GLITCH_LIFESPAN_MIN = 3000;
      const VERTICAL_GLITCH_LIFESPAN_MAX = 5000;
 

@@ -68,7 +68,7 @@ const Despre: React.FC = () => {
                                    <div className="w-full md:w-1/2 flex justify-center group">
                                         <div className="w-full max-w-sm h-80 rounded-lg">
                                              <Image
-                                                  src="/images/fatacr.PNG"
+                                                  src="/images/fatacr.webp"
                                                   alt="CodeRun Mascot"
                                                   width={700}
                                                   height={800}

@@ -68,7 +68,7 @@ const HeroSection: React.FC = () => {
                                         className="flex justify-center lg:justify-end"
                                         variants={itemVariants}
                                    >
-                                        <div className="relative group">
+                                        <div className="relative group will-change-transform">
                                              <Image
                                                   src="/images/code.png"
                                                   alt="Code"
@@ -82,9 +82,9 @@ const HeroSection: React.FC = () => {
                                         className="flex justify-center"
                                         variants={itemVariants}
                                    >
-                                        <div className="relative">
+                                        <div className="relative will-change-transform">
                                              <Image
-                                                  src="/images/fatacr.PNG"
+                                                  src="/images/fatacr.webp"
                                                   alt="CodeRun Mascot"
                                                   width={700}
                                                   height={800}
@@ -98,7 +98,7 @@ const HeroSection: React.FC = () => {
                                         className="flex justify-center lg:justify-start"
                                         variants={itemVariants}
                                    >
-                                        <div className="relative group">
+                                        <div className="relative group will-change-transform">
                                              <Image
                                                   src="/images/run.png"
                                                   alt="Run"
@@ -115,7 +115,7 @@ const HeroSection: React.FC = () => {
                                         variants={itemVariants}
                                    >
                                         <div
-                                             className="relative transition-transform duration-500 ease-out"
+                                             className="relative transition-transform duration-500 ease-out will-change-transform"
                                              style={{
                                                   transform: isLogoVisible
                                                        ? "scale(1.25)"
@@ -123,7 +123,7 @@ const HeroSection: React.FC = () => {
                                              }}
                                         >
                                              <Image
-                                                  src="/images/fatacr.PNG"
+                                                  src="/images/fatacr.webp"
                                                   alt="CodeRun Mascot"
                                                   width={350}
                                                   height={490}
@@ -138,9 +138,9 @@ const HeroSection: React.FC = () => {
                                         className="flex justify-center pt-6"
                                         variants={itemVariants}
                                    >
-                                        <div className="relative group">
+                                        <div className="relative group will-change-transform">
                                              <Image
-                                                  src="/images/logo.png"
+                                                  src="/images/logo.webp"
                                                   alt="CodeRun"
                                                   width={400}
                                                   height={160}

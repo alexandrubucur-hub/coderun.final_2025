@@ -1,3 +1,4 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -65,7 +66,11 @@ export default function RootLayout({
                <body
                     className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-black `}
                >
-                    <LazyMotion features={domAnimation}>{children}</LazyMotion>
+                    <div style={{ willChange: "scroll-position" }}>
+                         <LazyMotion features={domAnimation}>
+                              {children}
+                         </LazyMotion>
+                    </div>
                </body>
           </html>
      );
