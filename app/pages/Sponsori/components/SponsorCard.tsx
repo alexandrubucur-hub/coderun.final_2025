@@ -30,8 +30,16 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
      return (
           <motion.div
                variants={variants}
-               className="w-full max-w-md md:w-[360px] relative group isolate bg-coderun-dark/40 backdrop-blur-sm p-8 rounded-2xl border border-coderun-purple transition-all duration-300 shadow-[0_0_15px_rgba(122,11,192,1)] group-hover:border-coderun-pink group-hover:shadow-[0_0_25px_rgba(250,88,182,0.7)]"
-               onMouseEnter={() => setIsHovered(true)}
+               className={`w-full max-w-md md:w-[360px] relative group isolate bg-coderun-dark/40 backdrop-blur-sm p-8 rounded-2xl border transition-all duration-300 ${
+                    isDescriptionVisible
+                         ? "border-coderun-pink shadow-[0_0_25px_rgba(250,88,182,0.7)]"
+                         : "border-coderun-purple shadow-[0_0_15px_rgba(122,11,192,1)]"
+               }`}
+               onMouseEnter={() => {
+                    if (!isPinned) {
+                         setIsHovered(true);
+                    }
+               }}
                onMouseLeave={() => setIsHovered(false)}
                style={{
                     willChange: "border-color, box-shadow, transform, opacity",
@@ -57,7 +65,10 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
 
                     {/* --- Săgeata pentru toggle --- */}
                     <button
-                         onClick={() => setIsPinned(!isPinned)}
+                         onClick={() => {
+                              setIsPinned(!isPinned);
+                              setIsHovered(false);
+                         }}
                          className="absolute bottom-4 right-4 z-20 text-coderun-pink hover:text-coderun-pink-light transition-all duration-300"
                          aria-label="Toggle description"
                     >
