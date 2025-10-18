@@ -1,10 +1,10 @@
 // app/components/home/Despre.tsx
 "use client";
 
-import React, { useRef } from "react"; // ---- MODIFICARE: Adăugăm useRef
+import React, { useRef } from "react";
 import Image from "next/image";
 import InfoCard from "@/components/ui/InfoCard";
-import { motion, Variants, useInView } from "framer-motion"; // ---- MODIFICARE: Adăugăm useInView
+import { motion, Variants, useInView } from "framer-motion";
 import PlexusBackground from "@/components/ui/PlexusBackground";
 
 const containerVariants: Variants = {
@@ -27,40 +27,41 @@ const itemVariants: Variants = {
 };
 
 const Despre: React.FC = () => {
-     // ---- MODIFICARE: Adăugăm ref și useInView ----
      const sectionRef = useRef(null);
-     const isInView = useInView(sectionRef, { amount: 0.5 });
-     // ---- SFÂRȘIT MODIFICARE ----
+     // --- MODIFICARE: Trigger pentru fundal (amount: 0.5) ---
+     const backgroundInView = useInView(sectionRef, { amount: 0.5 });
+     // --- MODIFICARE: Trigger pentru animația text-glow (amount: 0.2) ---
+     const contentInView = useInView(sectionRef, { amount: 0.2 });
 
      return (
           <section
-               ref={sectionRef} // ---- MODIFICARE: Adăugăm ref-ul aici
+               ref={sectionRef}
                id="about"
                className="relative min-h-screen w-full overflow-hidden bg-coderun-dark pt-16 pb-4 md:pb-16"
           >
                <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-coderun-dark to-transparent pointer-events-none z-30" />
-               {/* ---- MODIFICARE: Trimitem 'isInView' ca prop ---- */}
-               <PlexusBackground isInView={isInView} />
+               {/* --- MODIFICARE: Folosim backgroundInView --- */}
+               <PlexusBackground isInView={backgroundInView} />
 
                {/* --- CONTINUTUL PAGINII --- */}
                <div className="relative z-20 flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
-                    {/* 'whileInView' este deja optimizat, 
-                         deci nu trebuie să îl schimbăm aici. 
-                         Doar PlexusBackground rulează constant.
-                    */}
                     <motion.div
                          className="w-full max-w-7xl mx-auto"
                          variants={containerVariants}
                          initial="hidden"
                          whileInView="visible"
-                         viewport={{ once: true, amount: 0.2 }}
+                         viewport={{ once: true, amount: 0.2 }} // Acesta este OK, e separat
                     >
-                         {/* ... restul conținutului ... */}
                          <motion.h2
                               className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl text-white leading-tight text-center mb-16 md:mb-24 pt-4"
                               variants={itemVariants}
                          >
-                              <span className="block FontGradient text-coderun-pink-light animate-pulse text-glow">
+                              {/* --- MODIFICARE: Folosim contentInView pentru text-glow --- */}
+                              <span
+                                   className={`block FontGradient text-coderun-pink-light animate-pulse ${
+                                        contentInView ? "text-glow" : ""
+                                   }`}
+                              >
                                    ABOUT CODERUN
                               </span>
                          </motion.h2>

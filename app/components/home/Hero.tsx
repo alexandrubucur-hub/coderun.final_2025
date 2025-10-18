@@ -32,7 +32,10 @@ const HeroSection: React.FC = () => {
      const logoRef = React.useRef<HTMLDivElement | null>(null);
 
      const sectionRef = useRef(null);
-     const isInView = useInView(sectionRef, { amount: 0.4 });
+     // --- MODIFICARE: Trigger separat pentru fundal ---
+     const backgroundInView = useInView(sectionRef, { amount: 0.4 });
+     // --- MODIFICARE: Trigger separat pentru conținutul animat (CSS) ---
+     const contentInView = useInView(sectionRef, { amount: 0.2 });
 
      useEffect(() => {
           const observer = new IntersectionObserver(
@@ -60,7 +63,8 @@ const HeroSection: React.FC = () => {
                id="home"
                className="relative min-h-screen w-full overflow-hidden bg-gradient-cyberpunk"
           >
-               <CyberpunkBackground isInView={isInView}>
+               {/* --- MODIFICARE: Folosim backgroundInView --- */}
+               <CyberpunkBackground isInView={backgroundInView}>
                     <div className="relative z-20 flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8 pt-16">
                          <motion.div
                               className="w-full max-w-7xl mx-auto"
@@ -93,8 +97,9 @@ const HeroSection: React.FC = () => {
                                                   alt="CodeRun Mascot"
                                                   width={700}
                                                   height={800}
+                                                  // --- MODIFICARE: Folosim contentInView ---
                                                   className={`w-auto h-[450px] xl:h-[550px] 2xl:h-[650px] ${
-                                                       isInView
+                                                       contentInView
                                                             ? "animate-glow-pulse"
                                                             : ""
                                                   }`}
@@ -140,8 +145,9 @@ const HeroSection: React.FC = () => {
                                                   alt="CodeRun Mascot"
                                                   width={350}
                                                   height={490}
+                                                  // --- MODIFICARE: Folosim contentInView ---
                                                   className={`w-auto h-80 sm:h-96 ${
-                                                       isInView
+                                                       contentInView
                                                             ? "animate-glow-pulse"
                                                             : ""
                                                   }`}
@@ -173,8 +179,9 @@ const HeroSection: React.FC = () => {
                                    <div className="text-center space-y-6">
                                         <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl text-white leading-tight break-words">
                                              <span
+                                                  // --- MODIFICARE: Folosim contentInView ---
                                                   className={`block FontGradient text-coderun-pink-light animate-pulse ${
-                                                       isInView
+                                                       contentInView
                                                             ? "text-glow"
                                                             : ""
                                                   }`}

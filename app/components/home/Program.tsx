@@ -1,12 +1,11 @@
 // Program.tsx
 "use client";
 
-import React, { useRef } from "react"; // MODIFICARE: Adăugăm useRef
-import { motion, Variants, useInView } from "framer-motion"; // MODIFICARE: Adăugăm useInView
+import React, { useRef } from "react";
+import { motion, Variants, useInView } from "framer-motion";
 import PlexusBackground from "@/components/ui/PlexusBackground";
 
 interface TimelineItemProps {
-     // ... (interfața rămâne neschimbată)
      startDate: Date;
      endDate: Date;
      date: string;
@@ -15,7 +14,6 @@ interface TimelineItemProps {
 }
 
 const timelineData: Omit<TimelineItemProps, "isLast">[] = [
-     // ... (datele 'timeline' rămân neschimbate)
      {
           startDate: new Date("2025-10-24"),
           endDate: new Date("2025-11-05"),
@@ -51,7 +49,6 @@ const timelineData: Omit<TimelineItemProps, "isLast">[] = [
 ];
 
 const containerVariants: Variants = {
-     // ... (variantele rămân neschimbate)
      hidden: {},
      visible: {
           transition: {
@@ -61,7 +58,6 @@ const containerVariants: Variants = {
 };
 
 const itemVariants: Variants = {
-     // ... (variantele rămân neschimbate)
      hidden: { opacity: 0, y: 50 },
      visible: {
           opacity: 1,
@@ -78,27 +74,28 @@ const Program: React.FC = () => {
           (item) => today >= item.startDate && today <= item.endDate
      );
 
-     // --- MODIFICARE: Adăugăm detectarea vizibilității ---
      const sectionRef = useRef(null);
-     const isInView = useInView(sectionRef, { amount: 0.2 });
-     // --- SFÂRȘIT MODIFICARE ---
+     // --- MODIFICARE: Trigger pentru fundal (amount: 0.5) ---
+     const backgroundInView = useInView(sectionRef, { amount: 0.5 });
+     // --- MODIFICARE: Trigger pentru animația text-glow (amount: 0.2) ---
+     const contentInView = useInView(sectionRef, { amount: 0.2 });
 
      return (
           <section
-               ref={sectionRef} // MODIFICARE: Adăugăm ref-ul
+               ref={sectionRef}
                id="program"
                className="relative w-full overflow-hidden bg-coderun-dark pt-20 lg:pt-28 pb-8 lg:pb-28 px-4"
           >
                <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-coderun-dark to-transparent pointer-events-none z-30" />
-               {/* MODIFICARE: Trimitem 'isInView' către fundal */}
-               <PlexusBackground isInView={isInView} />
+               {/* --- MODIFICARE: Folosim backgroundInView --- */}
+               <PlexusBackground isInView={backgroundInView} />
 
                <div className="relative z-20 max-w-7xl mx-auto">
                     <h2 className="text-3xl sm:text-4xl lg:text-5xl text-white leading-tight text-center mb-16">
-                         {/* MODIFICARE: Oprim animația 'text-glow' */}
+                         {/* --- MODIFICARE: Folosim contentInView --- */}
                          <span
                               className={`block FontGradient text-coderun-pink-light animate-pulse ${
-                                   isInView ? "text-glow" : ""
+                                   contentInView ? "text-glow" : ""
                               }`}
                          >
                               EVENT CALENDAR
@@ -113,7 +110,6 @@ const Program: React.FC = () => {
                          variants={containerVariants}
                     >
                          {timelineData.map((item, index) => {
-                              // ... (logica 'isActive' și restul JSX-ului rămân neschimbate)
                               const isActive = index === activeIndex;
                               return (
                                    <motion.li
