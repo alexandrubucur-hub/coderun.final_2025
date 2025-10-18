@@ -1,16 +1,14 @@
-/* components/Preloader.module.css */
-
 .preloaderContainer {
      position: fixed;
      inset: 0;
      display: flex;
      justify-content: center;
      align-items: center;
-     background-color: #1a1a40; /* coderun-dark */
+     background-color: #1a1a40;
      z-index: 9999;
      opacity: 1;
      transition: opacity 0.5s ease-out;
-     /* Asigurăm că textul nu dă scroll pe orizontală */
+
      overflow: hidden;
 }
 
@@ -18,19 +16,10 @@
      opacity: 0;
 }
 
-/* --- MODIFICARE AICI --- */
 .largeText {
-     /* clamp(MINIM, PREFERAT, MAXIM) */
-     /* MINIM: 3.5rem (aprox 56px) - o dimensiune sigură pentru telefoane
-    PREFERAT: 18vw - se va scala cu lățimea ecranului (mai mic decât 30vw)
-    MAXIM: 250px - o limită superioară pentru ecrane foarte mari
-  */
      font-size: clamp(3.5rem, 18vw, 250px);
      line-height: 1;
      color: white;
      text-align: center;
-     /* Forțează textul să rămână pe o singură linie */
      white-space: nowrap;
 }
-
-/* Nu mai avem nevoie de @media query, clamp() se ocupă de asta */
