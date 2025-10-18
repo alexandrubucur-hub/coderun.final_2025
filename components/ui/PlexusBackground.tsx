@@ -10,7 +10,7 @@ const BASE_PARTICLE_COUNT = 80;
 const MAX_LINK_DISTANCE = 160;
 const MOUSE_INTERACTION_RADIUS = 200;
 const PARTICLE_BASE_SPEED = 0.4;
-const MIN_PARTICLE_COUNT = 25; // MODIFICARE: Număr minim pentru mobil
+const MIN_PARTICLE_COUNT = 40; // MODIFICARE: Număr minim pentru mobil
 
 // Paleta de culori pentru consistență
 const PARTICLE_COLOR = "rgba(250, 88, 182, 0.9)"; // Coderun Pink
