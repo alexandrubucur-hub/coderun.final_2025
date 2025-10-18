@@ -1,11 +1,11 @@
 // app/components/home/Hero.tsx
 "use client";
 
-import React, { useEffect, useState, useRef } from "react"; // Adăugăm useRef
+import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { GradientSlideButton } from "@/components/ui/gradient-slide-button";
-import { motion, Variants, useInView } from "framer-motion"; // Adăugăm useInView
+import { motion, Variants, useInView } from "framer-motion";
 import CyberpunkBackground from "@/components/ui/CyberpunkBackground";
 
 const containerVariants: Variants = {
@@ -31,12 +31,8 @@ const HeroSection: React.FC = () => {
      const [isLogoVisible, setIsLogoVisible] = useState(false);
      const logoRef = React.useRef<HTMLDivElement | null>(null);
 
-     // ---- MODIFICARE ----
-     // Adăugăm un ref la secțiunea principală
      const sectionRef = useRef(null);
-     // Verificăm dacă secțiunea este vizibilă (cel puțin 10%)
      const isInView = useInView(sectionRef, { amount: 0.1 });
-     // ---- SFÂRȘIT MODIFICARE ----
 
      useEffect(() => {
           const observer = new IntersectionObserver(
@@ -60,11 +56,10 @@ const HeroSection: React.FC = () => {
 
      return (
           <section
-               ref={sectionRef} // ---- MODIFICARE: Adăugăm ref-ul aici
+               ref={sectionRef}
                id="home"
                className="relative min-h-screen w-full overflow-hidden bg-gradient-cyberpunk"
           >
-               {/* ---- MODIFICARE: Trimitem 'isInView' ca prop ---- */}
                <CyberpunkBackground isInView={isInView}>
                     <div className="relative z-20 flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8 pt-16">
                          <motion.div
@@ -98,7 +93,6 @@ const HeroSection: React.FC = () => {
                                                   alt="CodeRun Mascot"
                                                   width={700}
                                                   height={800}
-                                                  // ---- MODIFICARE: Oprim animația scumpă 'filter' ----
                                                   className={`w-auto h-[450px] xl:h-[550px] 2xl:h-[650px] ${
                                                        isInView
                                                             ? "animate-glow-pulse"
@@ -146,7 +140,6 @@ const HeroSection: React.FC = () => {
                                                   alt="CodeRun Mascot"
                                                   width={350}
                                                   height={490}
-                                                  // ---- MODIFICARE: Oprim animația scumpă 'filter' ----
                                                   className={`w-auto h-80 sm:h-96 ${
                                                        isInView
                                                             ? "animate-glow-pulse"
@@ -178,8 +171,7 @@ const HeroSection: React.FC = () => {
                                    variants={itemVariants}
                               >
                                    <div className="text-center space-y-6">
-                                        <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl text-white leading-tight">
-                                             {/* ---- MODIFICARE: Oprim animația 'text-glow' ---- */}
+                                        <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl text-white leading-tight break-words">
                                              <span
                                                   className={`block FontGradient text-coderun-pink-light animate-pulse ${
                                                        isInView
@@ -193,7 +185,12 @@ const HeroSection: React.FC = () => {
                                         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4 pb-2">
                                              <Link href="#">
                                                   <GradientSlideButton
-                                                       className="px-12 py-6 h-10 text-4xl rounded-3xl bg-black text-white border-2 border-coderun-accent text-glitch hover:scale-110 hover:shadow-lg hover:shadow-coderun-pink/30 active:scale-95 will-change-transform"
+                                                       className="
+                    px-8 sm:px-12
+                    h-14 sm:h-16
+                    text-2xl sm:text-4xl
+                    rounded-3xl bg-black text-white border-2 border-coderun-accent text-glitch hover:scale-110 hover:shadow-lg hover:shadow-coderun-pink/30 active:scale-95 will-change-transform
+               "
                                                        colorFrom="#FA58B6"
                                                        colorTo="#7A0BC0"
                                                   >
