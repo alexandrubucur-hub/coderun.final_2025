@@ -1,25 +1,22 @@
-// page.tsx (în folderul de contact)
 "use client";
 
-import React, { useRef } from "react"; // MODIFICARE: Adăugăm useRef
-import { useInView } from "framer-motion"; // MODIFICARE: Adăugăm useInView
+import React, { useRef } from "react";
+import { useInView } from "framer-motion";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import CyberpunkBackground from "@/components/ui/CyberpunkBackground";
 import Form from "./components/Form";
 
 export default function Contact() {
-     // --- MODIFICARE: Adăugăm detectarea vizibilității ---
      const sectionRef = useRef(null);
      const isInView = useInView(sectionRef, { amount: 0.1 });
-     // --- SFÂRȘIT MODIFICARE ---
 
      return (
           <main>
                <Navbar />
                <section
-                    ref={sectionRef} // MODIFICARE: Adăugăm ref-ul
-                    className="relative min-h-screen w-full overflow-hidden pt-16"
+                    ref={sectionRef}
+                    className="relative min-h-screen w-full overflow-hidden"
                >
                     {/* MODIFICARE: Trimitem 'isInView' către fundal */}
                     <CyberpunkBackground isInView={isInView}>
