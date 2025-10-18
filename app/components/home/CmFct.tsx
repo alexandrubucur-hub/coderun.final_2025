@@ -30,7 +30,7 @@ const itemVariants: Variants = {
 const CmFct: React.FC = () => {
      // --- MODIFICARE: Adăugăm detectarea vizibilității ---
      const sectionRef = useRef(null);
-     const isInView = useInView(sectionRef, { amount: 0.1 });
+     const isInView = useInView(sectionRef, { amount: 0.4 });
      // --- SFÂRȘIT MODIFICARE ---
 
      return (

@@ -29,7 +29,7 @@ const itemVariants: Variants = {
 const Despre: React.FC = () => {
      // ---- MODIFICARE: Adăugăm ref și useInView ----
      const sectionRef = useRef(null);
-     const isInView = useInView(sectionRef, { amount: 0.1 });
+     const isInView = useInView(sectionRef, { amount: 0.4 });
      // ---- SFÂRȘIT MODIFICARE ----
 
      return (

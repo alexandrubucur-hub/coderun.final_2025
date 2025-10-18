@@ -32,7 +32,7 @@ const HeroSection: React.FC = () => {
      const logoRef = React.useRef<HTMLDivElement | null>(null);
 
      const sectionRef = useRef(null);
-     const isInView = useInView(sectionRef, { amount: 0.1 });
+     const isInView = useInView(sectionRef, { amount: 0.4 });
 
      useEffect(() => {
           const observer = new IntersectionObserver(
