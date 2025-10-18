@@ -76,7 +76,7 @@ const Program: React.FC = () => {
 
      const sectionRef = useRef(null);
      // --- MODIFICARE: Trigger pentru fundal (amount: 0.5) ---
-     const backgroundInView = useInView(sectionRef, { amount: 0.5 });
+     const backgroundInView = useInView(sectionRef, { amount: 0.3 });
      // --- MODIFICARE: Trigger pentru animația text-glow (amount: 0.2) ---
      const contentInView = useInView(sectionRef, { amount: 0.2 });
 
