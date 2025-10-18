@@ -5,17 +5,15 @@
 import React, { useRef, useEffect, useCallback } from "react";
 import { motion, useAnimationFrame } from "framer-motion";
 
-// --- Constante de configurare pentru design și performanță ---
 const BASE_PARTICLE_COUNT = 80;
 const MAX_LINK_DISTANCE = 160;
 const MOUSE_INTERACTION_RADIUS = 200;
 const PARTICLE_BASE_SPEED = 0.4;
-const MIN_PARTICLE_COUNT = 40; // MODIFICARE: Număr minim pentru mobil
+const MIN_PARTICLE_COUNT = 40;
 
-// Paleta de culori pentru consistență
-const PARTICLE_COLOR = "rgba(250, 88, 182, 0.9)"; // Coderun Pink
-const LINK_COLOR = "rgba(122, 11, 192, 0.7)"; // Coderun Purple
-const MOUSE_HIGHLIGHT_COLOR = "rgba(0, 204, 255, 1)"; // Accent electric blue
+const PARTICLE_COLOR = "rgba(250, 88, 182, 0.9)";
+const LINK_COLOR = "rgba(122, 11, 192, 0.7)";
+const MOUSE_HIGHLIGHT_COLOR = "rgba(0, 204, 255, 1)";
 
 type Particle = {
      x: number;
@@ -25,7 +23,6 @@ type Particle = {
      history: { x: number; y: number }[];
 };
 
-// --- MODIFICARE: Adăugăm interfața pentru props ---
 interface PlexusBackgroundProps {
      isInView: boolean;
 }
@@ -45,8 +42,6 @@ const PlexusBackground: React.FC<PlexusBackgroundProps> = ({ isInView }) => {
           const width = canvas.clientWidth;
           const height = canvas.clientHeight;
 
-          // --- MODIFICARE: Fix pentru "0-height" ---
-          // Dacă elementul nu s-a randat corect, reîncercăm
           if (width === 0 || height === 0) {
                console.warn("Canvas size 0, retrying init...");
                setTimeout(initializeParticles, 50);
@@ -62,7 +57,6 @@ const PlexusBackground: React.FC<PlexusBackgroundProps> = ({ isInView }) => {
                ctx.scale(dpr, dpr);
           }
 
-          // --- MODIFICARE: Logică nouă pentru numărul de particule ---
           const calculatedParticles = Math.floor(
                ((width * height) / (1920 * 1080)) * BASE_PARTICLE_COUNT
           );
@@ -70,7 +64,6 @@ const PlexusBackground: React.FC<PlexusBackgroundProps> = ({ isInView }) => {
                MIN_PARTICLE_COUNT,
                calculatedParticles
           );
-          // --- SFÂRȘIT MODIFICARE ---
 
           const tempParticles: Particle[] = [];
           for (let i = 0; i < particleCount; i++) {
@@ -92,11 +85,9 @@ const PlexusBackground: React.FC<PlexusBackgroundProps> = ({ isInView }) => {
                });
           }
           particlesRef.current = tempParticles;
-     }, []); // Dependințe goale, funcția e stabilă
+     }, []);
 
-     // --- MODIFICARE: Logica principală pentru pornire și resize ---
      useEffect(() => {
-          // Timer-ul pentru debounce-ul la resize
           let resizeTimeout: NodeJS.Timeout | null = null;
 
           const handleMouseMove = (event: MouseEvent) => {
@@ -110,41 +101,32 @@ const PlexusBackground: React.FC<PlexusBackgroundProps> = ({ isInView }) => {
                if (resizeTimeout) {
                     clearTimeout(resizeTimeout);
                }
-               // Așteptăm să se termine redimensionarea
+
                resizeTimeout = setTimeout(initializeParticles, 250);
           };
 
-          // --- Logica de pornire ---
           if (isInView) {
-               // Adăugăm ascultătorii de evenimente
                window.addEventListener("mousemove", handleMouseMove);
                window.addEventListener("mouseleave", handleMouseLeave);
                window.addEventListener("resize", handleResize);
 
-               // Așteptăm 50ms pentru ca layout-ul (min-h-screen) să se stabilizeze
                const initTimeout = setTimeout(initializeParticles, 50);
 
-               // --- Funcția de curățare ---
                return () => {
-                    // Oprim ascultătorii când ieșim din view
                     window.removeEventListener("mousemove", handleMouseMove);
                     window.removeEventListener("mouseleave", handleMouseLeave);
                     window.removeEventListener("resize", handleResize);
 
-                    // Curățăm orice timere
                     if (resizeTimeout) {
                          clearTimeout(resizeTimeout);
                     }
                     clearTimeout(initTimeout);
                };
           }
-     }, [isInView, initializeParticles]); // Se re-rulează doar când isInView se schimbă
-     // --- SFÂRȘIT MODIFICARE ---
+     }, [isInView, initializeParticles]);
 
      useAnimationFrame(() => {
-          // --- MODIFICARE: Oprim animația dacă nu e vizibilă ---
           if (!isInView) {
-               // Curățăm canvas-ul o singură dată la ieșire
                const canvas = canvasRef.current;
                if (canvas) {
                     const ctx = canvas.getContext("2d");
@@ -159,7 +141,6 @@ const PlexusBackground: React.FC<PlexusBackgroundProps> = ({ isInView }) => {
                }
                return;
           }
-          // --- SFÂRȘIT MODIFICARE ---
 
           const particles = particlesRef.current;
           const canvas = canvasRef.current;
@@ -251,7 +232,6 @@ const PlexusBackground: React.FC<PlexusBackgroundProps> = ({ isInView }) => {
                          borderRadius: "50%",
                          filter: "blur(130px)",
                     }}
-                    // --- MODIFICARE: Controlăm animația ---
                     animate={
                          isInView
                               ? {
@@ -260,7 +240,7 @@ const PlexusBackground: React.FC<PlexusBackgroundProps> = ({ isInView }) => {
                                      scale: [1, 1.1, 1, 0.9, 1],
                                      rotate: [0, 15, -10, 10, 0],
                                 }
-                              : {} // Oprim animația
+                              : {}
                     }
                     transition={{
                          duration: 40,
@@ -282,7 +262,6 @@ const PlexusBackground: React.FC<PlexusBackgroundProps> = ({ isInView }) => {
                          borderRadius: "50%",
                          filter: "blur(120px)",
                     }}
-                    // --- MODIFICARE: Controlăm animația ---
                     animate={
                          isInView
                               ? {
@@ -291,7 +270,7 @@ const PlexusBackground: React.FC<PlexusBackgroundProps> = ({ isInView }) => {
                                      scale: [1, 0.9, 1.15, 1, 1],
                                      rotate: [0, -10, 20, -5, 0],
                                 }
-                              : {} // Oprim animația
+                              : {}
                     }
                     transition={{
                          duration: 35,
@@ -313,7 +292,6 @@ const PlexusBackground: React.FC<PlexusBackgroundProps> = ({ isInView }) => {
                          borderRadius: "50%",
                          filter: "blur(130px)",
                     }}
-                    // --- MODIFICARE: Controlăm animația ---
                     animate={
                          isInView
                               ? {
@@ -322,7 +300,7 @@ const PlexusBackground: React.FC<PlexusBackgroundProps> = ({ isInView }) => {
                                      scale: [1, 1.05, 0.9, 1.1, 1],
                                      rotate: [0, 20, -5, 15, 0],
                                 }
-                              : {} // Oprim animația
+                              : {}
                     }
                     transition={{
                          duration: 45,
@@ -344,7 +322,6 @@ const PlexusBackground: React.FC<PlexusBackgroundProps> = ({ isInView }) => {
                          borderRadius: "50%",
                          filter: "blur(110px)",
                     }}
-                    // --- MODIFICARE: Controlăm animația ---
                     animate={
                          isInView
                               ? {
@@ -352,7 +329,7 @@ const PlexusBackground: React.FC<PlexusBackgroundProps> = ({ isInView }) => {
                                      y: [0, 30, -80, 50, 0],
                                      scale: [1, 0.95, 1.1, 0.9, 1],
                                 }
-                              : {} // Oprim animația
+                              : {}
                     }
                     transition={{
                          duration: 50,

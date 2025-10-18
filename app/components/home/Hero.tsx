@@ -32,7 +32,6 @@ const HeroSection: React.FC = () => {
      const logoRef = React.useRef<HTMLDivElement | null>(null);
 
      const sectionRef = useRef(null);
-     // --- MODIFICARE: Un singur hook 'useInView' cu amount: 0.2 ---
      const isInView = useInView(sectionRef, { amount: 0.2 });
 
      useEffect(() => {
@@ -95,7 +94,6 @@ const HeroSection: React.FC = () => {
                                                   alt="CodeRun Mascot"
                                                   width={700}
                                                   height={800}
-                                                  // --- MODIFICARE: Folosim 'isInView' ---
                                                   className={`w-auto h-[450px] xl:h-[550px] 2xl:h-[650px] ${
                                                        isInView
                                                             ? "animate-glow-pulse"
@@ -143,7 +141,6 @@ const HeroSection: React.FC = () => {
                                                   alt="CodeRun Mascot"
                                                   width={350}
                                                   height={490}
-                                                  // --- MODIFICARE: Folosim 'isInView' ---
                                                   className={`w-auto h-80 sm:h-96 ${
                                                        isInView
                                                             ? "animate-glow-pulse"
@@ -177,7 +174,6 @@ const HeroSection: React.FC = () => {
                                    <div className="text-center space-y-6">
                                         <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl text-white leading-tight break-words">
                                              <span
-                                                  // --- MODIFICARE: Folosim 'isInView' ---
                                                   className={`block FontGradient text-coderun-pink-light animate-pulse ${
                                                        isInView
                                                             ? "text-glow"

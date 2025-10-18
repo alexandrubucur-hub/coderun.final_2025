@@ -19,7 +19,7 @@ const InfoCard = ({ title, children }: InfoCardProps) => {
       transition-all 
       duration-300 
       text-white   
-      shadow-[0_0_15px_rgba(122,11,192,1)] // Am folosit #7A0BC0 (mov vibrant)
+      shadow-[0_0_15px_rgba(122,11,192,1)]
       hover:border-[#FA58B6] 
       hover:shadow-[0_0_25px_rgba(250,88,182,0.7)] 
     "

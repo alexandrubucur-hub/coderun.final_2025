@@ -28,7 +28,6 @@ const itemVariants: Variants = {
 
 const Despre: React.FC = () => {
      const sectionRef = useRef(null);
-     // --- MODIFICARE: Un singur hook 'useInView' cu amount: 0.2 ---
      const isInView = useInView(sectionRef, { amount: 0.2 });
 
      return (

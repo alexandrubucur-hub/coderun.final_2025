@@ -75,7 +75,6 @@ const Program: React.FC = () => {
      );
 
      const sectionRef = useRef(null);
-     // --- MODIFICARE: amount: 0.2 (era deja 0.2) ---
      const isInView = useInView(sectionRef, { amount: 0.2 });
 
      return (

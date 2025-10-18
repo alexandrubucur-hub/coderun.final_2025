@@ -7,7 +7,6 @@ import { GradientSlideButton } from "@/components/ui/gradient-slide-button";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { motion, Variants } from "framer-motion";
 
-// ... (Variantele 'containerVariants' și 'itemVariants' rămân neschimbate) ...
 const containerVariants: Variants = {
      hidden: { opacity: 0 },
      visible: {
@@ -26,19 +25,15 @@ const itemVariants: Variants = {
      },
 };
 
-// --- MODIFICARE: Adăugăm interfața pentru props ---
 interface ContactFormProps {
      isInView: boolean;
 }
-// --- SFÂRȘIT MODIFICARE ---
 
 export default function ContactForm({ isInView }: ContactFormProps) {
-     // MODIFICARE: Primim 'isInView'
      const form = useRef<HTMLFormElement>(null);
      const [status, setStatus] = useState<string>("");
 
      const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
-          // ... (Funcția 'sendEmail' rămâne neschimbată) ...
           e.preventDefault();
           setStatus("Sending...");
 

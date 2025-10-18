@@ -7,12 +7,12 @@ import { GlitchEffectsLayer } from "./GlitchEffectsLayer";
 
 interface CyberpunkBackgroundProps {
      children: React.ReactNode;
-     isInView: boolean; // ---- MODIFICARE: Adăugăm prop-ul
+     isInView: boolean;
 }
 
 const CyberpunkBackground: React.FC<CyberpunkBackgroundProps> = ({
      children,
-     isInView, // ---- MODIFICARE: Primim prop-ul
+     isInView,
 }) => {
      return (
           <div>

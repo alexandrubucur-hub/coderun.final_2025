@@ -53,7 +53,7 @@ module.exports = {
                          "0%, 100%": { transform: "translateY(0px)" },
                          "50%": { transform: "translateY(-20px)" },
                     },
-                    // RESTAURAT: Am revenit la versiunea cu `filter` pentru a păstra efectul vizual
+
                     "glow-pulse": {
                          "0%": {
                               filter: "drop-shadow(0 0 20px #FA58B6) drop-shadow(0 0 40px #7A0BC0)",
@@ -62,7 +62,7 @@ module.exports = {
                               filter: "drop-shadow(0 0 40px #FA58B6) drop-shadow(0 0 80px #7A0BC0)",
                          },
                     },
-                    // RESTAURAT: Am revenit la versiunea cu `box-shadow`
+
                     "pulse-glow": {
                          "0%, 100%": {
                               transform: "scale(1)",

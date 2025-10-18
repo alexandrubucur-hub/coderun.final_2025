@@ -27,7 +27,7 @@ const itemVariants: Variants = {
 
 const CmFct: React.FC = () => {
      const sectionRef = useRef(null);
-     // --- MODIFICARE: amount: 0.2 (era deja 0.2) ---
+
      const isInView = useInView(sectionRef, { amount: 0.2 });
 
      return (

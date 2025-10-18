@@ -4,7 +4,6 @@
 
 import { useState, useEffect } from "react";
 
-// O listă de texte specifică pentru această componentă
 const codeSnippets = [
      `System.out.println("Join us!");`,
      `git commit -m "Create new reality"`,
@@ -44,14 +43,12 @@ interface DynamicGlitchTextProps {
      style?: React.CSSProperties;
 }
 
-// Această componentă acum afișează un singur text aleatoriu și atât.
 export const DynamicGlitchText: React.FC<DynamicGlitchTextProps> = ({
      className,
      style,
 }) => {
      const [glitchText, setGlitchText] = useState("");
 
-     // Alege un text aleatoriu o singură dată, la montare
      useEffect(() => {
           const randomSnippet =
                codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
