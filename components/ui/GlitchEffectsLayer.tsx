@@ -4,12 +4,12 @@ import React, { useEffect, useRef, useMemo } from "react";
 import { DynamicGlitchText } from "@/components/ui/DynamicGlitchText";
 import { StaticGlitchText } from "./StaticGlitchText";
 
-// --- Setări de performanță ---
-const POOL_SIZE = 5; // Număr fix de glitch-uri orizontale
-const VERTICAL_POOL_SIZE = 3; // Număr fix de glitch-uri verticale
-const GLITCH_INTERVAL = 2000; // Mai rar
+// --- Setările de performanță rămân neschimbate ---
+const POOL_SIZE = 5;
+const VERTICAL_POOL_SIZE = 3;
+const GLITCH_INTERVAL = 2000;
 const GLITCH_LIFESPAN = 3000;
-const VERTICAL_GLITCH_INTERVAL = 3000; // Mai rar
+const VERTICAL_GLITCH_INTERVAL = 3000;
 const VERTICAL_GLITCH_LIFESPAN = 4000;
 // ---
 
@@ -31,22 +31,24 @@ export const GlitchEffectsLayer: React.FC<GlitchEffectsLayerProps> = ({
      isInView,
 }) => {
      const containerRef = useRef<HTMLDivElement>(null);
-     const animationFrameId = useRef<number | null>(null);
 
      // --- Pool-ul de elemente ---
      const glitchPoolRef = useRef<Glitch[]>([]);
      const verticalGlitchPoolRef = useRef<VerticalGlitch[]>([]);
 
      // --- Referințe directe la elementele DOM ---
-     // Acestea vor fi populate de array-ul de 'ref' din JSX
      const glitchElsRef = useRef<(HTMLDivElement | null)[]>([]);
      const verticalGlitchElsRef = useRef<(HTMLDivElement | null)[]>([]);
 
-     const lastGlitchTime = useRef<number>(0);
-     const lastVerticalGlitchTime = useRef<number>(0);
+     // --- MODIFICARE: Stocăm ID-urile timerelor în loc de animationFrame ---
+     const horizontalTimerRef = useRef<NodeJS.Timeout | null>(null);
+     const verticalTimerRef = useRef<NodeJS.Timeout | null>(null);
+     // Stocăm toate timerele de ascundere pentru cleanup
+     const hideTimersRef = useRef<NodeJS.Timeout[]>([]);
 
      const verticalGlitchSlots = useMemo(
           () => [
+               // ... (array-ul verticalGlitchSlots rămâne neschimbat)
                {
                     position: "top-[15%] left-[12%]",
                     style: "opacity-30 text-coderun-purple",
@@ -83,9 +85,8 @@ export const GlitchEffectsLayer: React.FC<GlitchEffectsLayerProps> = ({
           []
      );
 
-     // Inițializăm pool-ul o singură dată
+     // Inițializăm pool-ul o singură dată (rămâne neschimbat)
      useEffect(() => {
-          // Asigurăm că array-urile au lungimea corectă înainte de a le mapa
           glitchElsRef.current = glitchElsRef.current.slice(0, POOL_SIZE);
           verticalGlitchElsRef.current = verticalGlitchElsRef.current.slice(
                0,
@@ -104,122 +105,156 @@ export const GlitchEffectsLayer: React.FC<GlitchEffectsLayerProps> = ({
           );
      }, []);
 
+     // --- MODIFICARE: Bucla de animație înlocuită cu setTimeout ---
      useEffect(() => {
-          if (!isInView) {
-               if (animationFrameId.current) {
-                    cancelAnimationFrame(animationFrameId.current);
-                    animationFrameId.current = null;
+          // Funcție pentru a ascunde un element după o perioadă
+          const hideElement = (glitch: Glitch | VerticalGlitch) => {
+               if (glitch.el) {
+                    glitch.el.style.opacity = "0";
                }
-               // Ascundem totul când nu e vizibil
-               glitchPoolRef.current.forEach((g) => {
-                    if (g.el) g.el.style.opacity = "0";
-               });
-               verticalGlitchPoolRef.current.forEach((g) => {
-                    if (g.el) g.el.style.opacity = "0";
-               });
-               return;
-          }
+               glitch.disappearAt = 0; // Marcat ca disponibil
+          };
 
-          const animate = (timestamp: number) => {
-               if (!animationFrameId.current) return; // Oprit între timp
+          // Funcție pentru a genera un glitch orizontal
+          const spawnHorizontalGlitch = () => {
+               if (!containerRef.current) return; // Verificare de siguranță
 
-               const containerWidth = containerRef.current?.offsetWidth ?? 0;
-               const containerHeight = containerRef.current?.offsetHeight ?? 0;
+               const now = Date.now();
+               const availableGlitch = glitchPoolRef.current.find(
+                    (g) => now > g.disappearAt || g.disappearAt === 0
+               );
 
-               // --- Gestionează Glitch-urile Orizontale ---
-               glitchPoolRef.current.forEach((glitch) => {
-                    if (timestamp > glitch.disappearAt) {
-                         if (glitch.el) glitch.el.style.opacity = "0";
-                    }
-               });
+               if (availableGlitch && availableGlitch.el) {
+                    const containerWidth = containerRef.current.offsetWidth;
+                    const containerHeight = containerRef.current.offsetHeight;
 
-               if (timestamp - lastGlitchTime.current > GLITCH_INTERVAL) {
-                    lastGlitchTime.current = timestamp;
-                    const availableGlitch = glitchPoolRef.current.find(
-                         (g) => timestamp > g.disappearAt
-                    );
-
-                    if (
-                         availableGlitch &&
-                         availableGlitch.el &&
-                         containerWidth > 0
-                    ) {
-                         const x = Math.random() * containerWidth * 0.8; // 80% din lățime
-                         const y = Math.random() * containerHeight * 0.8; // 80% din înălțime
+                    if (containerWidth > 0) {
+                         const x = Math.random() * containerWidth * 0.8;
+                         const y = Math.random() * containerHeight * 0.8;
                          const opacity = Math.random() * 0.4 + 0.2;
 
                          availableGlitch.el.style.transform = `translate(${x}px, ${y}px)`;
                          availableGlitch.el.style.opacity = opacity.toString();
-                         availableGlitch.disappearAt =
-                              timestamp + GLITCH_LIFESPAN;
+                         availableGlitch.disappearAt = now + GLITCH_LIFESPAN;
+
+                         // Programează ascunderea
+                         const hideTimer = setTimeout(
+                              () => hideElement(availableGlitch),
+                              GLITCH_LIFESPAN
+                         );
+                         hideTimersRef.current.push(hideTimer);
                     }
                }
-
-               // --- Gestionează Glitch-urile Verticale ---
-               verticalGlitchPoolRef.current.forEach((glitch) => {
-                    if (timestamp > glitch.disappearAt) {
-                         if (glitch.el) glitch.el.style.opacity = "0";
-                    }
-               });
-
-               if (
-                    timestamp - lastVerticalGlitchTime.current >
-                    VERTICAL_GLITCH_INTERVAL
-               ) {
-                    lastVerticalGlitchTime.current = timestamp;
-                    const availableGlitch = verticalGlitchPoolRef.current.find(
-                         (g) => timestamp > g.disappearAt
-                    );
-
-                    if (availableGlitch && availableGlitch.el) {
-                         // Asociază un slot random de fiecare dată
-                         const slot =
-                              verticalGlitchSlots[
-                                   Math.floor(
-                                        Math.random() *
-                                             verticalGlitchSlots.length
-                                   )
-                              ];
-                         availableGlitch.el.className = `absolute font-mono text-xs [writing-mode:vertical-rl] tracking-widest ${slot.position} ${slot.style}`;
-                         // Opacitatea este deja în 'slot.style', dar o forțăm pentru tranziție
-                         availableGlitch.el.style.opacity = "1";
-                         availableGlitch.disappearAt =
-                              timestamp + VERTICAL_GLITCH_LIFESPAN;
-                    }
-               }
-
-               animationFrameId.current = requestAnimationFrame(animate);
+               // Reprogramează următorul glitch
+               horizontalTimerRef.current = setTimeout(
+                    spawnHorizontalGlitch,
+                    GLITCH_INTERVAL
+               );
           };
 
-          if (isInView && !animationFrameId.current) {
-               animationFrameId.current = requestAnimationFrame(animate);
+          // Funcție pentru a genera un glitch vertical
+          const spawnVerticalGlitch = () => {
+               if (!containerRef.current) return; // Verificare de siguranță
+
+               const now = Date.now();
+               const availableGlitch = verticalGlitchPoolRef.current.find(
+                    (g) => now > g.disappearAt || g.disappearAt === 0
+               );
+
+               if (availableGlitch && availableGlitch.el) {
+                    const slot =
+                         verticalGlitchSlots[
+                              Math.floor(
+                                   Math.random() * verticalGlitchSlots.length
+                              )
+                         ];
+                    // Suprascriem className complet
+                    availableGlitch.el.className = `absolute font-mono text-xs [writing-mode:vertical-rl] tracking-widest transition-opacity duration-1000 ${slot.position} ${slot.style}`;
+                    availableGlitch.el.style.opacity = "1"; // Forțează opacitatea la apariție
+                    availableGlitch.disappearAt =
+                         now + VERTICAL_GLITCH_LIFESPAN;
+
+                    // Programează ascunderea
+                    const hideTimer = setTimeout(
+                         () => hideElement(availableGlitch),
+                         VERTICAL_GLITCH_LIFESPAN
+                    );
+                    hideTimersRef.current.push(hideTimer);
+               }
+               // Reprogramează următorul glitch
+               verticalTimerRef.current = setTimeout(
+                    spawnVerticalGlitch,
+                    VERTICAL_GLITCH_INTERVAL
+               );
+          };
+
+          // --- Logica de Start/Stop ---
+          if (isInView) {
+               // Pornim buclele de timer doar dacă nu rulează deja
+               if (!horizontalTimerRef.current) {
+                    horizontalTimerRef.current = setTimeout(
+                         spawnHorizontalGlitch,
+                         GLITCH_INTERVAL
+                    );
+               }
+               if (!verticalTimerRef.current) {
+                    verticalTimerRef.current = setTimeout(
+                         spawnVerticalGlitch,
+                         VERTICAL_GLITCH_INTERVAL
+                    );
+               }
           }
 
+          // --- Funcția de Cleanup ---
           return () => {
-               if (animationFrameId.current) {
-                    cancelAnimationFrame(animationFrameId.current);
-                    animationFrameId.current = null;
+               // Oprim buclele principale care generează glitch-uri
+               if (horizontalTimerRef.current) {
+                    clearTimeout(horizontalTimerRef.current);
+                    horizontalTimerRef.current = null;
                }
+               if (verticalTimerRef.current) {
+                    clearTimeout(verticalTimerRef.current);
+                    verticalTimerRef.current = null;
+               }
+
+               // Oprim toate timerele de ascundere programate
+               hideTimersRef.current.forEach(clearTimeout);
+               hideTimersRef.current = [];
+
+               // Ascundem totul rapid la ieșirea din view
+               // (Acest lucru este acum acoperit și de opacitatea containerului,
+               // dar facem o curățare suplimentară a stării)
+               glitchPoolRef.current.forEach((g) => {
+                    if (g.el) g.el.style.opacity = "0";
+                    g.disappearAt = 0;
+               });
+               verticalGlitchPoolRef.current.forEach((g) => {
+                    if (g.el) g.el.style.opacity = "0";
+                    g.disappearAt = 0;
+               });
           };
-     }, [isInView, verticalGlitchSlots]);
+     }, [isInView, verticalGlitchSlots]); // Dependința e corectă
 
      return (
           <div
                ref={containerRef}
-               className="absolute inset-0 z-10 pointer-events-none text-glitch will-change-transform"
+               className="absolute inset-0 z-10 pointer-events-none text-glitch will-change-transform transition-opacity duration-500"
+               // --- STRATEGIA 2: Aplicăm opacitatea pe containerul principal ---
+               style={{ opacity: isInView ? 1 : 0 }}
           >
+               {/* Componenta de text static (nu se mișcă) */}
                <StaticGlitchText />
 
-               {/* Containerul pentru glitch-uri dinamice. FĂRĂ 'useState' */}
+               {/* Containerul pentru glitch-uri dinamice (folosind pool-ul) */}
                <div className="absolute inset-0">
                     {/* Pool-ul Orizontal */}
                     {Array.from({ length: POOL_SIZE }).map((_, i) => (
                          <div
                               key={i}
-                              // --- CORECȚIE AICI ---
                               ref={(el) => {
                                    glitchElsRef.current[i] = el;
                               }}
+                              // Tranziția se aplică la ascundere (când 'hideElement' setează opacitatea la 0)
                               className="absolute transition-opacity duration-500"
                               style={{
                                    opacity: 0,
@@ -234,14 +269,15 @@ export const GlitchEffectsLayer: React.FC<GlitchEffectsLayerProps> = ({
                     {Array.from({ length: VERTICAL_POOL_SIZE }).map((_, i) => (
                          <div
                               key={i}
-                              // --- CORECȚIE AICI ---
                               ref={(el) => {
                                    verticalGlitchElsRef.current[i] = el;
                               }}
-                              className="absolute transition-opacity duration-500" // className va fi suprascris
+                              // className va fi suprascris de 'spawnVerticalGlitch'
+                              // Păstrăm tranziția aici ca fallback
+                              className="absolute transition-opacity duration-1000"
                               style={{ opacity: 0, willChange: "opacity" }}
                          >
-                              {/* Vom randa textul în bucla 'animate' prin schimbarea 'className' */}
+                              {/* Textul este adăugat prin DynamicGlitchText */}
                               <DynamicGlitchText />
                          </div>
                     ))}
