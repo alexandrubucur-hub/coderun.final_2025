@@ -62,7 +62,7 @@ const HeroSection: React.FC = () => {
           >
                {/* --- MODIFICARE: Folosim 'isInView' --- */}
                <CyberpunkBackground isInView={isInView}>
-                    <div className="relative z-20 flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8 pt-16">
+                    <div className="relative z-20 flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8 pt-16 lg:pt-8">
                          <motion.div
                               className="w-full max-w-7xl mx-auto"
                               variants={containerVariants}
