@@ -174,7 +174,7 @@ const Navbar: React.FC = () => {
                </div>
 
                {/* Meniu mobil */}
-               <DisclosurePanel className="lg:hidden bg-coderun-dark/95 backdrop-blur-xl border-t border-coderun-purple/30">
+               <DisclosurePanel className="lg:hidden border-t border-coderun-purple/30">
                     <div className="space-y-1 px-8 pb-3 pt-2 max-h-[calc(100vh-5rem)] overflow-y-auto">
                          {navigation.map((item) => {
                               const isCurrent = pathname === item.href;
