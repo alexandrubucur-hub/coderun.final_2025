@@ -30,6 +30,7 @@ const CyberpunkBackground: React.FC<CyberpunkBackgroundProps> = ({
 
                {/* Strat 1: Animațiile de tip glitch (componenta optimizată) */}
                {/* ---- MODIFICARE: Trimitem prop-ul mai departe ---- */}
+               <GlitchEffectsLayer isInView={isInView} />
 
                {/* Strat 2: Conținutul tău */}
                <div className="relative z-20">{children}</div>
