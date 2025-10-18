@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
-import { LazyMotion, domAnimation } from "framer-motion";
+import ClientLayout from "./components/ClientLayout"; // Importăm componenta client
 
 const geistSans = Geist({
      variable: "--font-geist-sans",
@@ -62,15 +62,18 @@ export default function RootLayout({
                          `}
                     </Script>
                     <link rel="icon" href="/images/cr.png" type="image/png" />
+
+                    {/*
+                     * MODIFICARE: Pre-încărcăm imaginea de fundal a secțiunii Hero
+                     * pentru a fi gata după ce preloader-ul dispare.
+                     */}
+                    <link rel="preload" href="/images/bg.png" as="image" />
                </head>
                <body
                     className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-black `}
                >
-                    <div style={{ willChange: "scroll-position" }}>
-                         <LazyMotion features={domAnimation}>
-                              {children}
-                         </LazyMotion>
-                    </div>
+                    {/* Folosim ClientLayout pentru a gestiona starea preloader-ului */}
+                    <ClientLayout>{children}</ClientLayout>
                </body>
           </html>
      );
