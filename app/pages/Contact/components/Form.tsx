@@ -68,7 +68,7 @@ export default function ContactForm({ isInView }: ContactFormProps) {
 
      return (
           <motion.div
-               className="py-24 sm:py-32"
+               className="py-32"
                variants={containerVariants}
                initial="hidden"
                whileInView="visible"
