@@ -1,3 +1,4 @@
+// Form.tsx
 "use client";
 
 import React, { useRef, useState } from "react";
@@ -6,7 +7,7 @@ import { GradientSlideButton } from "@/components/ui/gradient-slide-button";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { motion, Variants } from "framer-motion";
 
-// Definirea variantelor pentru animatie
+// ... (Variantele 'containerVariants' și 'itemVariants' rămân neschimbate) ...
 const containerVariants: Variants = {
      hidden: { opacity: 0 },
      visible: {
@@ -16,7 +17,6 @@ const containerVariants: Variants = {
           },
      },
 };
-
 const itemVariants: Variants = {
      hidden: { opacity: 0, y: 50 },
      visible: {
@@ -26,11 +26,19 @@ const itemVariants: Variants = {
      },
 };
 
-export default function ContactForm() {
+// --- MODIFICARE: Adăugăm interfața pentru props ---
+interface ContactFormProps {
+     isInView: boolean;
+}
+// --- SFÂRȘIT MODIFICARE ---
+
+export default function ContactForm({ isInView }: ContactFormProps) {
+     // MODIFICARE: Primim 'isInView'
      const form = useRef<HTMLFormElement>(null);
      const [status, setStatus] = useState<string>("");
 
      const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
+          // ... (Funcția 'sendEmail' rămâne neschimbată) ...
           e.preventDefault();
           setStatus("Sending...");
 
@@ -71,7 +79,12 @@ export default function ContactForm() {
                     variants={itemVariants}
                >
                     <h2 className="text-4xl sm:text-5xl">
-                         <span className="block FontGradient text-coderun-pink-light animate-pulse text-glow">
+                         {/* MODIFICARE: Oprim animația 'text-glow' */}
+                         <span
+                              className={`block FontGradient text-coderun-pink-light animate-pulse ${
+                                   isInView ? "text-glow" : ""
+                              }`}
+                         >
                               CONTACT US
                          </span>
                     </h2>
@@ -82,7 +95,7 @@ export default function ContactForm() {
 
                <motion.div
                     className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-12 px-4 items-stretch"
-                    variants={containerVariants} // Container secundar pentru a anima cardurile
+                    variants={containerVariants}
                >
                     {/* --- Formularul de Contact --- */}
                     <motion.div
@@ -95,6 +108,7 @@ export default function ContactForm() {
                                    onSubmit={sendEmail}
                                    className="flex flex-col h-full"
                               >
+                                   {/* ... (Restul formularului rămâne neschimbat) ... */}
                                    <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 flex-grow">
                                         <div>
                                              <label

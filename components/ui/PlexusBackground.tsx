@@ -5,16 +5,14 @@
 import React, { useRef, useEffect, useCallback } from "react";
 import { motion, useAnimationFrame } from "framer-motion";
 
-// --- Constante de configurare pentru design și performanță ---
+// ... Constantele ...
 const BASE_PARTICLE_COUNT = 80;
 const MAX_LINK_DISTANCE = 160;
 const MOUSE_INTERACTION_RADIUS = 200;
 const PARTICLE_BASE_SPEED = 0.4;
-
-// Paleta de culori pentru consistență
-const PARTICLE_COLOR = "rgba(250, 88, 182, 0.9)"; // Coderun Pink
-const LINK_COLOR = "rgba(122, 11, 192, 0.7)"; // Coderun Purple
-const MOUSE_HIGHLIGHT_COLOR = "rgba(0, 204, 255, 1)"; // Accent electric blue
+const PARTICLE_COLOR = "rgba(250, 88, 182, 0.9)";
+const LINK_COLOR = "rgba(122, 11, 192, 0.7)";
+const MOUSE_HIGHLIGHT_COLOR = "rgba(0, 204, 255, 1)";
 
 type Particle = {
      x: number;
@@ -24,7 +22,14 @@ type Particle = {
      history: { x: number; y: number }[];
 };
 
-const PlexusBackground: React.FC = () => {
+// ---- MODIFICARE: Adăugăm props ----
+interface PlexusBackgroundProps {
+     isInView: boolean;
+}
+
+const PlexusBackground: React.FC<PlexusBackgroundProps> = ({
+     isInView, // ---- MODIFICARE: Primim prop-ul
+}) => {
      const canvasRef = useRef<HTMLCanvasElement>(null);
      const particlesRef = useRef<Particle[]>([]);
      const mouseRef = useRef<{ x?: number; y?: number }>({
@@ -33,25 +38,21 @@ const PlexusBackground: React.FC = () => {
      });
 
      const initializeParticles = useCallback(() => {
+          // ... (Funcția initializeParticles rămâne neschimbată) ...
           const canvas = canvasRef.current;
           if (!canvas) return;
-
           const width = canvas.clientWidth;
           const height = canvas.clientHeight;
-
           const dpr = window.devicePixelRatio || 1;
           canvas.width = width * dpr;
           canvas.height = height * dpr;
-
           const ctx = canvas.getContext("2d");
           if (ctx) {
                ctx.scale(dpr, dpr);
           }
-
           const particleCount = Math.floor(
                ((width * height) / (1920 * 1080)) * BASE_PARTICLE_COUNT
           );
-
           const tempParticles: Particle[] = [];
           for (let i = 0; i < particleCount; i++) {
                tempParticles.push({
@@ -101,6 +102,10 @@ const PlexusBackground: React.FC = () => {
      }, [initializeParticles]);
 
      useAnimationFrame(() => {
+          // ---- MODIFICARE: Oprim animația canvas-ului ----
+          if (!isInView) return;
+          // ---- SFÂRȘIT MODIFICARE ----
+
           const particles = particlesRef.current;
           const canvas = canvasRef.current;
           const mouse = mouseRef.current;
@@ -111,6 +116,7 @@ const PlexusBackground: React.FC = () => {
           ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
 
           particles.forEach((p) => {
+               // ... (restul logicii 'forEach' rămâne neschimbată) ...
                p.x += p.speedX;
                p.y += p.speedY;
 
@@ -177,6 +183,9 @@ const PlexusBackground: React.FC = () => {
           });
      });
 
+     // Starea de repaus pentru pete
+     const blobInitialState = { x: 0, y: 0, scale: 1, rotate: 0 };
+
      return (
           <div className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none overflow-hidden">
                {/* Pata 1 (Roz Principal) */}
@@ -192,12 +201,19 @@ const PlexusBackground: React.FC = () => {
                          filter: "blur(130px)",
                          willChange: "transform, filter",
                     }}
-                    animate={{
-                         x: [0, 100, 50, -50, 0],
-                         y: [0, -50, 100, 50, 0],
-                         scale: [1, 1.1, 1, 0.9, 1],
-                         rotate: [0, 15, -10, 10, 0],
-                    }}
+                    // ---- MODIFICARE: Oprim animația petelor ----
+                    initial={blobInitialState}
+                    animate={
+                         isInView
+                              ? {
+                                     x: [0, 100, 50, -50, 0],
+                                     y: [0, -50, 100, 50, 0],
+                                     scale: [1, 1.1, 1, 0.9, 1],
+                                     rotate: [0, 15, -10, 10, 0],
+                                }
+                              : {}
+                    }
+                    // ---- SFÂRȘIT MODIFICARE ----
                     transition={{
                          duration: 40,
                          ease: "easeInOut",
@@ -219,12 +235,19 @@ const PlexusBackground: React.FC = () => {
                          filter: "blur(120px)",
                          willChange: "transform, filter",
                     }}
-                    animate={{
-                         x: [0, -80, 20, 40, 0],
-                         y: [0, 60, -100, -30, 0],
-                         scale: [1, 0.9, 1.15, 1, 1],
-                         rotate: [0, -10, 20, -5, 0],
-                    }}
+                    // ---- MODIFICARE: Oprim animația petelor ----
+                    initial={blobInitialState}
+                    animate={
+                         isInView
+                              ? {
+                                     x: [0, -80, 20, 40, 0],
+                                     y: [0, 60, -100, -30, 0],
+                                     scale: [1, 0.9, 1.15, 1, 1],
+                                     rotate: [0, -10, 20, -5, 0],
+                                }
+                              : {}
+                    }
+                    // ---- SFÂRȘIT MODIFICARE ----
                     transition={{
                          duration: 35,
                          ease: "easeInOut",
@@ -246,12 +269,19 @@ const PlexusBackground: React.FC = () => {
                          filter: "blur(130px)",
                          willChange: "transform, filter",
                     }}
-                    animate={{
-                         x: [0, 50, -100, 20, 0],
-                         y: [0, -100, 30, -50, 0],
-                         scale: [1, 1.05, 0.9, 1.1, 1],
-                         rotate: [0, 20, -5, 15, 0],
-                    }}
+                    // ---- MODIFICARE: Oprim animația petelor ----
+                    initial={blobInitialState}
+                    animate={
+                         isInView
+                              ? {
+                                     x: [0, 50, -100, 20, 0],
+                                     y: [0, -100, 30, -50, 0],
+                                     scale: [1, 1.05, 0.9, 1.1, 1],
+                                     rotate: [0, 20, -5, 15, 0],
+                                }
+                              : {}
+                    }
+                    // ---- SFÂRȘIT MODIFICARE ----
                     transition={{
                          duration: 45,
                          ease: "easeInOut",
@@ -273,11 +303,18 @@ const PlexusBackground: React.FC = () => {
                          filter: "blur(110px)",
                          willChange: "transform, filter",
                     }}
-                    animate={{
-                         x: [0, -40, 60, -20, 0],
-                         y: [0, 30, -80, 50, 0],
-                         scale: [1, 0.95, 1.1, 0.9, 1],
-                    }}
+                    // ---- MODIFICARE: Oprim animația petelor ----
+                    initial={blobInitialState}
+                    animate={
+                         isInView
+                              ? {
+                                     x: [0, -40, 60, -20, 0],
+                                     y: [0, 30, -80, 50, 0],
+                                     scale: [1, 0.95, 1.1, 0.9, 1],
+                                }
+                              : {}
+                    }
+                    // ---- SFÂRȘIT MODIFICARE ----
                     transition={{
                          duration: 50,
                          ease: "easeInOut",

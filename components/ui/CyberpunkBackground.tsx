@@ -7,10 +7,12 @@ import { GlitchEffectsLayer } from "./GlitchEffectsLayer";
 
 interface CyberpunkBackgroundProps {
      children: React.ReactNode;
+     isInView: boolean; // ---- MODIFICARE: Adăugăm prop-ul
 }
 
 const CyberpunkBackground: React.FC<CyberpunkBackgroundProps> = ({
      children,
+     isInView, // ---- MODIFICARE: Primim prop-ul
 }) => {
      return (
           <div>
@@ -27,7 +29,8 @@ const CyberpunkBackground: React.FC<CyberpunkBackgroundProps> = ({
                </div>
 
                {/* Strat 1: Animațiile de tip glitch (componenta optimizată) */}
-               <GlitchEffectsLayer />
+               {/* ---- MODIFICARE: Trimitem prop-ul mai departe ---- */}
+               <GlitchEffectsLayer isInView={isInView} />
 
                {/* Strat 2: Conținutul tău */}
                <div className="relative z-20">{children}</div>

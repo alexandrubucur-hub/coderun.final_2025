@@ -1,10 +1,12 @@
+// Program.tsx
 "use client";
 
-import React from "react";
-import { motion, Variants } from "framer-motion";
+import React, { useRef } from "react"; // MODIFICARE: Adăugăm useRef
+import { motion, Variants, useInView } from "framer-motion"; // MODIFICARE: Adăugăm useInView
 import PlexusBackground from "@/components/ui/PlexusBackground";
 
 interface TimelineItemProps {
+     // ... (interfața rămâne neschimbată)
      startDate: Date;
      endDate: Date;
      date: string;
@@ -13,6 +15,7 @@ interface TimelineItemProps {
 }
 
 const timelineData: Omit<TimelineItemProps, "isLast">[] = [
+     // ... (datele 'timeline' rămân neschimbate)
      {
           startDate: new Date("2025-10-24"),
           endDate: new Date("2025-11-05"),
@@ -48,6 +51,7 @@ const timelineData: Omit<TimelineItemProps, "isLast">[] = [
 ];
 
 const containerVariants: Variants = {
+     // ... (variantele rămân neschimbate)
      hidden: {},
      visible: {
           transition: {
@@ -57,6 +61,7 @@ const containerVariants: Variants = {
 };
 
 const itemVariants: Variants = {
+     // ... (variantele rămân neschimbate)
      hidden: { opacity: 0, y: 50 },
      visible: {
           opacity: 1,
@@ -73,17 +78,29 @@ const Program: React.FC = () => {
           (item) => today >= item.startDate && today <= item.endDate
      );
 
+     // --- MODIFICARE: Adăugăm detectarea vizibilității ---
+     const sectionRef = useRef(null);
+     const isInView = useInView(sectionRef, { amount: 0.1 });
+     // --- SFÂRȘIT MODIFICARE ---
+
      return (
           <section
+               ref={sectionRef} // MODIFICARE: Adăugăm ref-ul
                id="program"
                className="relative w-full overflow-hidden bg-coderun-dark pt-20 lg:pt-28 pb-8 lg:pb-28 px-4"
           >
                <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-coderun-dark to-transparent pointer-events-none z-30" />
-               <PlexusBackground />
+               {/* MODIFICARE: Trimitem 'isInView' către fundal */}
+               <PlexusBackground isInView={isInView} />
 
                <div className="relative z-20 max-w-7xl mx-auto">
                     <h2 className="text-3xl sm:text-4xl lg:text-5xl text-white leading-tight text-center mb-16">
-                         <span className="block FontGradient text-coderun-pink-light animate-pulse text-glow">
+                         {/* MODIFICARE: Oprim animația 'text-glow' */}
+                         <span
+                              className={`block FontGradient text-coderun-pink-light animate-pulse ${
+                                   isInView ? "text-glow" : ""
+                              }`}
+                         >
                               EVENT CALENDAR
                          </span>
                     </h2>
@@ -96,6 +113,7 @@ const Program: React.FC = () => {
                          variants={containerVariants}
                     >
                          {timelineData.map((item, index) => {
+                              // ... (logica 'isActive' și restul JSX-ului rămân neschimbate)
                               const isActive = index === activeIndex;
                               return (
                                    <motion.li
@@ -105,9 +123,8 @@ const Program: React.FC = () => {
                                         style={{
                                              willChange:
                                                   "transform, box-shadow, border-color",
-                                        }} // Optimizare pentru GPU
+                                        }}
                                    >
-                                        {/* --- Linia și punctul --- */}
                                         <div className="flex items-center mb-5">
                                              <div
                                                   className={`z-10 flex items-center justify-center w-8 h-8 rounded-full ring-4 lg:ring-8 ring-coderun-dark shrink-0 transition-all duration-300 group-hover:scale-125 animate-pulse-glow ${
@@ -126,7 +143,6 @@ const Program: React.FC = () => {
                                              )}
                                         </div>
 
-                                        {/* --- Linia punctată (doar pe mobil) --- */}
                                         {!(
                                              index ===
                                              timelineData.length - 1
@@ -140,7 +156,6 @@ const Program: React.FC = () => {
                                              ></div>
                                         )}
 
-                                        {/* --- Cardul de conținut --- */}
                                         <div className="relative pl-12 lg:pl-0 transition-all duration-300 group-hover:-translate-y-2 flex-grow">
                                              <div
                                                   className={`p-6 rounded-2xl backdrop-blur-sm bg-[#1A1A40]/40 transition-all duration-300 h-full flex flex-col

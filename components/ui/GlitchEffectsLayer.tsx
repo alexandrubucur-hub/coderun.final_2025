@@ -5,30 +5,35 @@ import React, { useEffect, useState, useMemo, useRef } from "react";
 import { DynamicGlitchText } from "@/components/ui/DynamicGlitchText";
 import { StaticGlitchText } from "./StaticGlitchText";
 
-// Tipuri actualizate - Am înlocuit row/col cu x/y pentru pozitionare precisă
+// ... Tipurile Glitch și VerticalGlitch ...
 type Glitch = {
      id: number;
-     x: number; // Coordonata X în pixeli
-     y: number; // Coordonata Y în pixeli
+     x: number;
+     y: number;
      disappearAt: number;
      opacity: number;
 };
 type VerticalGlitch = { id: number; slotIndex: number; disappearAt: number };
 
-export const GlitchEffectsLayer: React.FC = () => {
+// ---- MODIFICARE: Adăugăm props ----
+interface GlitchEffectsLayerProps {
+     isInView: boolean;
+}
+
+export const GlitchEffectsLayer: React.FC<GlitchEffectsLayerProps> = ({
+     isInView, // ---- MODIFICARE: Primim prop-ul
+}) => {
      const [activeGlitches, setActiveGlitches] = useState<Glitch[]>([]);
      const [activeVerticalGlitches, setActiveVerticalGlitches] = useState<
           VerticalGlitch[]
      >([]);
 
-     // Referință către container pentru a-i citi dimensiunile
      const containerRef = useRef<HTMLDivElement>(null);
-
      const animationFrameId = useRef<number | null>(null);
      const lastGlitchTime = useRef<number>(0);
      const lastVerticalGlitchTime = useRef<number>(0);
 
-     // Constantele pentru configurarea animației
+     // ... Constantele ...
      const GRID_SIZE = 6;
      const MAX_GLITCHES = 4;
      const GLITCH_INTERVAL = 1200;
@@ -42,6 +47,7 @@ export const GlitchEffectsLayer: React.FC = () => {
 
      const verticalGlitchSlots = useMemo(
           () => [
+               // ... slot-urile ...
                {
                     position: "top-[15%] left-[12%]",
                     style: "opacity-30 text-coderun-purple",
@@ -87,17 +93,36 @@ export const GlitchEffectsLayer: React.FC = () => {
      );
 
      useEffect(() => {
+          // ---- MODIFICARE: Oprim animația dacă nu este vizibilă ----
+          if (!isInView) {
+               if (animationFrameId.current) {
+                    cancelAnimationFrame(animationFrameId.current);
+                    animationFrameId.current = null;
+               }
+               // Golim glitch-urile active pentru a nu rămâne blocate
+               setActiveGlitches([]);
+               setActiveVerticalGlitches([]);
+               return; // Ieșim devreme
+          }
+          // ---- SFÂRȘIT MODIFICARE ----
+
           const animate = (timestamp: number) => {
+               // ---- MODIFICARE: Verificare suplimentară de siguranță ----
+               if (!isInView || !animationFrameId.current) {
+                    animationFrameId.current = null;
+                    return;
+               }
+               // ---- SFÂRȘIT MODIFICARE ----
+
                if (timestamp - lastGlitchTime.current > GLITCH_INTERVAL) {
                     lastGlitchTime.current = timestamp;
-
-                    // Citim dimensiunile containerului direct în bucla de animație
                     const containerWidth =
                          containerRef.current?.offsetWidth ?? 0;
                     const containerHeight =
                          containerRef.current?.offsetHeight ?? 0;
 
                     setActiveGlitches((currentGlitches) => {
+                         // ... restul logicii ...
                          const freshGlitches = currentGlitches.filter(
                               (g) => g.disappearAt > timestamp
                          );
@@ -113,7 +138,6 @@ export const GlitchEffectsLayer: React.FC = () => {
 
                          const newGlitch: Glitch = {
                               id: timestamp + Math.random(),
-                              // Calculăm pozitia în pixeli pentru a o folosi cu `transform`
                               x: randomCol * (containerWidth / GRID_SIZE),
                               y: randomRow * (containerHeight / GRID_SIZE),
                               disappearAt:
@@ -132,6 +156,7 @@ export const GlitchEffectsLayer: React.FC = () => {
                     timestamp - lastVerticalGlitchTime.current >
                     VERTICAL_GLITCH_INTERVAL
                ) {
+                    // ... restul logicii ...
                     lastVerticalGlitchTime.current = timestamp;
                     setActiveVerticalGlitches((current) => {
                          const freshGlitches = current.filter(
@@ -174,14 +199,18 @@ export const GlitchEffectsLayer: React.FC = () => {
                animationFrameId.current = requestAnimationFrame(animate);
           };
 
-          animationFrameId.current = requestAnimationFrame(animate);
+          // ---- MODIFICARE: Pornim animația doar dacă e vizibilă și nu rulează deja ----
+          if (isInView && !animationFrameId.current) {
+               animationFrameId.current = requestAnimationFrame(animate);
+          }
 
           return () => {
                if (animationFrameId.current) {
                     cancelAnimationFrame(animationFrameId.current);
+                    animationFrameId.current = null;
                }
           };
-     }, [verticalGlitchSlots]);
+     }, [isInView, verticalGlitchSlots]); // ---- MODIFICARE: Adăugăm isInView la dependențe
 
      return (
           <div
@@ -190,17 +219,16 @@ export const GlitchEffectsLayer: React.FC = () => {
           >
                <StaticGlitchText />
 
-               {/* Containerul pentru glitch-uri dinamice. Am eliminat grid-ul de aici. */}
+               {/* ... restul JSX-ului ... */}
                <div className="absolute inset-0">
                     {activeGlitches.map((glitch) => (
                          <DynamicGlitchText
                               key={glitch.id}
                               className="absolute flex items-center justify-center text-center text-coderun-pink font-mono text-xs p-2 animate-pulse"
                               style={{
-                                   // Folosim transform pentru a muta elementul, cea mai performantă metodă
                                    transform: `translate(${glitch.x}px, ${glitch.y}px)`,
                                    opacity: glitch.opacity,
-                                   willChange: "transform, opacity", // Hint suplimentar pentru browser
+                                   willChange: "transform, opacity",
                               }}
                          />
                     ))}
@@ -210,7 +238,7 @@ export const GlitchEffectsLayer: React.FC = () => {
                               <DynamicGlitchText
                                    key={glitch.id}
                                    className={`absolute font-mono text-xs [writing-mode:vertical-rl] tracking-widest ${slot.position} ${slot.style}`}
-                                   style={{ willChange: "opacity" }} // Adăugăm will-change și aici
+                                   style={{ willChange: "opacity" }}
                               />
                          );
                     })}

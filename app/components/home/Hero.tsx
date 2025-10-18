@@ -1,10 +1,11 @@
+// app/components/home/Hero.tsx
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react"; // Adăugăm useRef
 import Image from "next/image";
 import Link from "next/link";
 import { GradientSlideButton } from "@/components/ui/gradient-slide-button";
-import { motion, Variants } from "framer-motion";
+import { motion, Variants, useInView } from "framer-motion"; // Adăugăm useInView
 import CyberpunkBackground from "@/components/ui/CyberpunkBackground";
 
 const containerVariants: Variants = {
@@ -30,6 +31,13 @@ const HeroSection: React.FC = () => {
      const [isLogoVisible, setIsLogoVisible] = useState(false);
      const logoRef = React.useRef<HTMLDivElement | null>(null);
 
+     // ---- MODIFICARE ----
+     // Adăugăm un ref la secțiunea principală
+     const sectionRef = useRef(null);
+     // Verificăm dacă secțiunea este vizibilă (cel puțin 10%)
+     const isInView = useInView(sectionRef, { amount: 0.1 });
+     // ---- SFÂRȘIT MODIFICARE ----
+
      useEffect(() => {
           const observer = new IntersectionObserver(
                (entries) => {
@@ -52,10 +60,12 @@ const HeroSection: React.FC = () => {
 
      return (
           <section
+               ref={sectionRef} // ---- MODIFICARE: Adăugăm ref-ul aici
                id="home"
                className="relative min-h-screen w-full overflow-hidden bg-gradient-cyberpunk"
           >
-               <CyberpunkBackground>
+               {/* ---- MODIFICARE: Trimitem 'isInView' ca prop ---- */}
+               <CyberpunkBackground isInView={isInView}>
                     <div className="relative z-20 flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8 pt-16">
                          <motion.div
                               className="w-full max-w-7xl mx-auto"
@@ -88,7 +98,12 @@ const HeroSection: React.FC = () => {
                                                   alt="CodeRun Mascot"
                                                   width={700}
                                                   height={800}
-                                                  className="w-auto h-[450px] xl:h-[550px] 2xl:h-[650px] animate-glow-pulse"
+                                                  // ---- MODIFICARE: Oprim animația scumpă 'filter' ----
+                                                  className={`w-auto h-[450px] xl:h-[550px] 2xl:h-[650px] ${
+                                                       isInView
+                                                            ? "animate-glow-pulse"
+                                                            : ""
+                                                  }`}
                                                   style={{
                                                        willChange:
                                                             "filter, transform",
@@ -131,7 +146,12 @@ const HeroSection: React.FC = () => {
                                                   alt="CodeRun Mascot"
                                                   width={350}
                                                   height={490}
-                                                  className="w-auto h-80 sm:h-96 animate-glow-pulse"
+                                                  // ---- MODIFICARE: Oprim animația scumpă 'filter' ----
+                                                  className={`w-auto h-80 sm:h-96 ${
+                                                       isInView
+                                                            ? "animate-glow-pulse"
+                                                            : ""
+                                                  }`}
                                              />
                                              <div className="absolute inset-0 bg-gradient-radial from-coderun-pink/40 via-coderun-purple/20 to-transparent opacity-70 blur-xl animate-pulse" />
                                              <div className="absolute -inset-6 bg-gradient-to-r from-coderun-accent/15 via-coderun-purple/15 to-coderun-pink/15 blur-2xl opacity-90" />
@@ -159,7 +179,14 @@ const HeroSection: React.FC = () => {
                               >
                                    <div className="text-center space-y-6">
                                         <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl text-white leading-tight">
-                                             <span className="block FontGradient text-coderun-pink-light animate-pulse text-glow">
+                                             {/* ---- MODIFICARE: Oprim animația 'text-glow' ---- */}
+                                             <span
+                                                  className={`block FontGradient text-coderun-pink-light animate-pulse ${
+                                                       isInView
+                                                            ? "text-glow"
+                                                            : ""
+                                                  }`}
+                                             >
                                                   JOIN THE CODERUNNERS
                                              </span>
                                         </h1>

@@ -1,10 +1,12 @@
+// Faq.tsx
 "use client";
 
-import React, { useState } from "react";
-import { motion, AnimatePresence, Variants } from "framer-motion";
+import React, { useState, useRef } from "react"; // MODIFICARE: Adăugăm useRef
+import { motion, AnimatePresence, Variants, useInView } from "framer-motion"; // MODIFICARE: Adăugăm useInView
 import CyberpunkBackground from "@/components/ui/CyberpunkBackground";
 
 const faqData = [
+     // ... (datele faq rămân neschimbate)
      {
           question: "Who can participate in CodeRun?",
           answer: "CodeRun is open to all university students passionate about IT and programming, regardless of their faculty or experience level.",
@@ -24,6 +26,7 @@ const faqData = [
 ];
 
 const faqContainerVariants: Variants = {
+     // ... (variantele rămân neschimbate)
      hidden: { opacity: 0 },
      visible: {
           opacity: 1,
@@ -32,6 +35,7 @@ const faqContainerVariants: Variants = {
 };
 
 const faqItemVariants: Variants = {
+     // ... (variantele rămân neschimbate)
      hidden: { opacity: 0, y: 40 },
      visible: {
           opacity: 1,
@@ -46,13 +50,20 @@ const Faq: React.FC = () => {
           setOpenIndex(openIndex === index ? null : index);
      };
 
+     // --- MODIFICARE: Adăugăm detectarea vizibilității ---
+     const sectionRef = useRef(null);
+     const isInView = useInView(sectionRef, { amount: 0.1 });
+     // --- SFÂRȘIT MODIFICARE ---
+
      return (
           <section
+               ref={sectionRef} // MODIFICARE: Adăugăm ref-ul
                id="faq"
                className="relative w-full overflow-hidden bg-gradient-cyberpunk py-12 lg:py-20"
           >
                <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-coderun-dark to-transparent pointer-events-none z-30" />
-               <CyberpunkBackground>
+               {/* MODIFICARE: Trimitem 'isInView' către fundal */}
+               <CyberpunkBackground isInView={isInView}>
                     <div className="relative z-20 w-full py-20 px-4">
                          <motion.div
                               className="max-w-3xl mx-auto"
@@ -65,7 +76,12 @@ const Faq: React.FC = () => {
                                    className="text-3xl sm:text-4xl lg:text-5xl text-white leading-tight text-center mb-12"
                                    variants={faqItemVariants}
                               >
-                                   <span className="block FontGradient text-coderun-pink-light animate-pulse text-glow">
+                                   {/* MODIFICARE: Oprim animația 'text-glow' */}
+                                   <span
+                                        className={`block FontGradient text-coderun-pink-light animate-pulse ${
+                                             isInView ? "text-glow" : ""
+                                        }`}
+                                   >
                                         FREQUENTLY ASKED QUESTIONS
                                    </span>
                               </motion.h2>
@@ -80,7 +96,7 @@ const Faq: React.FC = () => {
                                              style={{
                                                   willChange:
                                                        "border-color, box-shadow",
-                                             }} // Optimizare pentru hover
+                                             }}
                                         >
                                              <button
                                                   onClick={() =>
@@ -106,7 +122,7 @@ const Faq: React.FC = () => {
                                                        style={{
                                                             willChange:
                                                                  "transform",
-                                                       }} // Optimizare pentru rotație
+                                                       }}
                                                   >
                                                        <svg
                                                             xmlns="http://www.w3.org/2000/svg"
@@ -127,6 +143,7 @@ const Faq: React.FC = () => {
                                              <AnimatePresence>
                                                   {openIndex === index && (
                                                        <motion.div
+                                                            // ... (animația 'AnimatePresence' rămâne neschimbată)
                                                             initial={{
                                                                  opacity: 0,
                                                                  height: 0,
