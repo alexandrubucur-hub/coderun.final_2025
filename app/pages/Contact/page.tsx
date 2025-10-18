@@ -9,7 +9,7 @@ import Form from "./components/Form";
 
 export default function Contact() {
      const sectionRef = useRef(null);
-     const isInView = useInView(sectionRef, { amount: 0.4 });
+     const isInView = useInView(sectionRef, { amount: 0.2 });
 
      return (
           <main>

@@ -48,10 +48,8 @@ const Faq: React.FC = () => {
      };
 
      const sectionRef = useRef(null);
-     // --- MODIFICARE: Trigger pentru fundal (amount: 0.5) ---
-     const backgroundInView = useInView(sectionRef, { amount: 0.3 });
-     // --- MODIFICARE: Trigger pentru animația text-glow (amount: 0.2) ---
-     const contentInView = useInView(sectionRef, { amount: 0.2 });
+     // --- MODIFICARE: amount: 0.2 ---
+     const isInView = useInView(sectionRef, { amount: 0.2 });
 
      return (
           <section
@@ -60,8 +58,8 @@ const Faq: React.FC = () => {
                className="relative w-full overflow-hidden bg-gradient-cyberpunk py-12 lg:py-20"
           >
                <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-coderun-dark to-transparent pointer-events-none z-30" />
-               {/* --- MODIFICARE: Folosim backgroundInView --- */}
-               <CyberpunkBackground isInView={backgroundInView}>
+               {/* --- MODIFICARE: Folosim 'isInView' --- */}
+               <CyberpunkBackground isInView={isInView}>
                     <div className="relative z-20 w-full py-20 px-4">
                          <motion.div
                               className="max-w-3xl mx-auto"
@@ -74,10 +72,10 @@ const Faq: React.FC = () => {
                                    className="text-3xl sm:text-4xl lg:text-5xl text-white leading-tight text-center mb-12"
                                    variants={faqItemVariants}
                               >
-                                   {/* --- MODIFICARE: Folosim contentInView --- */}
+                                   {/* --- MODIFICARE: Folosim 'isInView' --- */}
                                    <span
                                         className={`block FontGradient text-coderun-pink-light animate-pulse ${
-                                             contentInView ? "text-glow" : ""
+                                             isInView ? "text-glow" : ""
                                         }`}
                                    >
                                         FREQUENTLY ASKED QUESTIONS

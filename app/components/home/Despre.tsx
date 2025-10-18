@@ -28,10 +28,8 @@ const itemVariants: Variants = {
 
 const Despre: React.FC = () => {
      const sectionRef = useRef(null);
-     // --- MODIFICARE: Trigger pentru fundal (amount: 0.5) ---
-     const backgroundInView = useInView(sectionRef, { amount: 0.3 });
-     // --- MODIFICARE: Trigger pentru animația text-glow (amount: 0.2) ---
-     const contentInView = useInView(sectionRef, { amount: 0.2 });
+     // --- MODIFICARE: Un singur hook 'useInView' cu amount: 0.2 ---
+     const isInView = useInView(sectionRef, { amount: 0.2 });
 
      return (
           <section
@@ -40,8 +38,8 @@ const Despre: React.FC = () => {
                className="relative min-h-screen w-full overflow-hidden bg-coderun-dark pt-16 pb-4 md:pb-16"
           >
                <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-coderun-dark to-transparent pointer-events-none z-30" />
-               {/* --- MODIFICARE: Folosim backgroundInView --- */}
-               <PlexusBackground isInView={backgroundInView} />
+               {/* --- MODIFICARE: Folosim 'isInView' --- */}
+               <PlexusBackground isInView={isInView} />
 
                {/* --- CONTINUTUL PAGINII --- */}
                <div className="relative z-20 flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
@@ -50,16 +48,16 @@ const Despre: React.FC = () => {
                          variants={containerVariants}
                          initial="hidden"
                          whileInView="visible"
-                         viewport={{ once: true, amount: 0.2 }} // Acesta este OK, e separat
+                         viewport={{ once: true, amount: 0.2 }}
                     >
                          <motion.h2
                               className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl text-white leading-tight text-center mb-16 md:mb-24 pt-4"
                               variants={itemVariants}
                          >
-                              {/* --- MODIFICARE: Folosim contentInView pentru text-glow --- */}
+                              {/* --- MODIFICARE: Folosim 'isInView' pentru text-glow --- */}
                               <span
                                    className={`block FontGradient text-coderun-pink-light animate-pulse ${
-                                        contentInView ? "text-glow" : ""
+                                        isInView ? "text-glow" : ""
                                    }`}
                               >
                                    ABOUT CODERUN
