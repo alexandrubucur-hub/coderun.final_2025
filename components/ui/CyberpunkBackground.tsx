@@ -3,7 +3,6 @@
 
 import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
-// --- MODIFICARE: Importăm noul nostru hook ---
 import { useMediaQuery } from "@/lib/hooks/use-media-query";
 
 const DynamicGlitchEffectsLayer = dynamic(
@@ -14,7 +13,7 @@ const DynamicGlitchEffectsLayer = dynamic(
 interface CyberpunkBackgroundProps {
      children: React.ReactNode;
      isInView: boolean;
-     // --- MODIFICARE: Acest prop este acum OPȚIONAL ---
+
      startAnimatedBg?: boolean;
 }
 
@@ -25,7 +24,6 @@ const CyberpunkBackground: React.FC<CyberpunkBackgroundProps> = ({
 }) => {
      const [showGlitches, setShowGlitches] = useState(false);
 
-     // --- MODIFICARE: Verificăm dacă suntem pe un ecran mic (sub 1024px) ---
      const isSmallScreen = useMediaQuery("(max-width: 1024px)");
 
      useEffect(() => {
@@ -40,10 +38,9 @@ const CyberpunkBackground: React.FC<CyberpunkBackgroundProps> = ({
           }
 
           setShowGlitches(shouldShow);
-     }, [isInView, startAnimatedBg, isSmallScreen]); // Adăugăm 'isSmallScreen' la dependențe
+     }, [isInView, startAnimatedBg, isSmallScreen]);
 
      return (
-          // Structura JSX rămâne neschimbată (corectă)
           <div>
                {/* Strat 0: Imaginea de fundal și gradientul (se încarcă imediat) */}
                <div className="absolute inset-0 z-0">

@@ -1,7 +1,6 @@
 // app/components/home/Despre.tsx
 "use client";
 
-// --- MODIFICARE: Importăm useState ---
 import React, { useRef, useState } from "react";
 import Image from "next/image";
 import InfoCard from "@/components/ui/InfoCard";
@@ -29,9 +28,8 @@ const itemVariants: Variants = {
 
 const Despre: React.FC = () => {
      const sectionRef = useRef(null);
-     const isInView = useInView(sectionRef, { amount: 0.2 });
+     const isInView = useInView(sectionRef, { amount: 0.1 });
 
-     // --- MODIFICARE: Stare pentru a ști când s-au terminat animațiile de conținut ---
      const [contentAnimationComplete, setContentAnimationComplete] =
           useState(false);
 
@@ -57,7 +55,6 @@ const Despre: React.FC = () => {
                          initial="hidden"
                          whileInView="visible"
                          viewport={{ once: true, amount: 0.2 }}
-                         // --- MODIFICARE: Adăugăm semnalul de finalizare ---
                          onAnimationComplete={() => {
                               setContentAnimationComplete(true);
                          }}

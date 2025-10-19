@@ -1,7 +1,6 @@
 // app/components/home/Program.tsx
 "use client";
 
-// --- MODIFICARE: Importăm useState ---
 import React, { useRef, useState } from "react";
 import { motion, Variants, useInView } from "framer-motion";
 import PlexusBackground from "@/components/ui/PlexusBackground";
@@ -78,7 +77,6 @@ const Program: React.FC = () => {
      const sectionRef = useRef(null);
      const isInView = useInView(sectionRef, { amount: 0.2 });
 
-     // --- MODIFICARE: Stare pentru a ști când s-au terminat animațiile de conținut ---
      const [contentAnimationComplete, setContentAnimationComplete] =
           useState(false);
 
@@ -112,7 +110,6 @@ const Program: React.FC = () => {
                          whileInView="visible"
                          viewport={{ once: true, amount: 0.2 }}
                          variants={containerVariants}
-                         // --- MODIFICARE: Adăugăm semnalul de finalizare ---
                          onAnimationComplete={() => {
                               setContentAnimationComplete(true);
                          }}

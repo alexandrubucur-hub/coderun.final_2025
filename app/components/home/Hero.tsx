@@ -34,7 +34,6 @@ const HeroSection: React.FC = () => {
      const sectionRef = useRef(null);
      const isInView = useInView(sectionRef, { amount: 0.2 });
 
-     // --- MODIFICARE: Stare pentru a ști când s-au terminat animațiile de conținut ---
      const [contentAnimationComplete, setContentAnimationComplete] =
           useState(false);
 
@@ -74,9 +73,7 @@ const HeroSection: React.FC = () => {
                               className="w-full max-w-7xl mx-auto"
                               variants={containerVariants}
                               initial="hidden"
-                              // --- MODIFICARE: 'animate' pornește o singură dată ---
                               animate="visible"
-                              // --- MODIFICARE: Adăugăm semnalul de finalizare ---
                               onAnimationComplete={() => {
                                    setContentAnimationComplete(true);
                               }}

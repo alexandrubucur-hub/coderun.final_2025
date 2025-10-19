@@ -3,7 +3,6 @@
 
 import React, { useRef, useEffect, useCallback, useState } from "react";
 import { motion, useAnimationFrame } from "framer-motion";
-// --- MODIFICARE: Importăm noul nostru hook ---
 import { useMediaQuery } from "@/lib/hooks/use-media-query";
 
 const BASE_PARTICLE_COUNT = 80;
@@ -26,7 +25,7 @@ type Particle = {
 
 interface PlexusBackgroundProps {
      isInView: boolean;
-     // --- MODIFICARE: Acest prop este acum OPȚIONAL ---
+
      startAnimatedBg?: boolean;
 }
 
@@ -43,25 +42,21 @@ const PlexusBackground: React.FC<PlexusBackgroundProps> = ({
 
      const [runAnimation, setRunAnimation] = useState(false);
 
-     // --- MODIFICARE: Verificăm dacă suntem pe un ecran mic ---
      const isSmallScreen = useMediaQuery("(max-width: 1024px)");
 
      useEffect(() => {
           let shouldRun: boolean;
 
           if (isSmallScreen) {
-               // Pe ECRANE MICI: Așteptăm ambele semnale
                shouldRun = isInView && startAnimatedBg;
           } else {
-               // Pe DESKTOP: Pornim imediat ce este vizibil
                shouldRun = isInView;
           }
 
           setRunAnimation(shouldRun);
-     }, [isInView, startAnimatedBg, isSmallScreen]); // Adăugăm 'isSmallScreen'
+     }, [isInView, startAnimatedBg, isSmallScreen]);
 
      const initializeParticles = useCallback(() => {
-          // --- MODIFICARE: Depinde de 'runAnimation' ---
           if (!runAnimation) {
                particlesRef.current = [];
                return;
@@ -116,11 +111,9 @@ const PlexusBackground: React.FC<PlexusBackgroundProps> = ({
                });
           }
           particlesRef.current = tempParticles;
-          // --- MODIFICARE: Depinde de 'runAnimation' ---
      }, [runAnimation]);
 
      useEffect(() => {
-          // --- MODIFICARE: Rulează doar dacă 'runAnimation' e true ---
           if (!runAnimation) return;
 
           let resizeTimeout: NodeJS.Timeout | null = null;
@@ -164,11 +157,9 @@ const PlexusBackground: React.FC<PlexusBackgroundProps> = ({
                if (resizeTimeout) clearTimeout(resizeTimeout);
                clearTimeout(initTimeout);
           };
-          // --- MODIFICARE: Depinde de 'runAnimation' ---
      }, [runAnimation, initializeParticles]);
 
      useAnimationFrame(() => {
-          // --- MODIFICARE: Rulează doar dacă 'runAnimation' e true ---
           if (!runAnimation) {
                const canvas = canvasRef.current;
                if (canvas) {

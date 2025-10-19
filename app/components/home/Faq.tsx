@@ -50,7 +50,6 @@ const Faq: React.FC = () => {
      const sectionRef = useRef(null);
      const isInView = useInView(sectionRef, { amount: 0.2 });
 
-     // --- MODIFICARE: Stare pentru a ști când s-au terminat animațiile de conținut ---
      const [contentAnimationComplete, setContentAnimationComplete] =
           useState(false);
 
@@ -73,7 +72,6 @@ const Faq: React.FC = () => {
                               whileInView="visible"
                               viewport={{ once: true, amount: 0.2 }}
                               variants={faqContainerVariants}
-                              // --- MODIFICARE: Adăugăm semnalul de finalizare ---
                               onAnimationComplete={() => {
                                    setContentAnimationComplete(true);
                               }}

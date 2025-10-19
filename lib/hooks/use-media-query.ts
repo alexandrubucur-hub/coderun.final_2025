@@ -13,37 +13,30 @@ export const useMediaQuery = (query: string): boolean => {
      const [matches, setMatches] = useState(false);
 
      useEffect(() => {
-          // Asigură-te că rulează doar pe client, unde 'window' există
           if (typeof window === "undefined") {
                return;
           }
 
           const media = window.matchMedia(query);
 
-          // Setează starea inițială
           if (media.matches !== matches) {
                setMatches(media.matches);
           }
 
-          // Listener pentru schimbări (ex: redimensionare, rotire)
           const listener = () => {
                setMatches(media.matches);
           };
 
-          // Adaugă noul listener (metoda modernă)
           try {
                media.addEventListener("change", listener);
           } catch (e) {
-               // Fallback pentru browsere mai vechi
                media.addListener(listener);
           }
 
-          // Curăță listener-ul la unmount
           return () => {
                try {
                     media.removeEventListener("change", listener);
                } catch (e) {
-                    // Fallback pentru browsere mai vechi
                     media.removeListener(listener);
                }
           };
