@@ -184,7 +184,11 @@ const HeroSection: React.FC = () => {
                                              </span>
                                         </h1>
                                         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4 pb-2">
-                                             <Link href="#">
+                                             <Link
+                                                  href="#"
+                                                  target="_blank"
+                                                  rel="noopener noreferrer"
+                                             >
                                                   <GradientSlideButton
                                                        className="
                     px-8 sm:px-12
@@ -200,7 +204,11 @@ const HeroSection: React.FC = () => {
                                              </Link>
                                         </div>
                                         <div className="flex justify-center items-center gap-10 sm:gap-20 lg:gap-24 mt-10 opacity-80 pb-12">
-                                             <Link href="https://bestcj.ro/">
+                                             <Link
+                                                  href="https://bestcj.ro/"
+                                                  target="_blank"
+                                                  rel="noopener noreferrer"
+                                             >
                                                   <Image
                                                        src="/images/best.png"
                                                        alt="Best Logo"
@@ -210,7 +218,11 @@ const HeroSection: React.FC = () => {
                                                        className="w-36 h-auto sm:w-40 md:w-44 lg:w-52 xl:w-60 hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_10px_rgba(250,88,182,0.5)] will-change-transform"
                                                   />
                                              </Link>
-                                             <Link href="https://www.utcluj.ro/">
+                                             <Link
+                                                  href="https://www.utcluj.ro/"
+                                                  target="_blank"
+                                                  rel="noopener noreferrer"
+                                             >
                                                   <Image
                                                        src="/images/ut.png"
                                                        alt="UTCN Logo"

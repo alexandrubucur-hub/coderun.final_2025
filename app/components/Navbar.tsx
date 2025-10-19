@@ -155,6 +155,8 @@ const Navbar: React.FC = () => {
                                    <div className="flex flex-shrink-0 items-center">
                                         <Link
                                              href="/inscriere"
+                                             target="_blank"
+                                             rel="noopener noreferrer"
                                              style={{ willChange: "transform" }}
                                         >
                                              {" "}

@@ -74,14 +74,16 @@ const Footer = () => {
                                    </p>
                                    <div className="flex justify-center space-x-4">
                                         {socialLinks.map((social) => (
-                                             <a
+                                             <Link
                                                   key={social.name}
                                                   href={social.href}
+                                                  target="_blank"
+                                                  rel="noopener noreferrer"
                                                   className="text-gray-400  hover:text-coderun-accent transition-colors"
                                                   aria-label={social.name}
                                              >
                                                   <social.icon className="h-5 w-5" />
-                                             </a>
+                                             </Link>
                                         ))}
                                    </div>
                               </div>
