@@ -74,15 +74,13 @@ const HeroSection: React.FC = () => {
                               className="w-full max-w-7xl mx-auto"
                               variants={containerVariants}
                               initial="hidden"
-                              // --- MODIFICARE: Folosim 'animate' pentru a rula la încărcare ---
+                              // --- MODIFICARE: 'animate' pornește o singură dată ---
                               animate="visible"
                               // --- MODIFICARE: Adăugăm semnalul de finalizare ---
                               onAnimationComplete={() => {
                                    setContentAnimationComplete(true);
                               }}
                          >
-                              {/* ... (restul codului JSX pentru Hero) ... */}
-
                               <div className="hidden lg:grid lg:grid-cols-3 lg:gap-8 lg:items-center lg:justify-items-center">
                                    <motion.div
                                         className="flex justify-center lg:justify-end"

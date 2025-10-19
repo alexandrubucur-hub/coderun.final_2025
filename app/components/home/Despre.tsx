@@ -42,6 +42,7 @@ const Despre: React.FC = () => {
                className="relative min-h-screen w-full overflow-hidden bg-coderun-dark pt-16 pb-4 md:pb-16"
           >
                <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-coderun-dark to-transparent pointer-events-none z-30" />
+
                {/* --- MODIFICARE: Trimitem noul prop 'startAnimatedBg' --- */}
                <PlexusBackground
                     isInView={isInView}
@@ -65,7 +66,6 @@ const Despre: React.FC = () => {
                               className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl text-white leading-tight text-center mb-16 md:mb-24 pt-4"
                               variants={itemVariants}
                          >
-                              {/* ... (restul codului) ... */}
                               <span
                                    className={`block FontGradient text-coderun-pink-light animate-pulse ${
                                         isInView ? "text-glow" : ""

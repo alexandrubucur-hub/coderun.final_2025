@@ -1,9 +1,10 @@
 // components/ui/PlexusBackground.tsx
 "use client";
 
-// --- MODIFICARE: Importăm useState și useEffect ---
 import React, { useRef, useEffect, useCallback, useState } from "react";
 import { motion, useAnimationFrame } from "framer-motion";
+// --- MODIFICARE: Importăm noul nostru hook ---
+import { useMediaQuery } from "@/lib/hooks/use-media-query";
 
 const BASE_PARTICLE_COUNT = 80;
 const MAX_LINK_DISTANCE = 160;
@@ -25,13 +26,13 @@ type Particle = {
 
 interface PlexusBackgroundProps {
      isInView: boolean;
-     // --- MODIFICARE: Prop nou care semnalează sfârșitul animațiilor de conținut ---
-     startAnimatedBg: boolean;
+     // --- MODIFICARE: Acest prop este acum OPȚIONAL ---
+     startAnimatedBg?: boolean;
 }
 
 const PlexusBackground: React.FC<PlexusBackgroundProps> = ({
      isInView,
-     startAnimatedBg, // --- MODIFICARE: Primim noul prop ---
+     startAnimatedBg = false, // --- MODIFICARE: Valoare implicită
 }) => {
      const canvasRef = useRef<HTMLCanvasElement>(null);
      const particlesRef = useRef<Particle[]>([]);
@@ -40,18 +41,29 @@ const PlexusBackground: React.FC<PlexusBackgroundProps> = ({
           y: undefined,
      });
 
-     // --- MODIFICARE: Stare unică pentru a controla toate animațiile de fundal ---
      const [runAnimation, setRunAnimation] = useState(false);
 
-     // --- MODIFICARE: Efectul pornește DOAR când ambele condiții sunt îndeplinite ---
+     // --- MODIFICARE: Verificăm dacă suntem pe un ecran mic ---
+     const isSmallScreen = useMediaQuery("(max-width: 1024px)");
+
      useEffect(() => {
-          setRunAnimation(isInView && startAnimatedBg);
-     }, [isInView, startAnimatedBg]);
+          let shouldRun: boolean;
+
+          if (isSmallScreen) {
+               // Pe ECRANE MICI: Așteptăm ambele semnale
+               shouldRun = isInView && startAnimatedBg;
+          } else {
+               // Pe DESKTOP: Pornim imediat ce este vizibil
+               shouldRun = isInView;
+          }
+
+          setRunAnimation(shouldRun);
+     }, [isInView, startAnimatedBg, isSmallScreen]); // Adăugăm 'isSmallScreen'
 
      const initializeParticles = useCallback(() => {
-          // --- MODIFICARE: Verifică 'runAnimation' ---
+          // --- MODIFICARE: Depinde de 'runAnimation' ---
           if (!runAnimation) {
-               particlesRef.current = []; // Curăță particulele
+               particlesRef.current = [];
                return;
           }
 
@@ -67,7 +79,6 @@ const PlexusBackground: React.FC<PlexusBackgroundProps> = ({
                return;
           }
 
-          // ... (restul logicii de inițializare) ...
           const dpr = window.devicePixelRatio || 1;
           canvas.width = width * dpr;
           canvas.height = height * dpr;
@@ -109,6 +120,9 @@ const PlexusBackground: React.FC<PlexusBackgroundProps> = ({
      }, [runAnimation]);
 
      useEffect(() => {
+          // --- MODIFICARE: Rulează doar dacă 'runAnimation' e true ---
+          if (!runAnimation) return;
+
           let resizeTimeout: NodeJS.Timeout | null = null;
 
           const handleMouseMove = (event: MouseEvent) => {
@@ -122,7 +136,6 @@ const PlexusBackground: React.FC<PlexusBackgroundProps> = ({
                if (resizeTimeout) {
                     clearTimeout(resizeTimeout);
                }
-               // --- MODIFICARE: Curăță canvas-ul la resize ---
                const canvas = canvasRef.current;
                if (canvas) {
                     const ctx = canvas.getContext("2d");
@@ -134,34 +147,28 @@ const PlexusBackground: React.FC<PlexusBackgroundProps> = ({
                               canvas.clientHeight
                          );
                }
-               particlesRef.current = []; // Golește particulele
+               particlesRef.current = [];
                resizeTimeout = setTimeout(initializeParticles, 250);
           };
 
-          // --- MODIFICARE: Rulează listenerii doar dacă animația e activă ---
-          if (runAnimation) {
-               window.addEventListener("mousemove", handleMouseMove);
-               window.addEventListener("mouseleave", handleMouseLeave);
-               window.addEventListener("resize", handleResize);
+          window.addEventListener("mousemove", handleMouseMove);
+          window.addEventListener("mouseleave", handleMouseLeave);
+          window.addEventListener("resize", handleResize);
 
-               const initTimeout = setTimeout(initializeParticles, 50);
+          const initTimeout = setTimeout(initializeParticles, 50);
 
-               return () => {
-                    window.removeEventListener("mousemove", handleMouseMove);
-                    window.removeEventListener("mouseleave", handleMouseLeave);
-                    window.removeEventListener("resize", handleResize);
-
-                    if (resizeTimeout) {
-                         clearTimeout(resizeTimeout);
-                    }
-                    clearTimeout(initTimeout);
-               };
-          }
+          return () => {
+               window.removeEventListener("mousemove", handleMouseMove);
+               window.removeEventListener("mouseleave", handleMouseLeave);
+               window.removeEventListener("resize", handleResize);
+               if (resizeTimeout) clearTimeout(resizeTimeout);
+               clearTimeout(initTimeout);
+          };
           // --- MODIFICARE: Depinde de 'runAnimation' ---
      }, [runAnimation, initializeParticles]);
 
      useAnimationFrame(() => {
-          // --- MODIFICARE: Rulează frame-ul doar dacă animația e activă ---
+          // --- MODIFICARE: Rulează doar dacă 'runAnimation' e true ---
           if (!runAnimation) {
                const canvas = canvasRef.current;
                if (canvas) {
@@ -178,7 +185,6 @@ const PlexusBackground: React.FC<PlexusBackgroundProps> = ({
                return;
           }
 
-          // ... (restul logicii de desenare useAnimationFrame) ...
           const particles = particlesRef.current;
           const canvas = canvasRef.current;
           const mouse = mouseRef.current;
@@ -257,7 +263,7 @@ const PlexusBackground: React.FC<PlexusBackgroundProps> = ({
 
      return (
           <div className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none overflow-hidden">
-               {/* --- MODIFICARE: Randează totul doar dacă 'runAnimation' e true --- */}
+               {/* --- MODIFICARE: Totul se randează condiționat --- */}
                {runAnimation && (
                     <>
                          {/* Pata 1 (Roz Principal) */}
@@ -272,7 +278,6 @@ const PlexusBackground: React.FC<PlexusBackgroundProps> = ({
                                    borderRadius: "50%",
                                    filter: "blur(130px)",
                               }}
-                              // --- MODIFICARE: Simplifică 'animate' ---
                               animate={{
                                    x: [0, 100, 50, -50, 0],
                                    y: [0, -50, 100, 50, 0],

@@ -6,7 +6,6 @@ import { motion, AnimatePresence, Variants, useInView } from "framer-motion";
 import CyberpunkBackground from "@/components/ui/CyberpunkBackground";
 
 const faqData = [
-     // ... (datele faq rămân la fel) ...
      {
           question: "Who can participate in CodeRun?",
           answer: "CodeRun is open to all university students passionate about IT and programming, regardless of their faculty or experience level.",
@@ -83,7 +82,6 @@ const Faq: React.FC = () => {
                                    className="text-3xl sm:text-4xl lg:text-5xl text-white leading-tight text-center mb-12"
                                    variants={faqItemVariants}
                               >
-                                   {/* ... (restul codului) ... */}
                                    <span
                                         className={`block FontGradient text-coderun-pink-light animate-pulse ${
                                              isInView ? "text-glow" : ""
@@ -94,10 +92,6 @@ const Faq: React.FC = () => {
                               </motion.h2>
                               <motion.div
                                    className="space-y-4"
-                                   // --- ATENȚIE: Acest 'variants' este corect, dar 'onAnimationComplete'
-                                   // este pe containerul principal, care se termină după acest 'stagger'.
-                                   // Dacă acest 'div' are propriul stagger, ar trebui să fie el cel cu 'onAnimationComplete'.
-                                   // Pentru simplitate, lăsăm pe containerul părinte.
                                    variants={faqItemVariants}
                               >
                                    {faqData.map((item, index) => (

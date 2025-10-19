@@ -4,7 +4,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
 import ClientLayout from "./components/ClientLayout";
-// --- MODIFICARE: Nu este nevoie de 'Head' în App Router ---
 
 const geistSans = Geist({
      variable: "--font-geist-sans",

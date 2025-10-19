@@ -62,7 +62,6 @@ const CmFct: React.FC = () => {
                                    className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl text-white leading-tight text-center mb-16 md:mb-24 pt-4"
                                    variants={itemVariants}
                               >
-                                   {/* ... (restul codului) ... */}
                                    <span
                                         className={`block FontGradient text-coderun-pink-light animate-pulse ${
                                              isInView ? "text-glow" : ""

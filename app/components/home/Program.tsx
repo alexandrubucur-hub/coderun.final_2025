@@ -7,7 +7,6 @@ import { motion, Variants, useInView } from "framer-motion";
 import PlexusBackground from "@/components/ui/PlexusBackground";
 
 interface TimelineItemProps {
-     // ... (interfața rămâne la fel) ...
      startDate: Date;
      endDate: Date;
      date: string;
@@ -16,7 +15,6 @@ interface TimelineItemProps {
 }
 
 const timelineData: Omit<TimelineItemProps, "isLast">[] = [
-     // ... (datele rămân la fel) ...
      {
           startDate: new Date("2025-10-24"),
           endDate: new Date("2025-11-05"),
@@ -99,7 +97,6 @@ const Program: React.FC = () => {
 
                <div className="relative z-20 max-w-7xl mx-auto">
                     <h2 className="text-3xl sm:text-4xl lg:text-5xl text-white leading-tight text-center mb-16">
-                         {/* ... (restul codului) ... */}
                          <span
                               className={`block FontGradient text-coderun-pink-light animate-pulse ${
                                    isInView ? "text-glow" : ""
@@ -132,7 +129,6 @@ const Program: React.FC = () => {
                                                   "transform, box-shadow, border-color",
                                         }}
                                    >
-                                        {/* ... (restul codului JSX pentru item) ... */}
                                         <div className="flex items-center mb-5">
                                              <div
                                                   className={`z-10 flex items-center justify-center w-8 h-8 rounded-full ring-4 lg:ring-8 ring-coderun-dark shrink-0 transition-all duration-300 group-hover:scale-125 animate-pulse-glow ${

@@ -1,11 +1,11 @@
 // components/ui/CyberpunkBackground.tsx
 "use client";
 
-// --- MODIFICARE: Importurile necesare pentru stare, efecte și încărcare dinamică ---
 import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
+// --- MODIFICARE: Importăm noul nostru hook ---
+import { useMediaQuery } from "@/lib/hooks/use-media-query";
 
-// --- MODIFICARE: Importă GlitchEffectsLayer dinamic și cu 'ssr: false' ---
 const DynamicGlitchEffectsLayer = dynamic(
      () => import("./GlitchEffectsLayer").then((mod) => mod.GlitchEffectsLayer),
      { ssr: false }
@@ -14,31 +14,36 @@ const DynamicGlitchEffectsLayer = dynamic(
 interface CyberpunkBackgroundProps {
      children: React.ReactNode;
      isInView: boolean;
-     // --- MODIFICARE: Prop nou care semnalează sfârșitul animațiilor de conținut ---
-     startAnimatedBg: boolean;
+     // --- MODIFICARE: Acest prop este acum OPȚIONAL ---
+     startAnimatedBg?: boolean;
 }
 
 const CyberpunkBackground: React.FC<CyberpunkBackgroundProps> = ({
      children,
      isInView,
-     startAnimatedBg, // --- MODIFICARE: Primim noul prop ---
+     startAnimatedBg = false, // --- MODIFICARE: Valoare implicită
 }) => {
-     // --- MODIFICARE: Stare locală pentru a controla afișarea efectelor ---
      const [showGlitches, setShowGlitches] = useState(false);
 
-     // --- MODIFICARE: Efectul pornește DOAR când ambele condiții sunt îndeplinite ---
+     // --- MODIFICARE: Verificăm dacă suntem pe un ecran mic (sub 1024px) ---
+     const isSmallScreen = useMediaQuery("(max-width: 1024px)");
+
      useEffect(() => {
-          if (isInView && startAnimatedBg) {
-               // Pornește efectele de glitch DOAR DUPĂ ce conținutul s-a animat
-               setShowGlitches(true);
+          let shouldShow: boolean;
+
+          if (isSmallScreen) {
+               // Pe ECRANE MICI: Așteptăm ambele semnale
+               shouldShow = isInView && startAnimatedBg;
           } else {
-               // Resetează dacă iese din ecran sau dacă animația de conținut nu e gata
-               setShowGlitches(false);
+               // Pe DESKTOP: Pornim imediat ce este vizibil
+               shouldShow = isInView;
           }
-     }, [isInView, startAnimatedBg]); // Depinde de ambele semnale
+
+          setShowGlitches(shouldShow);
+     }, [isInView, startAnimatedBg, isSmallScreen]); // Adăugăm 'isSmallScreen' la dependențe
 
      return (
-          // --- PĂSTRARE: Structura JSX originală (rădăcina este un <div> simplu) ---
+          // Structura JSX rămâne neschimbată (corectă)
           <div>
                {/* Strat 0: Imaginea de fundal și gradientul (se încarcă imediat) */}
                <div className="absolute inset-0 z-0">
@@ -52,13 +57,12 @@ const CyberpunkBackground: React.FC<CyberpunkBackgroundProps> = ({
                     />
                </div>
 
-               {/* Strat 1: Animațiile de tip glitch (componenta optimizată) */}
-               {/* ---- MODIFICARE: Se randează condiționat DUPĂ noua logică ---- */}
+               {/* Strat 1: Animațiile de tip glitch (se randează conform noii logici) */}
                {showGlitches && (
                     <DynamicGlitchEffectsLayer isInView={showGlitches} />
                )}
 
-               {/* Strat 2: Conținutul tău (pornește când 'isInView' e true) */}
+               {/* Strat 2: Conținutul tău */}
                <div className="relative z-20">{children}</div>
 
                {/* Strat 3: Gradientul de la bază */}
