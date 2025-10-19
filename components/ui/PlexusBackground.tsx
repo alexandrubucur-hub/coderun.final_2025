@@ -1,8 +1,8 @@
 // components/ui/PlexusBackground.tsx
-
 "use client";
 
-import React, { useRef, useEffect, useCallback } from "react";
+// --- MODIFICARE: Importăm useState și useEffect ---
+import React, { useRef, useEffect, useCallback, useState } from "react";
 import { motion, useAnimationFrame } from "framer-motion";
 
 const BASE_PARTICLE_COUNT = 80;
@@ -25,9 +25,14 @@ type Particle = {
 
 interface PlexusBackgroundProps {
      isInView: boolean;
+     // --- MODIFICARE: Prop nou care semnalează sfârșitul animațiilor de conținut ---
+     startAnimatedBg: boolean;
 }
 
-const PlexusBackground: React.FC<PlexusBackgroundProps> = ({ isInView }) => {
+const PlexusBackground: React.FC<PlexusBackgroundProps> = ({
+     isInView,
+     startAnimatedBg, // --- MODIFICARE: Primim noul prop ---
+}) => {
      const canvasRef = useRef<HTMLCanvasElement>(null);
      const particlesRef = useRef<Particle[]>([]);
      const mouseRef = useRef<{ x?: number; y?: number }>({
@@ -35,7 +40,21 @@ const PlexusBackground: React.FC<PlexusBackgroundProps> = ({ isInView }) => {
           y: undefined,
      });
 
+     // --- MODIFICARE: Stare unică pentru a controla toate animațiile de fundal ---
+     const [runAnimation, setRunAnimation] = useState(false);
+
+     // --- MODIFICARE: Efectul pornește DOAR când ambele condiții sunt îndeplinite ---
+     useEffect(() => {
+          setRunAnimation(isInView && startAnimatedBg);
+     }, [isInView, startAnimatedBg]);
+
      const initializeParticles = useCallback(() => {
+          // --- MODIFICARE: Verifică 'runAnimation' ---
+          if (!runAnimation) {
+               particlesRef.current = []; // Curăță particulele
+               return;
+          }
+
           const canvas = canvasRef.current;
           if (!canvas) return;
 
@@ -48,6 +67,7 @@ const PlexusBackground: React.FC<PlexusBackgroundProps> = ({ isInView }) => {
                return;
           }
 
+          // ... (restul logicii de inițializare) ...
           const dpr = window.devicePixelRatio || 1;
           canvas.width = width * dpr;
           canvas.height = height * dpr;
@@ -85,7 +105,8 @@ const PlexusBackground: React.FC<PlexusBackgroundProps> = ({ isInView }) => {
                });
           }
           particlesRef.current = tempParticles;
-     }, []);
+          // --- MODIFICARE: Depinde de 'runAnimation' ---
+     }, [runAnimation]);
 
      useEffect(() => {
           let resizeTimeout: NodeJS.Timeout | null = null;
@@ -101,11 +122,24 @@ const PlexusBackground: React.FC<PlexusBackgroundProps> = ({ isInView }) => {
                if (resizeTimeout) {
                     clearTimeout(resizeTimeout);
                }
-
+               // --- MODIFICARE: Curăță canvas-ul la resize ---
+               const canvas = canvasRef.current;
+               if (canvas) {
+                    const ctx = canvas.getContext("2d");
+                    if (ctx)
+                         ctx.clearRect(
+                              0,
+                              0,
+                              canvas.clientWidth,
+                              canvas.clientHeight
+                         );
+               }
+               particlesRef.current = []; // Golește particulele
                resizeTimeout = setTimeout(initializeParticles, 250);
           };
 
-          if (isInView) {
+          // --- MODIFICARE: Rulează listenerii doar dacă animația e activă ---
+          if (runAnimation) {
                window.addEventListener("mousemove", handleMouseMove);
                window.addEventListener("mouseleave", handleMouseLeave);
                window.addEventListener("resize", handleResize);
@@ -123,10 +157,12 @@ const PlexusBackground: React.FC<PlexusBackgroundProps> = ({ isInView }) => {
                     clearTimeout(initTimeout);
                };
           }
-     }, [isInView, initializeParticles]);
+          // --- MODIFICARE: Depinde de 'runAnimation' ---
+     }, [runAnimation, initializeParticles]);
 
      useAnimationFrame(() => {
-          if (!isInView) {
+          // --- MODIFICARE: Rulează frame-ul doar dacă animația e activă ---
+          if (!runAnimation) {
                const canvas = canvasRef.current;
                if (canvas) {
                     const ctx = canvas.getContext("2d");
@@ -142,6 +178,7 @@ const PlexusBackground: React.FC<PlexusBackgroundProps> = ({ isInView }) => {
                return;
           }
 
+          // ... (restul logicii de desenare useAnimationFrame) ...
           const particles = particlesRef.current;
           const canvas = canvasRef.current;
           const mouse = mouseRef.current;
@@ -220,130 +257,120 @@ const PlexusBackground: React.FC<PlexusBackgroundProps> = ({ isInView }) => {
 
      return (
           <div className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none overflow-hidden">
-               {/* Pata 1 (Roz Principal) */}
-               <motion.div
-                    className="absolute z-0 will-change-transform"
-                    style={{
-                         width: "35rem",
-                         height: "35rem",
-                         top: "50%",
-                         left: "15%",
-                         backgroundColor: "rgba(236, 72, 153, 0.3)",
-                         borderRadius: "50%",
-                         filter: "blur(130px)",
-                    }}
-                    animate={
-                         isInView
-                              ? {
-                                     x: [0, 100, 50, -50, 0],
-                                     y: [0, -50, 100, 50, 0],
-                                     scale: [1, 1.1, 1, 0.9, 1],
-                                     rotate: [0, 15, -10, 10, 0],
-                                }
-                              : {}
-                    }
-                    transition={{
-                         duration: 40,
-                         ease: "easeInOut",
-                         repeat: Infinity,
-                         repeatType: "mirror",
-                    }}
-               />
+               {/* --- MODIFICARE: Randează totul doar dacă 'runAnimation' e true --- */}
+               {runAnimation && (
+                    <>
+                         {/* Pata 1 (Roz Principal) */}
+                         <motion.div
+                              className="absolute z-0 will-change-transform"
+                              style={{
+                                   width: "35rem",
+                                   height: "35rem",
+                                   top: "50%",
+                                   left: "15%",
+                                   backgroundColor: "rgba(236, 72, 153, 0.3)",
+                                   borderRadius: "50%",
+                                   filter: "blur(130px)",
+                              }}
+                              // --- MODIFICARE: Simplifică 'animate' ---
+                              animate={{
+                                   x: [0, 100, 50, -50, 0],
+                                   y: [0, -50, 100, 50, 0],
+                                   scale: [1, 1.1, 1, 0.9, 1],
+                                   rotate: [0, 15, -10, 10, 0],
+                              }}
+                              transition={{
+                                   duration: 40,
+                                   ease: "easeInOut",
+                                   repeat: Infinity,
+                                   repeatType: "mirror",
+                              }}
+                         />
 
-               {/* Pata 2 (Mov Principal) */}
-               <motion.div
-                    className="absolute z-0 will-change-transform"
-                    style={{
-                         width: "30rem",
-                         height: "30rem",
-                         top: "15%",
-                         left: "65%",
-                         backgroundColor: "rgba(122, 11, 192, 0.3)",
-                         borderRadius: "50%",
-                         filter: "blur(120px)",
-                    }}
-                    animate={
-                         isInView
-                              ? {
-                                     x: [0, -80, 20, 40, 0],
-                                     y: [0, 60, -100, -30, 0],
-                                     scale: [1, 0.9, 1.15, 1, 1],
-                                     rotate: [0, -10, 20, -5, 0],
-                                }
-                              : {}
-                    }
-                    transition={{
-                         duration: 35,
-                         ease: "easeInOut",
-                         repeat: Infinity,
-                         repeatType: "mirror",
-                    }}
-               />
+                         {/* Pata 2 (Mov Principal) */}
+                         <motion.div
+                              className="absolute z-0 will-change-transform"
+                              style={{
+                                   width: "30rem",
+                                   height: "30rem",
+                                   top: "15%",
+                                   left: "65%",
+                                   backgroundColor: "rgba(122, 11, 192, 0.3)",
+                                   borderRadius: "50%",
+                                   filter: "blur(120px)",
+                              }}
+                              animate={{
+                                   x: [0, -80, 20, 40, 0],
+                                   y: [0, 60, -100, -30, 0],
+                                   scale: [1, 0.9, 1.15, 1, 1],
+                                   rotate: [0, -10, 20, -5, 0],
+                              }}
+                              transition={{
+                                   duration: 35,
+                                   ease: "easeInOut",
+                                   repeat: Infinity,
+                                   repeatType: "mirror",
+                              }}
+                         />
 
-               {/* Pata 3 (Albastru Electric)*/}
-               <motion.div
-                    className="absolute z-0 will-change-transform"
-                    style={{
-                         width: "28rem",
-                         height: "28rem",
-                         top: "20%",
-                         left: "5%",
-                         backgroundColor: "rgba(0, 204, 255, 0.2)",
-                         borderRadius: "50%",
-                         filter: "blur(130px)",
-                    }}
-                    animate={
-                         isInView
-                              ? {
-                                     x: [0, 50, -100, 20, 0],
-                                     y: [0, -100, 30, -50, 0],
-                                     scale: [1, 1.05, 0.9, 1.1, 1],
-                                     rotate: [0, 20, -5, 15, 0],
-                                }
-                              : {}
-                    }
-                    transition={{
-                         duration: 45,
-                         ease: "easeInOut",
-                         repeat: Infinity,
-                         repeatType: "mirror",
-                    }}
-               />
+                         {/* Pata 3 (Albastru Electric)*/}
+                         <motion.div
+                              className="absolute z-0 will-change-transform"
+                              style={{
+                                   width: "28rem",
+                                   height: "28rem",
+                                   top: "20%",
+                                   left: "5%",
+                                   backgroundColor: "rgba(0, 204, 255, 0.2)",
+                                   borderRadius: "50%",
+                                   filter: "blur(130px)",
+                              }}
+                              animate={{
+                                   x: [0, 50, -100, 20, 0],
+                                   y: [0, -100, 30, -50, 0],
+                                   scale: [1, 1.05, 0.9, 1.1, 1],
+                                   rotate: [0, 20, -5, 15, 0],
+                              }}
+                              transition={{
+                                   duration: 45,
+                                   ease: "easeInOut",
+                                   repeat: Infinity,
+                                   repeatType: "mirror",
+                              }}
+                         />
 
-               {/* Pata 4 (Roz Secundar) */}
-               <motion.div
-                    className="absolute z-0 will-change-transform"
-                    style={{
-                         width: "20rem",
-                         height: "20rem",
-                         top: "70%",
-                         left: "70%",
-                         backgroundColor: "rgba(236, 72, 153, 0.2)",
-                         borderRadius: "50%",
-                         filter: "blur(110px)",
-                    }}
-                    animate={
-                         isInView
-                              ? {
-                                     x: [0, -40, 60, -20, 0],
-                                     y: [0, 30, -80, 50, 0],
-                                     scale: [1, 0.95, 1.1, 0.9, 1],
-                                }
-                              : {}
-                    }
-                    transition={{
-                         duration: 50,
-                         ease: "easeInOut",
-                         repeat: Infinity,
-                         repeatType: "mirror",
-                    }}
-               />
+                         {/* Pata 4 (Roz Secundar) */}
+                         <motion.div
+                              className="absolute z-0 will-change-transform"
+                              style={{
+                                   width: "20rem",
+                                   height: "20rem",
+                                   top: "70%",
+                                   left: "70%",
+                                   backgroundColor: "rgba(236, 72, 153, 0.2)",
+                                   borderRadius: "50%",
+                                   filter: "blur(110px)",
+                              }}
+                              animate={{
+                                   x: [0, -40, 60, -20, 0],
+                                   y: [0, 30, -80, 50, 0],
+                                   scale: [1, 0.95, 1.1, 0.9, 1],
+                              }}
+                              transition={{
+                                   duration: 50,
+                                   ease: "easeInOut",
+                                   repeat: Infinity,
+                                   repeatType: "mirror",
+                              }}
+                         />
 
-               {/* Canvas-ul cu particule rămâne deasupra petelor de culoare */}
-               <canvas
-                    ref={canvasRef}
-                    className="relative top-0 left-0 w-full h-full z-10 will-change-transform"
-               />
+                         {/* Canvas-ul cu particule */}
+                         <canvas
+                              ref={canvasRef}
+                              className="relative top-0 left-0 w-full h-full z-10 will-change-transform"
+                         />
+                    </>
+               )}
           </div>
      );
 };

@@ -1,11 +1,13 @@
-// Program.tsx
+// app/components/home/Program.tsx
 "use client";
 
-import React, { useRef } from "react";
+// --- MODIFICARE: Importăm useState ---
+import React, { useRef, useState } from "react";
 import { motion, Variants, useInView } from "framer-motion";
 import PlexusBackground from "@/components/ui/PlexusBackground";
 
 interface TimelineItemProps {
+     // ... (interfața rămâne la fel) ...
      startDate: Date;
      endDate: Date;
      date: string;
@@ -14,6 +16,7 @@ interface TimelineItemProps {
 }
 
 const timelineData: Omit<TimelineItemProps, "isLast">[] = [
+     // ... (datele rămân la fel) ...
      {
           startDate: new Date("2025-10-24"),
           endDate: new Date("2025-11-05"),
@@ -77,6 +80,10 @@ const Program: React.FC = () => {
      const sectionRef = useRef(null);
      const isInView = useInView(sectionRef, { amount: 0.2 });
 
+     // --- MODIFICARE: Stare pentru a ști când s-au terminat animațiile de conținut ---
+     const [contentAnimationComplete, setContentAnimationComplete] =
+          useState(false);
+
      return (
           <section
                ref={sectionRef}
@@ -84,12 +91,15 @@ const Program: React.FC = () => {
                className="relative w-full overflow-hidden bg-coderun-dark pt-20 lg:pt-28 pb-8 lg:pb-28 px-4"
           >
                <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-coderun-dark to-transparent pointer-events-none z-30" />
-               {/* --- MODIFICARE: Folosim 'isInView' --- */}
-               <PlexusBackground isInView={isInView} />
+               {/* --- MODIFICARE: Trimitem noul prop 'startAnimatedBg' --- */}
+               <PlexusBackground
+                    isInView={isInView}
+                    startAnimatedBg={contentAnimationComplete}
+               />
 
                <div className="relative z-20 max-w-7xl mx-auto">
                     <h2 className="text-3xl sm:text-4xl lg:text-5xl text-white leading-tight text-center mb-16">
-                         {/* --- MODIFICARE: Folosim 'isInView' --- */}
+                         {/* ... (restul codului) ... */}
                          <span
                               className={`block FontGradient text-coderun-pink-light animate-pulse ${
                                    isInView ? "text-glow" : ""
@@ -105,6 +115,10 @@ const Program: React.FC = () => {
                          whileInView="visible"
                          viewport={{ once: true, amount: 0.2 }}
                          variants={containerVariants}
+                         // --- MODIFICARE: Adăugăm semnalul de finalizare ---
+                         onAnimationComplete={() => {
+                              setContentAnimationComplete(true);
+                         }}
                     >
                          {timelineData.map((item, index) => {
                               const isActive = index === activeIndex;
@@ -118,6 +132,7 @@ const Program: React.FC = () => {
                                                   "transform, box-shadow, border-color",
                                         }}
                                    >
+                                        {/* ... (restul codului JSX pentru item) ... */}
                                         <div className="flex items-center mb-5">
                                              <div
                                                   className={`z-10 flex items-center justify-center w-8 h-8 rounded-full ring-4 lg:ring-8 ring-coderun-dark shrink-0 transition-all duration-300 group-hover:scale-125 animate-pulse-glow ${

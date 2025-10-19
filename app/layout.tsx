@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
 import ClientLayout from "./components/ClientLayout";
+// --- MODIFICARE: Nu este nevoie de 'Head' în App Router ---
 
 const geistSans = Geist({
      variable: "--font-geist-sans",
@@ -62,6 +63,9 @@ export default function RootLayout({
                          `}
                     </Script>
                     <link rel="icon" href="/images/cr.png" type="image/png" />
+
+                    {/* --- MODIFICARE: Preîncarcă imaginea de fundal statică --- */}
+                    <link rel="preload" href="/images/bg.png" as="image" />
                </head>
                <body
                     className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-black `}

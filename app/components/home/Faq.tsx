@@ -1,4 +1,4 @@
-// Faq.tsx
+// app/components/home/Faq.tsx
 "use client";
 
 import React, { useState, useRef } from "react";
@@ -6,6 +6,7 @@ import { motion, AnimatePresence, Variants, useInView } from "framer-motion";
 import CyberpunkBackground from "@/components/ui/CyberpunkBackground";
 
 const faqData = [
+     // ... (datele faq rămân la fel) ...
      {
           question: "Who can participate in CodeRun?",
           answer: "CodeRun is open to all university students passionate about IT and programming, regardless of their faculty or experience level.",
@@ -50,6 +51,10 @@ const Faq: React.FC = () => {
      const sectionRef = useRef(null);
      const isInView = useInView(sectionRef, { amount: 0.2 });
 
+     // --- MODIFICARE: Stare pentru a ști când s-au terminat animațiile de conținut ---
+     const [contentAnimationComplete, setContentAnimationComplete] =
+          useState(false);
+
      return (
           <section
                ref={sectionRef}
@@ -57,8 +62,11 @@ const Faq: React.FC = () => {
                className="relative w-full overflow-hidden bg-gradient-cyberpunk py-12 lg:py-20"
           >
                <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-coderun-dark to-transparent pointer-events-none z-30" />
-               {/* --- MODIFICARE: Folosim 'isInView' --- */}
-               <CyberpunkBackground isInView={isInView}>
+               {/* --- MODIFICARE: Trimitem noul prop 'startAnimatedBg' --- */}
+               <CyberpunkBackground
+                    isInView={isInView}
+                    startAnimatedBg={contentAnimationComplete}
+               >
                     <div className="relative z-20 w-full py-20 px-4">
                          <motion.div
                               className="max-w-3xl mx-auto"
@@ -66,12 +74,16 @@ const Faq: React.FC = () => {
                               whileInView="visible"
                               viewport={{ once: true, amount: 0.2 }}
                               variants={faqContainerVariants}
+                              // --- MODIFICARE: Adăugăm semnalul de finalizare ---
+                              onAnimationComplete={() => {
+                                   setContentAnimationComplete(true);
+                              }}
                          >
                               <motion.h2
                                    className="text-3xl sm:text-4xl lg:text-5xl text-white leading-tight text-center mb-12"
                                    variants={faqItemVariants}
                               >
-                                   {/* --- MODIFICARE: Folosim 'isInView' --- */}
+                                   {/* ... (restul codului) ... */}
                                    <span
                                         className={`block FontGradient text-coderun-pink-light animate-pulse ${
                                              isInView ? "text-glow" : ""
@@ -82,6 +94,10 @@ const Faq: React.FC = () => {
                               </motion.h2>
                               <motion.div
                                    className="space-y-4"
+                                   // --- ATENȚIE: Acest 'variants' este corect, dar 'onAnimationComplete'
+                                   // este pe containerul principal, care se termină după acest 'stagger'.
+                                   // Dacă acest 'div' are propriul stagger, ar trebui să fie el cel cu 'onAnimationComplete'.
+                                   // Pentru simplitate, lăsăm pe containerul părinte.
                                    variants={faqItemVariants}
                               >
                                    {faqData.map((item, index) => (

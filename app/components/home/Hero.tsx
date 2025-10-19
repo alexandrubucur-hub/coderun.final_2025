@@ -34,6 +34,10 @@ const HeroSection: React.FC = () => {
      const sectionRef = useRef(null);
      const isInView = useInView(sectionRef, { amount: 0.2 });
 
+     // --- MODIFICARE: Stare pentru a ști când s-au terminat animațiile de conținut ---
+     const [contentAnimationComplete, setContentAnimationComplete] =
+          useState(false);
+
      useEffect(() => {
           const observer = new IntersectionObserver(
                (entries) => {
@@ -58,17 +62,27 @@ const HeroSection: React.FC = () => {
           <section
                ref={sectionRef}
                id="home"
-               className="relative min-h-screen w-full overflow-hidden bg-gradient-cyberpunk"
+               className="relative min-h-screen w-full overflow-hidden bg-coderun-dark"
           >
-               {/* --- MODIFICARE: Folosim 'isInView' --- */}
-               <CyberpunkBackground isInView={isInView}>
+               {/* --- MODIFICARE: Trimitem noul prop 'startAnimatedBg' --- */}
+               <CyberpunkBackground
+                    isInView={isInView}
+                    startAnimatedBg={contentAnimationComplete}
+               >
                     <div className="relative z-20 flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8 pt-16 lg:pt-8">
                          <motion.div
                               className="w-full max-w-7xl mx-auto"
                               variants={containerVariants}
                               initial="hidden"
+                              // --- MODIFICARE: Folosim 'animate' pentru a rula la încărcare ---
                               animate="visible"
+                              // --- MODIFICARE: Adăugăm semnalul de finalizare ---
+                              onAnimationComplete={() => {
+                                   setContentAnimationComplete(true);
+                              }}
                          >
+                              {/* ... (restul codului JSX pentru Hero) ... */}
+
                               <div className="hidden lg:grid lg:grid-cols-3 lg:gap-8 lg:items-center lg:justify-items-center">
                                    <motion.div
                                         className="flex justify-center lg:justify-end"

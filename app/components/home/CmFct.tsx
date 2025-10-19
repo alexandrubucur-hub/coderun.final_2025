@@ -1,7 +1,8 @@
-// CmFct.tsx
+// app/components/home/CmFct.tsx
 "use client";
 
-import React, { useRef } from "react";
+// --- MODIFICARE: Importăm useState ---
+import React, { useRef, useState } from "react";
 import InfoCard from "@/components/ui/InfoCard";
 import CyberpunkBackground from "@/components/ui/CyberpunkBackground";
 import { motion, Variants, useInView } from "framer-motion";
@@ -27,8 +28,11 @@ const itemVariants: Variants = {
 
 const CmFct: React.FC = () => {
      const sectionRef = useRef(null);
-
      const isInView = useInView(sectionRef, { amount: 0.2 });
+
+     // --- MODIFICARE: Stare pentru a ști când s-au terminat animațiile de conținut ---
+     const [contentAnimationComplete, setContentAnimationComplete] =
+          useState(false);
 
      return (
           <section
@@ -37,8 +41,11 @@ const CmFct: React.FC = () => {
                className="relative w-full overflow-hidden bg-gradient-cyberpunk  py-20 lg:py-32"
           >
                <div className="absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-coderun-dark to-transparent pointer-events-none z-30" />
-               {/* --- MODIFICARE: Folosim 'isInView' --- */}
-               <CyberpunkBackground isInView={isInView}>
+               {/* --- MODIFICARE: Trimitem noul prop 'startAnimatedBg' --- */}
+               <CyberpunkBackground
+                    isInView={isInView}
+                    startAnimatedBg={contentAnimationComplete}
+               >
                     <div className="relative z-20 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
                          <motion.div
                               className="w-full max-w-7xl mx-auto"
@@ -46,12 +53,16 @@ const CmFct: React.FC = () => {
                               initial="hidden"
                               whileInView="visible"
                               viewport={{ once: true, amount: 0.2 }}
+                              // --- MODIFICARE: Adăugăm semnalul de finalizare ---
+                              onAnimationComplete={() => {
+                                   setContentAnimationComplete(true);
+                              }}
                          >
                               <motion.h2
                                    className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl text-white leading-tight text-center mb-16 md:mb-24 pt-4"
                                    variants={itemVariants}
                               >
-                                   {/* --- MODIFICARE: Folosim 'isInView' --- */}
+                                   {/* ... (restul codului) ... */}
                                    <span
                                         className={`block FontGradient text-coderun-pink-light animate-pulse ${
                                              isInView ? "text-glow" : ""
