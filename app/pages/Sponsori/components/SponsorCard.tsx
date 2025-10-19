@@ -1,4 +1,4 @@
-// app/sponsori/components/SponsorCard.tsx
+// app/pages/Sponsori/components/SponsorCard.tsx
 "use client";
 
 import React, { useState } from "react";
@@ -42,7 +42,8 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
                }}
                onMouseLeave={() => setIsHovered(false)}
                style={{
-                    willChange: "border-color, box-shadow, transform, opacity",
+                    willChange:
+                         "border-color, box-shadow, transform, opacity, height",
                }}
           >
                <div className="flex flex-col items-center">
@@ -82,7 +83,7 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
                          </motion.div>
                     </button>
 
-                    {/* --- Descrierea (Animată) --- */}
+                    {/* --- Descrierea (Animată cu scroll) --- */}
                     <AnimatePresence>
                          {isDescriptionVisible && (
                               <motion.div
@@ -105,7 +106,7 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
                                         duration: 0.3,
                                         ease: "easeInOut",
                                    }}
-                                   className="relative z-10 w-full overflow-hidden"
+                                   className="relative z-10 w-full overflow-hidden md:max-h-48 md:overflow-y-auto md:pr-2 scrollbar-thin scrollbar-thumb-coderun-pink/50 scrollbar-track-coderun-dark-purple/30 scrollbar-thumb-rounded-full scrollbar-track-rounded-full"
                               >
                                    <p className="text-gray-300 text-sm leading-relaxed border-t border-coderun-dark-purple/50 pt-4">
                                         {description}
