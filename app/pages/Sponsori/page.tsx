@@ -36,7 +36,7 @@ export default function Sponsori() {
                <Navbar />
                <section
                     ref={sectionRef}
-                    className="relative min-h-screen w-full overflow-hidden"
+                    className="relative min-h-screen w-full overflow-hidden flex justify-center items-center"
                >
                     {/* --- MODIFICARE: Trimitem prop-ul generat de logica de mai sus --- */}
                     <CyberpunkBackground

@@ -236,21 +236,29 @@ const HeroSection: React.FC = () => {
                                              </Link>
                                         </div>
 
-                                        {/* Logo-urile sponsorilor - acestea pot rămâne sub linia de plutire pe ecranele mici */}
-                                        <div className="flex justify-center items-center gap-10 sm:gap-20 lg:gap-24 mt-10 opacity-80 pb-12">
+                                        <div className="flex justify-center items-center gap-10 sm:gap-20 lg:gap-24 mt-10  pb-16">
                                              <Link
                                                   href="https://bestcj.ro/"
                                                   target="_blank"
                                                   rel="noopener noreferrer"
                                              >
-                                                  {/* MODIFICARE: Lățime redusă (w-28) și mărită înapoi pe sm: (sm:w-36) */}
                                                   <Image
                                                        src="/images/best.png"
                                                        alt="Best Logo"
                                                        width={0}
                                                        height={0}
                                                        sizes="100vw"
-                                                       className="w-28 h-auto sm:w-36 md:w-44 lg:w-52 xl:w-60 hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_10px_rgba(250,88,182,0.5)] will-change-transform"
+                                                       className="w-28 h-auto sm:w-36 md:w-44 lg:w-52 xl:w-60 hover:scale-110 transition-transform duration-300 will-change-transform"
+                                                  />
+                                             </Link>
+                                             <Link href="/">
+                                                  <Image
+                                                       src="/images/cdrun.png"
+                                                       alt="Coderun"
+                                                       width={0}
+                                                       height={0}
+                                                       sizes="100vw"
+                                                       className="w-20 h-auto sm:w-24 md:w-32 lg:w-40 xl:w-48 hover:scale-110 transition-transform duration-300 will-change-transform"
                                                   />
                                              </Link>
                                              <Link
@@ -258,14 +266,13 @@ const HeroSection: React.FC = () => {
                                                   target="_blank"
                                                   rel="noopener noreferrer"
                                              >
-                                                  {/* MODIFICARE: Lățime redusă (w-20) și mărită înapoi pe sm: (sm:w-24) */}
                                                   <Image
                                                        src="/images/ut.png"
                                                        alt="UTCN Logo"
                                                        width={0}
                                                        height={0}
                                                        sizes="100vw"
-                                                       className="w-20 h-auto sm:w-24 md:w-32 lg:w-40 xl:w-48 hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_10px_rgba(250,88,182,0.5)] will-change-transform"
+                                                       className="w-20 h-auto sm:w-24 md:w-32 lg:w-40 xl:w-48 hover:scale-110 transition-transform duration-300 will-change-transform"
                                                   />
                                              </Link>
                                         </div>

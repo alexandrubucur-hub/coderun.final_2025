@@ -29,32 +29,21 @@ const sponsorData = [
           logoUrl: "/images/sponsors/heits.svg",
           websiteUrl: "https://heits.digital/",
           description:
-               "We are HEITS Digital, a technology company built on our strong belief in the power of innovation and people. We are a team of about 100 skilled professionals working across Romania, with offices in Cluj-Napoca and Iasi, and many colleagues collaborating remotely. Together, we bring deep expertise in AI & ML, software development, and UI/UX design, with an average experience of more than 12 years. What defines us is how we place people at the center of everything we do, alongside our focus on cutting-edge technology. We nurture a culture of collaboration, creativity, and sustainable growth, and we’re proud of the strong partnerships and long-lasting client relationships we’ve built. For us, innovation means solving real problems and delivering measurable impact. We craft projects with empathy and respect, aiming to create solutions that truly make a difference for our clients and their customers. We specialize in building custom digital products for fast-growing tech companies, blending technology and human insight to deliver real value. Whether working from our offices or remotely, we share the same commitment: turning bold ideas into impactful solutions — because at HEITS, innovation always meets care for people.",
+               "We are HEITS Digital, a technology company built on our strong belief in the power of innovation and people.\nWe are a team of about 100 skilled professionals working across Romania, with offices in Cluj-Napoca and Iasi, and many colleagues collaborating remotely. Together, we bring deep expertise in AI & ML, software development, and UI/UX design, with an average experience of more than 12 years.\nWhat defines us is how we place people at the center of everything we do, alongside our focus on cutting-edge technology. We nurture a culture of collaboration, creativity, and sustainable growth, and we’re proud of the strong partnerships and long-lasting client relationships we’ve built.\nFor us, innovation means solving real problems and delivering measurable impact. We craft projects with empathy and respect, aiming to create solutions that truly make a difference for our clients and their customers.\nWe specialize in building custom digital products for fast-growing tech companies, blending technology and human insight to deliver real value. Whether working from our offices or remotely, we share the same commitment: turning bold ideas into impactful solutions - because at HEITS, innovation always meets care for people.",
      },
      {
-          name: "Sponsor 2",
+          name: "Cloudflight",
           logoUrl: "/images/sponsors/clf.svg",
-          websiteUrl: "https://www.sponsor2.com",
+          websiteUrl: "https://register.codingcontest.org/",
           description:
-               "Ce face Sponsor 2 și de ce sprijină evenimentul nostru.",
+               "In short, we build custom software solutions.\nWe are committed to making a digital difference, a difference that impacts businesses and society alike, driven by our love for technology and our dedication to sparking the brightest ideas in ourselves and others.\nTogether, as an experienced team of brilliant professionals, we collaborate to create value-driven custom software solutions. Our mission goes beyond simply completing projects; we offer full support and guidance to our customers, ensuring we are true partners for them.\nThis November 14th, our beloved Cloudflight Coding Contest (CCC) celebrates its 41st edition.\nWith fresh challenges and the #data/ai track making a comeback, we’re bringing back the same excitement and energy that have fueled our continuous growth.\nRegister for free now at register.codingcontest.org and join the biggest on-site coding challenge in Europe. Don’t miss your chance to compete, connect, and code with thousands of tech enthusiasts across the globe!",
      },
      {
-          name: "Sponsor 3",
+          name: "Uniqa",
           logoUrl: "/images/sponsors/uniqa.png",
-          websiteUrl: "https://www.sponsor3.com",
-          description: "Mulțumim Sponsor 3 pentru contribuția lor valoroasă.",
-     },
-     {
-          name: "Sponsor 4",
-          logoUrl: "/images/sponsors/logo4.png",
-          websiteUrl: "https://www.sponsor4.com",
-          description: "Mulțumim Sponsor 4 pentru contribuția lor valoroasă.",
-     },
-     {
-          name: "Sponsor 5",
-          logoUrl: "/images/sponsors/logo5.png",
-          websiteUrl: "https://www.sponsor5.com",
-          description: "Mulțumim Sponsor 5 pentru contribuția lor valoroasă.",
+          websiteUrl: "https://www.uniqasoftware.ro/",
+          description:
+               "UNIQA Software Services, founded in 2006, delivers integrated IT and software solutions exclusively for UNIQA Insurance Group, combining nearshoring agility with deep domain expertise.",
      },
 ];
 

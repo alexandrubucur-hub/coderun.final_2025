@@ -40,10 +40,10 @@ export default function ContactForm({ isInView }: ContactFormProps) {
           if (form.current) {
                emailjs
                     .sendForm(
-                         "service_o23eu4i", // Service ID
-                         "template_ud750gu", // Template ID
+                         "service_dgl1biu", // Service ID
+                         "template_dpbfqne", // Template ID
                          form.current,
-                         "NTzw3WQNN5PX1Hwe-" // Public Key
+                         "Net5L_EdcFvkUko2q" // Public Key
                     )
                     .then(
                          (result) => {

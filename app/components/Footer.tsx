@@ -2,6 +2,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
      Code2,
      Mail,
@@ -66,10 +67,14 @@ const Footer = () => {
                                         href="/"
                                         className="flex justify-center items-center space-x-2 mb-4"
                                    >
-                                        <Code2 className="h-8 w-8 text-coderun-accent" />
-                                        <span className="text-xl FontBold">
-                                             CodeRun
-                                        </span>
+                                        <Image
+                                             src="/images/cdrun.png"
+                                             alt="Coderun"
+                                             width={0}
+                                             height={0}
+                                             sizes="100vw"
+                                             className=" h-auto w-32 sm:w-38 md:w-40 lg:w-48 hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_10px_rgba(250,88,182,0.5)] will-change-transform"
+                                        />
                                    </Link>
                                    <p className="text-gray-300 mb-6 leading-relaxed">
                                         A programming challenge that tests your

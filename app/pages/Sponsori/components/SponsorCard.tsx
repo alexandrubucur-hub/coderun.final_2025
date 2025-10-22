@@ -19,13 +19,23 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
      name,
      logoUrl,
      websiteUrl,
-     description,
+     description = "", // Păstrăm default value
      variants,
 }) => {
      const [isHovered, setIsHovered] = useState(false);
      const [isPinned, setIsPinned] = useState(false);
 
      const isDescriptionVisible = isHovered || isPinned;
+
+     // --- Logica pentru linkul din descriere ---
+     const linkTextToFind = "register.codingcontest.org";
+     const linkUrl = "https://register.codingcontest.org";
+     const containsLink = description.includes(linkTextToFind);
+     let descriptionParts: string[] = [];
+     if (containsLink) {
+          descriptionParts = description.split(linkTextToFind);
+     }
+     // --- Sfârșit logică link ---
 
      return (
           <motion.div
@@ -68,7 +78,7 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
                     <button
                          onClick={() => {
                               setIsPinned(!isPinned);
-                              setIsHovered(false);
+                              setIsHovered(false); // Reset hover state on pin toggle
                          }}
                          className="absolute bottom-4 right-4 z-20 text-coderun-pink hover:text-coderun-pink-light transition-all duration-300"
                          aria-label="Toggle description"
@@ -94,7 +104,7 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
                                    }}
                                    animate={{
                                         opacity: 1,
-                                        height: "auto",
+                                        height: "auto", // Let content define height initially
                                         marginTop: "16px",
                                    }}
                                    exit={{
@@ -106,11 +116,32 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
                                         duration: 0.3,
                                         ease: "easeInOut",
                                    }}
+                                   // Container pentru descriere cu scrollbar custom
                                    className="relative z-10 w-full overflow-hidden md:max-h-48 md:overflow-y-auto md:pr-2 scrollbar-thin scrollbar-thumb-coderun-pink/50 scrollbar-track-coderun-dark-purple/30 scrollbar-thumb-rounded-full scrollbar-track-rounded-full"
                               >
-                                   <p className="text-gray-300 text-sm leading-relaxed border-t border-coderun-dark-purple/50 pt-4">
-                                        {description}
+                                   {/* --- MODIFICARE AICI --- */}
+                                   {/* Am adăugat clasa 'whitespace-pre-line' */}
+                                   <p className="text-gray-300 text-sm leading-relaxed border-t border-coderun-dark-purple/50 pt-4 whitespace-pre-line">
+                                        {containsLink ? (
+                                             <>
+                                                  {descriptionParts[0]}
+                                                  <a
+                                                       href={linkUrl}
+                                                       target="_blank"
+                                                       rel="noopener noreferrer"
+                                                       className="text-coderun-pink hover:underline font-semibold transition-colors duration-200"
+                                                  >
+                                                       {linkTextToFind}
+                                                  </a>
+                                                  {descriptionParts
+                                                       .slice(1)
+                                                       .join(linkTextToFind)}
+                                             </>
+                                        ) : (
+                                             description
+                                        )}
                                    </p>
+                                   {/* --- SFÂRȘIT MODIFICARE --- */}
                               </motion.div>
                          )}
                     </AnimatePresence>

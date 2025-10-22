@@ -68,7 +68,9 @@ const StaticGlitchContent: React.FC = () => {
                <div className="hidden lg:block absolute top-[20%] left-[48%] text-coderun-purple font-mono text-xs opacity-25">
                     ...system_override...
                </div>
-               <div className="hidden lg:block absolute bottom-[25%] right-[45%] text-coderun-pink-light font-mono text-[10px] opacity-30">{`{> access_granted}`}</div>
+               <div className="hidden lg:block absolute bottom-[32%] right-[45%] text-coderun-pink-light font-mono text-[10px] opacity-30">
+                    {"{> access_granted}"}
+               </div>
                <div className="hidden lg:block absolute top-[68%] left-[28%] text-coderun-accent font-mono text-xs opacity-20">
                     const matrix = new Reality();
                </div>

@@ -37,7 +37,7 @@ const Despre: React.FC = () => {
           <section
                ref={sectionRef}
                id="about"
-               className="relative min-h-screen w-full overflow-hidden bg-coderun-dark pt-16 pb-4 md:pb-16"
+               className="relative min-h-screen w-full overflow-hidden bg-coderun-dark pt-12 pb-4 md:pb-16"
           >
                <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-coderun-dark to-transparent pointer-events-none z-30" />
 
