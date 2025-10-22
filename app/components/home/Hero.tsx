@@ -236,11 +236,14 @@ const HeroSection: React.FC = () => {
                                              </Link>
                                         </div>
 
-                                        <div className="flex justify-center items-center gap-10 sm:gap-20 lg:gap-24 mt-10  pb-16">
+                                        <div className="grid grid-cols-3 items-center gap-10 sm:gap-20 lg:gap-24 mt-10 pb-16">
+                                             {" "}
+                                             {/* <-- Modificat aici */}
                                              <Link
                                                   href="https://bestcj.ro/"
                                                   target="_blank"
                                                   rel="noopener noreferrer"
+                                                  className="justify-self-end" // <-- Adăugat aici
                                              >
                                                   <Image
                                                        src="/images/best.png"
@@ -251,7 +254,10 @@ const HeroSection: React.FC = () => {
                                                        className="w-28 h-auto sm:w-36 md:w-44 lg:w-52 xl:w-60 hover:scale-110 transition-transform duration-300 will-change-transform"
                                                   />
                                              </Link>
-                                             <Link href="/">
+                                             <Link
+                                                  href="/"
+                                                  className="justify-self-center" // <-- Adăugat aici
+                                             >
                                                   <Image
                                                        src="/images/cdrun.png"
                                                        alt="Coderun"
@@ -265,6 +271,7 @@ const HeroSection: React.FC = () => {
                                                   href="https://www.utcluj.ro/"
                                                   target="_blank"
                                                   rel="noopener noreferrer"
+                                                  className="justify-self-start" // <-- Adăugat aici
                                              >
                                                   <Image
                                                        src="/images/ut.png"
