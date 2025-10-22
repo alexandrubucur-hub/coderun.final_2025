@@ -56,7 +56,7 @@ export const GlitchEffectsLayer: React.FC<GlitchEffectsLayerProps> = ({
                     style: "opacity-35 text-coderun-pink-light",
                },
                {
-                    position: "top-[75%] left-[45%]",
+                    position: "top-[45%] left-[45%]",
                     style: "opacity-25 text-coderun-purple",
                },
                {
@@ -72,7 +72,7 @@ export const GlitchEffectsLayer: React.FC<GlitchEffectsLayerProps> = ({
                     style: "opacity-30 text-coderun-pink-light",
                },
                {
-                    position: "top-[85%] left-[85%]",
+                    position: "top-[65%] left-[85%]",
                     style: "opacity-20 text-coderun-purple",
                },
           ],

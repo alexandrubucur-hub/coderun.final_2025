@@ -37,10 +37,10 @@ const StaticGlitchContent: React.FC = () => {
                <div className="absolute bottom-[20%] left-[10%] text-coderun-pink-light font-mono text-xs opacity-40 ">
                     while(true){`{challenge();}`}
                </div>
-               <div className="absolute bottom-[8%] left-[20%] text-coderun-purple font-mono text-xs opacity-25">
+               <div className="absolute bottom-[45%] left-[15%] text-coderun-purple font-mono text-xs opacity-25">
                     err: reality_not_found
                </div>
-               <div className="absolute bottom-[10%] right-[5%] text-coderun-accent font-mono text-xs opacity-45">
+               <div className="absolute bottom-[50%] right-[15%] text-coderun-accent font-mono text-xs opacity-45">
                     const future = await code();
                </div>
                <div className="absolute bottom-[18%] right-[12%] text-coderun-pink font-mono text-[10px] opacity-30">{`{> access_granted}`}</div>

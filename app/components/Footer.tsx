@@ -167,7 +167,8 @@ const Footer = () => {
                          <div className="border-t border-gray-700 mt-12 pt-6">
                               <div className="flex flex-col items-center justify-center space-y-4">
                                    <p className="text-gray-400 text-sm text-center">
-                                        © 2025 CodeRun. All rights reserved.
+                                        Copyright © 2025 BEST Cluj-Napoca | All
+                                        Rights Reserved
                                    </p>
                               </div>
                          </div>
