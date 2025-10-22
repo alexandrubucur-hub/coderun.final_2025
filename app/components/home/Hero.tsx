@@ -161,7 +161,7 @@ const HeroSection: React.FC = () => {
                                                   alt="CodeRun Mascot"
                                                   width={350}
                                                   height={490}
-                                                  className={`w-auto h-64 sm:h-80 md:h-96 ${
+                                                  className={`w-auto h-72 sm:h-88 md:h-96 ${
                                                        isInView
                                                             ? "animate-glow-pulse"
                                                             : ""
@@ -184,7 +184,7 @@ const HeroSection: React.FC = () => {
                                                   alt="CodeRun"
                                                   width={400}
                                                   height={160}
-                                                  className="w-auto h-32 sm:h-44 md:h-60 transition-all duration-300 group-hover:scale-105 group-hover:drop-shadow-glow-pink"
+                                                  className="w-auto h-40 sm:h-52 md:h-64 transition-all duration-300 group-hover:scale-105 group-hover:drop-shadow-glow-pink"
                                              />
                                         </div>
                                    </motion.div>
@@ -202,7 +202,7 @@ const HeroSection: React.FC = () => {
                                    {/* MODIFICARE: Spațiere verticală redusă (space-y-4) și mărită înapoi pe sm: (sm:space-y-6) */}
                                    <div className="text-center space-y-4 sm:space-y-6">
                                         {/* MODIFICARE: Dimensiune text redusă (text-2xl) și mărită înapoi pe sm: (sm:text-3xl) și md: (md:text-4xl) */}
-                                        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white leading-tight break-words">
+                                        <h1 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-tight break-words">
                                              <span
                                                   className={`block FontGradient text-coderun-pink-light animate-pulse ${
                                                        isInView
@@ -216,7 +216,7 @@ const HeroSection: React.FC = () => {
                                         {/* MODIFICARE: Padding-top redus (pt-2) și mărit înapoi pe sm: (sm:pt-4) */}
                                         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-2 sm:pt-4 pb-2">
                                              <Link
-                                                  href="#"
+                                                  href="https://docs.google.com/forms/d/e/1FAIpQLSfx3XtM1F7L18XAbPUoHPy0rUSa3Z-Bo3YX-oV9guX-8hf_1Q/viewform?usp=dialog"
                                                   target="_blank"
                                                   rel="noopener noreferrer"
                                              >
@@ -225,7 +225,7 @@ const HeroSection: React.FC = () => {
                                                        className="
                                                 px-6 sm:px-8 md:px-12
                                                 h-12 sm:h-14 md:h-16
-                                                text-xl sm:text-2xl md:text-4xl
+                                                text-2xl sm:text-3xl md:text-4xl
                                                 rounded-3xl bg-black text-white border-2 border-coderun-accent text-glitch hover:scale-110 hover:shadow-lg hover:shadow-coderun-pink/30 active:scale-95 will-change-transform
                                             "
                                                        colorFrom="#FA58B6"

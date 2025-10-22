@@ -154,13 +154,12 @@ const Navbar: React.FC = () => {
                                    {/* Buton Dreapta */}
                                    <div className="flex flex-shrink-0 items-center">
                                         <Link
-                                             href="/inscriere"
+                                             href="https://docs.google.com/forms/d/e/1FAIpQLSfx3XtM1F7L18XAbPUoHPy0rUSa3Z-Bo3YX-oV9guX-8hf_1Q/viewform?usp=dialog"
                                              target="_blank"
                                              rel="noopener noreferrer"
                                              style={{ willChange: "transform" }}
                                         >
                                              {" "}
-                                             {/* Presupunem că vrei o pagină de înscriere */}
                                              <GradientSlideButton
                                                   className="rounded-full bg-coderun-dark text-white border-2 border-coderun-accent hover:border-coderun-purple transition-all duration-300 shadow-lg shadow-coderun-purple/20 hover:shadow-coderun-pink/30"
                                                   colorFrom="#FA58B6"
@@ -209,7 +208,13 @@ const Navbar: React.FC = () => {
                               );
                          })}
                          <div className="pt-6">
-                              <Link href="/inscriere" className="block">
+                              <Link
+                                   href="https://docs.google.com/forms/d/e/1FAIpQLSfx3XtM1F7L18XAbPUoHPy0rUSa3Z-Bo3YX-oV9guX-8hf_1Q/viewform?usp=dialog"
+                                   target="_blank"
+                                   rel="noopener noreferrer"
+                                   style={{ willChange: "transform" }}
+                                   className="block"
+                              >
                                    <GradientSlideButton
                                         className="w-full rounded-full bg-coderun-dark text-white border-2 border-coderun-purple hover:border-coderun-pink transition-all duration-300 shadow-lg shadow-coderun-purple/20 hover:shadow-coderun-pink/30"
                                         colorFrom="#FA58B6"

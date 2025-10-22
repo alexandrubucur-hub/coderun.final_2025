@@ -146,7 +146,7 @@
 
 @font-face {
      font-family: "FontNormal";
-     src: url("/fonts/Closeness.ttf") format("truetype");
+     src: url("/fonts/Francisnico.ttf") format("truetype");
      font-weight: normal;
      font-style: normal;
 }
@@ -157,7 +157,7 @@
 
 @font-face {
      font-family: "FontBold";
-     src: url("/fonts/Closeness-Bold.ttf") format("truetype");
+     src: url("/fonts/Francisnico.ttf") format("truetype");
      font-weight: bold;
      font-style: normal;
 }
@@ -175,6 +175,17 @@
 
 .FontGradient {
      font-family: "FontGradient", sans-serif;
+}
+
+@font-face {
+     font-family: "FontPre";
+     src: url("/fonts/Closeness-Outline-Gradient.ttf") format("truetype");
+     font-weight: bold;
+     font-style: normal;
+}
+
+.FontPre {
+     font-family: "FontPre", sans-serif;
 }
 
 body {

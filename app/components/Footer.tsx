@@ -1,3 +1,4 @@
+// components/Footer.tsx (sau calea ta specifică)
 "use client";
 import React from "react";
 import Link from "next/link";
@@ -19,9 +20,13 @@ const Footer = () => {
                { name: "Schedule", href: "/#program" },
           ],
           participanti: [
-               { name: "Registration", href: "/inscriere" },
+               {
+                    name: "Registration",
+                    href: "https://docs.google.com/forms/d/e/1FAIpQLSfx3XtM1F7L18XAbPUoHPy0rUSa3Z-Bo3YX-oV9guX-8hf_1Q/viewform?usp=dialog",
+               },
                { name: "FAQ", href: "/#faq" },
-               { name: "Rules", href: "/cum-functioneaza/regulament" },
+
+               { name: "Rules", href: "/documents/regulament.pdf" },
           ],
           contact: [
                { name: "Contact", href: "/pages/Contact" },
@@ -49,8 +54,6 @@ const Footer = () => {
 
      return (
           <>
-               {/* Linia delimitatoare față de conținut */}
-
                <footer className="bg-coderun-dark FontTest text-white">
                     <div className="max-w-7xl mx-auto px-6 lg:px-8">
                          <div className="border-t border-gray-700 mb-6"></div>
@@ -79,7 +82,7 @@ const Footer = () => {
                                                   href={social.href}
                                                   target="_blank"
                                                   rel="noopener noreferrer"
-                                                  className="text-gray-400  hover:text-coderun-accent transition-colors"
+                                                  className="text-gray-400 hover:text-coderun-accent transition-colors"
                                                   aria-label={social.name}
                                              >
                                                   <social.icon className="h-5 w-5" />
@@ -116,12 +119,40 @@ const Footer = () => {
                                         {footerLinks.participanti.map(
                                              (link) => (
                                                   <li key={link.name}>
-                                                       <Link
-                                                            href={link.href}
-                                                            className="text-gray-300 hover:text-white transition-colors"
-                                                       >
-                                                            {link.name}
-                                                       </Link>
+                                                       {/* --- MODIFICARE --- */}
+                                                       {/* Verificăm dacă linkul este cel pentru 'Rules' */}
+                                                       {link.name ===
+                                                       "Rules" ? (
+                                                            <a // Folosim <a> în loc de <Link>
+                                                                 href={
+                                                                      link.href
+                                                                 }
+                                                                 target="_blank" // Deschide în tab nou
+                                                                 rel="noopener noreferrer"
+                                                                 className="text-gray-300 hover:text-white transition-colors"
+                                                            >
+                                                                 {link.name}
+                                                            </a>
+                                                       ) : (
+                                                            // Pentru celelalte linkuri, folosim <Link> normal
+                                                            <Link
+                                                                 href={
+                                                                      link.href
+                                                                 }
+                                                                 // Adaugă target="_blank" și rel="..." dacă e link extern (ex: Registration)
+                                                                 {...(link.href.startsWith(
+                                                                      "http"
+                                                                 )
+                                                                      ? {
+                                                                             target: "_blank",
+                                                                             rel: "noopener noreferrer",
+                                                                        }
+                                                                      : {})}
+                                                                 className="text-gray-300 hover:text-white transition-colors"
+                                                            >
+                                                                 {link.name}
+                                                            </Link>
+                                                       )}
                                                   </li>
                                              )
                                         )}

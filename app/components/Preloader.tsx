@@ -42,7 +42,7 @@ const Preloader: React.FC<PreloaderProps> = ({ onLoaded }) => {
           return styles.preloaderContainer;
      };
 
-     const textClasses = [styles.largeText, "FontGradient"];
+     const textClasses = [styles.largeText, "FontPre"];
 
      if (animationState === "glowing") {
           textClasses.push("text-glow");
