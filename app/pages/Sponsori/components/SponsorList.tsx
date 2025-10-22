@@ -33,14 +33,14 @@ const sponsorData = [
      },
      {
           name: "Sponsor 2",
-          logoUrl: "/images/sponsors/logo2.png",
+          logoUrl: "/images/sponsors/clf.svg",
           websiteUrl: "https://www.sponsor2.com",
           description:
                "Ce face Sponsor 2 și de ce sprijină evenimentul nostru.",
      },
      {
           name: "Sponsor 3",
-          logoUrl: "/images/sponsors/logo3.png",
+          logoUrl: "/images/sponsors/uniqa.png",
           websiteUrl: "https://www.sponsor3.com",
           description: "Mulțumim Sponsor 3 pentru contribuția lor valoroasă.",
      },
