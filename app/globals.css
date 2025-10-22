@@ -146,7 +146,7 @@
 
 @font-face {
      font-family: "FontNormal";
-     src: url("/fonts/Francisnico.ttf") format("truetype");
+     src: url("/fonts/Closeness.ttf") format("truetype");
      font-weight: normal;
      font-style: normal;
 }
@@ -157,7 +157,7 @@
 
 @font-face {
      font-family: "FontBold";
-     src: url("/fonts/Francisnico.ttf") format("truetype");
+     src: url("/fonts/Closeness-Bold.ttf") format("truetype");
      font-weight: bold;
      font-style: normal;
 }
