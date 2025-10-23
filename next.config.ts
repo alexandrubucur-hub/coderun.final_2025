@@ -15,6 +15,7 @@ const nextConfig: NextConfig = {
           },
      },
      output: "export", // pentru static export
+     trailingSlash: true,
 };
 
 export default nextConfig;
