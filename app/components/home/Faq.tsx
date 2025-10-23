@@ -60,7 +60,7 @@ const Faq: React.FC = () => {
                className="relative w-full overflow-hidden bg-gradient-cyberpunk py-12 lg:py-20"
           >
                <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-coderun-dark to-transparent pointer-events-none z-30" />
-               {/* --- MODIFICARE: Trimitem noul prop 'startAnimatedBg' --- */}
+
                <CyberpunkBackground
                     isInView={isInView}
                     startAnimatedBg={contentAnimationComplete}

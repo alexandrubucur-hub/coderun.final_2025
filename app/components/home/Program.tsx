@@ -87,7 +87,7 @@ const Program: React.FC = () => {
                className="relative w-full overflow-hidden bg-coderun-dark pt-20 lg:pt-28 pb-8 lg:pb-28 px-4"
           >
                <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-coderun-dark to-transparent pointer-events-none z-30" />
-               {/* --- MODIFICARE: Trimitem noul prop 'startAnimatedBg' --- */}
+
                <PlexusBackground
                     isInView={isInView}
                     startAnimatedBg={contentAnimationComplete}

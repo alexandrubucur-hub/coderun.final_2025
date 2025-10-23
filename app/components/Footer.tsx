@@ -124,11 +124,9 @@ const Footer = () => {
                                         {footerLinks.participanti.map(
                                              (link) => (
                                                   <li key={link.name}>
-                                                       {/* --- MODIFICARE --- */}
-                                                       {/* Verificăm dacă linkul este cel pentru 'Rules' */}
                                                        {link.name ===
                                                        "Rules" ? (
-                                                            <a // Folosim <a> în loc de <Link>
+                                                            <a
                                                                  href={
                                                                       link.href
                                                                  }
@@ -139,12 +137,10 @@ const Footer = () => {
                                                                  {link.name}
                                                             </a>
                                                        ) : (
-                                                            // Pentru celelalte linkuri, folosim <Link> normal
                                                             <Link
                                                                  href={
                                                                       link.href
                                                                  }
-                                                                 // Adaugă target="_blank" și rel="..." dacă e link extern (ex: Registration)
                                                                  {...(link.href.startsWith(
                                                                       "http"
                                                                  )

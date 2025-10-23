@@ -41,7 +41,6 @@ export default function Contact() {
                     ref={sectionRef}
                     className="relative min-h-screen w-full overflow-hidden"
                >
-                    {/* --- MODIFICARE: Trimitem prop-ul generat de logica de mai sus --- */}
                     <CyberpunkBackground
                          isInView={isInView}
                          startAnimatedBg={startAnimatedBg}

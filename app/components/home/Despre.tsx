@@ -41,13 +41,11 @@ const Despre: React.FC = () => {
           >
                <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-coderun-dark to-transparent pointer-events-none z-30" />
 
-               {/* --- MODIFICARE: Trimitem noul prop 'startAnimatedBg' --- */}
                <PlexusBackground
                     isInView={isInView}
                     startAnimatedBg={contentAnimationComplete}
                />
 
-               {/* --- CONTINUTUL PAGINII --- */}
                <div className="relative z-20 flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
                     <motion.div
                          className="w-full max-w-7xl mx-auto"

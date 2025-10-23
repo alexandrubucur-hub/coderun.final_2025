@@ -45,6 +45,13 @@ const sponsorData = [
           description:
                "UNIQA Software Services, founded in 2006, delivers integrated IT and software solutions exclusively for UNIQA Insurance Group, combining nearshoring agility with deep domain expertise.",
      },
+     {
+          name: "Deviqon Labs",
+          logoUrl: "/images/sponsors/deviqon.svg",
+          websiteUrl: "https://www.deviqon.com/",
+          description:
+               "Deviqon Labs is a software services company headquartered in Cluj-Napoca, Romania. We stand out through the quality of the software we deliver, the dedication shown while crafting it and our deep rooted respect for our clients. Our approach to software engineering combines strong technical know-how, Agile delivery methods and a blend of code quality practices and metrics. Our innate communication skills, cultural affinity and the passion of our people, enable us to deliver real value for our customers.\nDeviqon Labs was established in 2019, when a handful of software engineers working together aimed at setting up a business in new emerging fields. We believe that the future will be shaped by technologies like video streaming, IoT, automation, robotics and AI. This makes our mission clear, which is to become a truly global and fully integrated services provider for IT related needs in those fields. This focus positions us well to provide cutting-edge solutions to clients in these rapidly growing fields.\nClient-centric approach: Our emphasis on quality, dedication, and respect for clients shows a commitment to building strong relationships and delivering successful projects. Teamwork and passion: We put the spotlight on the skills and passion of our people emphasizing the importance of collaboration and dedication within our company culture.",
+     },
 ];
 
 interface SponsorsListProps {
@@ -80,7 +87,7 @@ export default function SponsorsList({ isInView }: SponsorsListProps) {
 
                {/* --- Grila de Sponsori --- */}
                <motion.div
-                    className="max-w-7xl mx-auto flex flex-wrap justify-center items-start gap-8 px-4"
+                    className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 justify-items-center items-start gap-8 px-4"
                     variants={containerVariants}
                >
                     {sponsorData.map((sponsor) => (

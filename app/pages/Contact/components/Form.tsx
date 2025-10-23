@@ -74,7 +74,6 @@ export default function ContactForm({ isInView }: ContactFormProps) {
                     variants={itemVariants}
                >
                     <h2 className="text-4xl sm:text-5xl">
-                         {/* MODIFICARE: Oprim animația 'text-glow' */}
                          <span
                               className={`block FontGradient text-coderun-pink-light animate-pulse ${
                                    isInView ? "text-glow" : ""
@@ -92,7 +91,6 @@ export default function ContactForm({ isInView }: ContactFormProps) {
                     className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-12 px-4 items-stretch"
                     variants={containerVariants}
                >
-                    {/* --- Formularul de Contact --- */}
                     <motion.div
                          className="group lg:col-span-3"
                          variants={itemVariants}
@@ -103,7 +101,6 @@ export default function ContactForm({ isInView }: ContactFormProps) {
                                    onSubmit={sendEmail}
                                    className="flex flex-col h-full"
                               >
-                                   {/* ... (Restul formularului rămâne neschimbat) ... */}
                                    <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 flex-grow">
                                         <div>
                                              <label

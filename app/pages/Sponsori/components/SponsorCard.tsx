@@ -19,7 +19,7 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
      name,
      logoUrl,
      websiteUrl,
-     description = "", // Păstrăm default value
+     description = "",
      variants,
 }) => {
      const [isHovered, setIsHovered] = useState(false);
@@ -27,7 +27,6 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
 
      const isDescriptionVisible = isHovered || isPinned;
 
-     // --- Logica pentru linkul din descriere ---
      const linkTextToFind = "register.codingcontest.org";
      const linkUrl = "https://register.codingcontest.org";
      const containsLink = description.includes(linkTextToFind);
@@ -35,12 +34,11 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
      if (containsLink) {
           descriptionParts = description.split(linkTextToFind);
      }
-     // --- Sfârșit logică link ---
 
      return (
           <motion.div
                variants={variants}
-               className={`w-full max-w-md md:w-[360px] relative group isolate bg-coderun-dark/40 backdrop-blur-sm p-8 rounded-2xl border transition-all duration-300 ${
+               className={`w-full max-w-xl relative group isolate bg-coderun-dark/40 backdrop-blur-sm p-8 rounded-2xl border transition-all duration-300 ${
                     isDescriptionVisible
                          ? "border-coderun-pink shadow-[0_0_25px_rgba(250,88,182,0.7)]"
                          : "border-coderun-purple shadow-[0_0_15px_rgba(122,11,192,1)]"
@@ -78,7 +76,7 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
                     <button
                          onClick={() => {
                               setIsPinned(!isPinned);
-                              setIsHovered(false); // Reset hover state on pin toggle
+                              setIsHovered(false);
                          }}
                          className="absolute bottom-4 right-4 z-20 text-coderun-pink hover:text-coderun-pink-light transition-all duration-300"
                          aria-label="Toggle description"
@@ -93,7 +91,6 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
                          </motion.div>
                     </button>
 
-                    {/* --- Descrierea (Animată cu scroll) --- */}
                     <AnimatePresence>
                          {isDescriptionVisible && (
                               <motion.div
@@ -104,7 +101,7 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
                                    }}
                                    animate={{
                                         opacity: 1,
-                                        height: "auto", // Let content define height initially
+                                        height: "auto",
                                         marginTop: "16px",
                                    }}
                                    exit={{
@@ -116,11 +113,8 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
                                         duration: 0.3,
                                         ease: "easeInOut",
                                    }}
-                                   // Container pentru descriere cu scrollbar custom
                                    className="relative z-10 w-full overflow-hidden md:max-h-48 md:overflow-y-auto md:pr-2 scrollbar-thin scrollbar-thumb-coderun-pink/50 scrollbar-track-coderun-dark-purple/30 scrollbar-thumb-rounded-full scrollbar-track-rounded-full"
                               >
-                                   {/* --- MODIFICARE AICI --- */}
-                                   {/* Am adăugat clasa 'whitespace-pre-line' */}
                                    <p className="text-gray-300 text-sm leading-relaxed border-t border-coderun-dark-purple/50 pt-4 whitespace-pre-line">
                                         {containsLink ? (
                                              <>
@@ -141,7 +135,6 @@ const SponsorCard: React.FC<SponsorCardProps> = ({
                                              description
                                         )}
                                    </p>
-                                   {/* --- SFÂRȘIT MODIFICARE --- */}
                               </motion.div>
                          )}
                     </AnimatePresence>

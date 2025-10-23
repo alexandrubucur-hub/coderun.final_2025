@@ -67,7 +67,6 @@ const HeroSection: React.FC = () => {
                     isInView={isInView}
                     startAnimatedBg={contentAnimationComplete}
                >
-                    {/* MODIFICARE: Padding-top redus pe ecrane mici (pt-10) și mărit înapoi pe sm: (sm:pt-16) */}
                     <div className="relative z-20 flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8 pt-10 sm:pt-16 lg:pt-8">
                          <motion.div
                               className="w-full max-w-7xl mx-auto"
@@ -78,10 +77,6 @@ const HeroSection: React.FC = () => {
                                    setContentAnimationComplete(true);
                               }}
                          >
-                              {/* *
-                               * Layout-ul pentru Desktop (lg:) - Neschimbat
-                               *
-                               */}
                               <div className="hidden lg:grid lg:grid-cols-3 lg:gap-8 lg:items-center lg:justify-items-center">
                                    <motion.div
                                         className="flex justify-center lg:justify-end"
@@ -137,11 +132,6 @@ const HeroSection: React.FC = () => {
                                    </motion.div>
                               </div>
 
-                              {/* *
-                               * Layout-ul pentru Mobil (lg:hidden) - Aici sunt modificările
-                               *
-                               */}
-                              {/* MODIFICARE: Padding-top redus (pt-4) și mărit înapoi pe sm: (sm:pt-8) */}
                               <div className="lg:hidden flex flex-col items-center justify-center pt-12 sm:pt-16">
                                    <motion.div
                                         className="flex justify-center"
@@ -155,7 +145,6 @@ const HeroSection: React.FC = () => {
                                                        : "scale(1)",
                                              }}
                                         >
-                                             {/* MODIFICARE: Înălțime redusă (h-64) și mărită înapoi pe sm: (sm:h-80) și md: (md:h-96) */}
                                              <Image
                                                   src="/images/fatacr.webp"
                                                   alt="CodeRun Mascot"
@@ -173,12 +162,10 @@ const HeroSection: React.FC = () => {
                                    </motion.div>
                                    <motion.div
                                         ref={logoRef}
-                                        // MODIFICARE: Padding-top redus (pt-4) și mărit înapoi pe sm: (sm:pt-6)
                                         className="flex justify-center pt-4 sm:pt-6"
                                         variants={itemVariants}
                                    >
                                         <div className="relative group will-change-transform">
-                                             {/* MODIFICARE: Înălțime redusă (h-32) și mărită înapoi pe sm: (sm:h-44) și md: (md:h-60) */}
                                              <Image
                                                   src="/images/logo.webp"
                                                   alt="CodeRun"
@@ -190,18 +177,11 @@ const HeroSection: React.FC = () => {
                                    </motion.div>
                               </div>
 
-                              {/* *
-                               * Conținutul Comun (Titlu, Buton, Logo-uri Sponsori)
-                               *
-                               */}
                               <motion.div
-                                   // MODIFICARE: Margin-top redus (mt-8) și mărit înapoi pe sm: (sm:mt-12)
                                    className="flex justify-center mt-8 sm:mt-12 lg:mt-16"
                                    variants={itemVariants}
                               >
-                                   {/* MODIFICARE: Spațiere verticală redusă (space-y-4) și mărită înapoi pe sm: (sm:space-y-6) */}
                                    <div className="text-center space-y-4 sm:space-y-6">
-                                        {/* MODIFICARE: Dimensiune text redusă (text-2xl) și mărită înapoi pe sm: (sm:text-3xl) și md: (md:text-4xl) */}
                                         <h1 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-tight break-words">
                                              <span
                                                   className={`block FontGradient text-coderun-pink-light animate-pulse ${
@@ -213,14 +193,13 @@ const HeroSection: React.FC = () => {
                                                   JOIN THE CODERUNNERS
                                              </span>
                                         </h1>
-                                        {/* MODIFICARE: Padding-top redus (pt-2) și mărit înapoi pe sm: (sm:pt-4) */}
+
                                         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-2 sm:pt-4 pb-2">
                                              <Link
                                                   href="https://docs.google.com/forms/d/e/1FAIpQLSfx3XtM1F7L18XAbPUoHPy0rUSa3Z-Bo3YX-oV9guX-8hf_1Q/viewform?usp=dialog"
                                                   target="_blank"
                                                   rel="noopener noreferrer"
                                              >
-                                                  {/* MODIFICARE: Dimensiune text și padding/înălțime reduse și mărite înapoi pe sm:/md: */}
                                                   <GradientSlideButton
                                                        className="
                                                 px-6 sm:px-8 md:px-12
@@ -238,12 +217,11 @@ const HeroSection: React.FC = () => {
 
                                         <div className="grid grid-cols-3 items-center gap-10 sm:gap-20 lg:gap-24 mt-10 pb-16">
                                              {" "}
-                                             {/* <-- Modificat aici */}
                                              <Link
                                                   href="https://bestcj.ro/"
                                                   target="_blank"
                                                   rel="noopener noreferrer"
-                                                  className="justify-self-end" // <-- Adăugat aici
+                                                  className="justify-self-end"
                                              >
                                                   <Image
                                                        src="/images/best.png"
@@ -256,7 +234,7 @@ const HeroSection: React.FC = () => {
                                              </Link>
                                              <Link
                                                   href="/"
-                                                  className="justify-self-center" // <-- Adăugat aici
+                                                  className="justify-self-center"
                                              >
                                                   <Image
                                                        src="/images/cdrun.png"
@@ -271,7 +249,7 @@ const HeroSection: React.FC = () => {
                                                   href="https://www.utcluj.ro/"
                                                   target="_blank"
                                                   rel="noopener noreferrer"
-                                                  className="justify-self-start" // <-- Adăugat aici
+                                                  className="justify-self-start"
                                              >
                                                   <Image
                                                        src="/images/ut.png"
