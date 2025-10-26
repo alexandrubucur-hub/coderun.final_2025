@@ -52,6 +52,14 @@ const sponsorData = [
           description:
                "Deviqon Labs is a software services company headquartered in Cluj-Napoca, Romania. We stand out through the quality of the software we deliver, the dedication shown while crafting it and our deep rooted respect for our clients. Our approach to software engineering combines strong technical know-how, Agile delivery methods and a blend of code quality practices and metrics. Our innate communication skills, cultural affinity and the passion of our people, enable us to deliver real value for our customers.\nDeviqon Labs was established in 2019, when a handful of software engineers working together aimed at setting up a business in new emerging fields. We believe that the future will be shaped by technologies like video streaming, IoT, automation, robotics and AI. This makes our mission clear, which is to become a truly global and fully integrated services provider for IT related needs in those fields. This focus positions us well to provide cutting-edge solutions to clients in these rapidly growing fields.\nClient-centric approach: Our emphasis on quality, dedication, and respect for clients shows a commitment to building strong relationships and delivering successful projects. Teamwork and passion: We put the spotlight on the skills and passion of our people emphasizing the importance of collaboration and dedication within our company culture.",
      },
+     {
+          name: "Student Travel",
+          logoUrl: "/images/sponsors/student_travel.png",
+          websiteUrl:
+               "https://www.studenttravel.ro/programul-work-and-travel-usa/?gad_source=1&gad_campaignid=21778116380&gbraid=0AAAAAD1JpOLH6r2tIaPUCTXRkMd25pYmU&gclid=CjwKCAjwjffHBhBuEiwAKMb8pPCir_SFL_FWLd8azwFnNEE9_e-4SBx255piPyfcrzqDOmOI25m0hRoCVTQQAvD_BwE",
+          description:
+               "Student Travel Romania is an agency specialized in educational and cultural tourism for students and young people, active on the Romanian market since 1999. With headquarters in Cluj-Napoca and an extended network of offices in Bucharest, Brasov, Iasi, Timisoara, and other major cities, we’ve become the top choice for young people who want to study, work, or simply explore the world.",
+     },
 ];
 
 interface SponsorsListProps {
@@ -87,7 +95,7 @@ export default function SponsorsList({ isInView }: SponsorsListProps) {
 
                {/* --- Grila de Sponsori --- */}
                <motion.div
-                    className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 justify-items-center items-start gap-8 px-4"
+                    className="max-w-7xl mx-auto flex flex-wrap justify-center items-start gap-8 px-4"
                     variants={containerVariants}
                >
                     {sponsorData.map((sponsor) => (
