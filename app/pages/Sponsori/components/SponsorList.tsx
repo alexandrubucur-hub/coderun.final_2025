@@ -63,8 +63,7 @@ const sponsorData = [
      {
           name: "Used Products",
           logoUrl: "/images/sponsors/usedprod.png",
-          websiteUrl:
-               "https://usedproducts.ro/?gad_source=1&gad_campaignid=21955443091&gbraid=0AAAAACRYyoDKtDCIBsetUM24bEgl2M0k8&gclid=Cj0KCQjw9obIBhCAARIsAGHm1mSmu-ISWdpmp77_HNtaUXteWDZHVYTGK9-s7nNPG2_zmN4lf4y6kd8aAmfREALw_wcB",
+          websiteUrl: "https://usedproducts.ro/",
           description: "",
      },
 ];
