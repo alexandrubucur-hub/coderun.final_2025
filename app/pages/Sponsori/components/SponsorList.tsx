@@ -60,6 +60,13 @@ const sponsorData = [
           description:
                "Student Travel Romania is an agency specialized in educational and cultural tourism for students and young people, active on the Romanian market since 1999. With headquarters in Cluj-Napoca and an extended network of offices in Bucharest, Brasov, Iasi, Timisoara, and other major cities, we’ve become the top choice for young people who want to study, work, or simply explore the world.",
      },
+     {
+          name: "Used Products",
+          logoUrl: "/images/sponsors/usedprod.png",
+          websiteUrl:
+               "https://usedproducts.ro/?gad_source=1&gad_campaignid=21955443091&gbraid=0AAAAACRYyoDKtDCIBsetUM24bEgl2M0k8&gclid=Cj0KCQjw9obIBhCAARIsAGHm1mSmu-ISWdpmp77_HNtaUXteWDZHVYTGK9-s7nNPG2_zmN4lf4y6kd8aAmfREALw_wcB",
+          description: "",
+     },
 ];
 
 interface SponsorsListProps {
