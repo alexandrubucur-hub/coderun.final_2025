@@ -196,7 +196,7 @@ const HeroSection: React.FC = () => {
 
                                         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-2 sm:pt-4 pb-2">
                                              <Link
-                                                  href="https://docs.google.com/forms/d/e/1FAIpQLSfx3XtM1F7L18XAbPUoHPy0rUSa3Z-Bo3YX-oV9guX-8hf_1Q/viewform?usp=dialog"
+                                                  href="https://docs.google.com/forms/d/e/1FAIpQLScw1q4rwayA8KTitw434BI_XpaETITSHScYzF3wOysJCTxzVw/viewform"
                                                   target="_blank"
                                                   rel="noopener noreferrer"
                                              >
