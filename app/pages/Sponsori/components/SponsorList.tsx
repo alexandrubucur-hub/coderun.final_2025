@@ -64,7 +64,7 @@ const sponsorData = [
           name: "Used Products",
           logoUrl: "/images/sponsors/usedprod.png",
           websiteUrl: "https://usedproducts.ro/",
-          description: "",
+          description: "Used Products is an international network of stores specializing in the purchase, sale, and exchange of second-hand items, offering a smart and sustainable alternative to traditional retail. With a strong presence across Europe and a continuously growing community, Used Products combines the experience of physical retail with the advantages of modern technology, ensuring transparency, safety, and fair prices for its customers.\nIn Used Products stores, every item—whether it’s electronics, phones, watches, musical instruments, or gaming consoles—is inspected, tested, and guaranteed, allowing customers to enjoy high-quality products at attractive prices. At the same time, the company provides the opportunity to instantly sell used items, offering fair evaluations and fast payments, thus contributing to the circular economy and reducing resource waste.\nUsed Products stands for trust, value, and responsibility—a brand that promotes smart reuse and supports a more sustainable lifestyle. Through the professionalism and dynamism of its team, the company succeeds in bridging the gap between consumers’ current needs and the future of responsible commerce.",
      },
 ];
 
