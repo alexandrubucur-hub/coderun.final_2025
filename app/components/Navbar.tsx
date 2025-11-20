@@ -153,21 +153,14 @@ const Navbar: React.FC = () => {
 
                                    {/* Buton Dreapta */}
                                    <div className="flex flex-shrink-0 items-center">
-                                        <Link
-                                             href="https://docs.google.com/forms/d/e/1FAIpQLScw1q4rwayA8KTitw434BI_XpaETITSHScYzF3wOysJCTxzVw/viewform"
-                                             target="_blank"
-                                             rel="noopener noreferrer"
-                                             style={{ willChange: "transform" }}
+                                        {" "}
+                                        <GradientSlideButton
+                                             className="rounded-full bg-coderun-dark text-white border-2 border-coderun-accent hover:border-coderun-purple transition-all duration-300 shadow-lg shadow-coderun-purple/20 hover:shadow-coderun-pink/30"
+                                             colorFrom="#FA58B6"
+                                             colorTo="#7A0BC0"
                                         >
-                                             {" "}
-                                             <GradientSlideButton
-                                                  className="rounded-full bg-coderun-dark text-white border-2 border-coderun-accent hover:border-coderun-purple transition-all duration-300 shadow-lg shadow-coderun-purple/20 hover:shadow-coderun-pink/30"
-                                                  colorFrom="#FA58B6"
-                                                  colorTo="#7A0BC0"
-                                             >
-                                                  Register Now
-                                             </GradientSlideButton>
-                                        </Link>
+                                             Registration Closed
+                                        </GradientSlideButton>
                                    </div>
                               </div>
                          </div>
@@ -208,21 +201,13 @@ const Navbar: React.FC = () => {
                               );
                          })}
                          <div className="pt-6">
-                              <Link
-                                   href="https://docs.google.com/forms/d/e/1FAIpQLScw1q4rwayA8KTitw434BI_XpaETITSHScYzF3wOysJCTxzVw/viewform"
-                                   target="_blank"
-                                   rel="noopener noreferrer"
-                                   style={{ willChange: "transform" }}
-                                   className="block"
+                              <GradientSlideButton
+                                   className="w-full rounded-full bg-coderun-dark text-white border-2 border-coderun-purple hover:border-coderun-pink transition-all duration-300 shadow-lg shadow-coderun-purple/20 hover:shadow-coderun-pink/30"
+                                   colorFrom="#FA58B6"
+                                   colorTo="#7A0BC0"
                               >
-                                   <GradientSlideButton
-                                        className="w-full rounded-full bg-coderun-dark text-white border-2 border-coderun-purple hover:border-coderun-pink transition-all duration-300 shadow-lg shadow-coderun-purple/20 hover:shadow-coderun-pink/30"
-                                        colorFrom="#FA58B6"
-                                        colorTo="#7A0BC0"
-                                   >
-                                        Register Now
-                                   </GradientSlideButton>
-                              </Link>
+                                   Registration Closed
+                              </GradientSlideButton>
                          </div>
                     </div>
                </DisclosurePanel>

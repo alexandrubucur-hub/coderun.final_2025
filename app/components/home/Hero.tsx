@@ -195,24 +195,18 @@ const HeroSection: React.FC = () => {
                                         </h1>
 
                                         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-2 sm:pt-4 pb-2">
-                                             <Link
-                                                  href="https://docs.google.com/forms/d/e/1FAIpQLScw1q4rwayA8KTitw434BI_XpaETITSHScYzF3wOysJCTxzVw/viewform"
-                                                  target="_blank"
-                                                  rel="noopener noreferrer"
-                                             >
-                                                  <GradientSlideButton
-                                                       className="
+                                             <GradientSlideButton
+                                                  className="
                                                 px-6 sm:px-8 md:px-12
                                                 h-12 sm:h-14 md:h-16
                                                 text-2xl sm:text-3xl md:text-4xl
                                                 rounded-3xl bg-black text-white border-2 border-coderun-accent text-glitch hover:scale-110 hover:shadow-lg hover:shadow-coderun-pink/30 active:scale-95 will-change-transform
                                             "
-                                                       colorFrom="#FA58B6"
-                                                       colorTo="#7A0BC0"
-                                                  >
-                                                       Register Now
-                                                  </GradientSlideButton>
-                                             </Link>
+                                                  colorFrom="#FA58B6"
+                                                  colorTo="#7A0BC0"
+                                             >
+                                                  Registration Closed
+                                             </GradientSlideButton>
                                         </div>
 
                                         <div className="grid grid-cols-3 items-center gap-10 sm:gap-20 lg:gap-24 mt-10 pb-16">
