@@ -72,6 +72,19 @@ const sponsorData = [
           websiteUrl: "https://robotelier.utcluj.ro/",
           description: "",
      },
+     {
+          name: "Big Belly",
+          logoUrl: "/images/sponsors/bigbelly.png",
+          websiteUrl: "https://www.bigbelly-cluj.ro/",
+          description: "",
+     },
+     {
+          name: "Enigma",
+          logoUrl: "/images/sponsors/enigma.png",
+          websiteUrl: "https://restaurantenigma.ro/",
+          description: "",
+     },
+
 ];
 
 interface SponsorsListProps {
