@@ -1,0 +1,506 @@
+[
+  {
+    "code": "CR-DHRV",
+    "scores": {
+      "imi": 220,
+      "heits": 165,
+      "sabau": 192,
+      "ioan": 180,
+      "uniqa": 90,
+      "training": 50
+    },
+    "total": 897
+  },
+  {
+    "code": "CR-2G6G",
+    "scores": {
+      "imi": 171.6,
+      "heits": 210,
+      "sabau": 198,
+      "ioan": 135,
+      "uniqa": 95,
+      "training": 50
+    },
+    "total": 859.6
+  },
+  {
+    "code": "CR-5MFM",
+    "scores": {
+      "imi": 220,
+      "heits": 130,
+      "sabau": 195,
+      "ioan": 120,
+      "uniqa": 95,
+      "training": 50
+    },
+    "total": 810
+  },
+  {
+    "code": "CR-NF8B",
+    "scores": {
+      "imi": 193,
+      "heits": 175,
+      "sabau": 185,
+      "ioan": 118,
+      "uniqa": 85,
+      "training": 40
+    },
+    "total": 796
+  },
+  {
+    "code": "CR-XE6E",
+    "scores": {
+      "imi": 160.6,
+      "heits": 100,
+      "sabau": 175,
+      "ioan": 220,
+      "uniqa": 85,
+      "training": 50
+    },
+    "total": 790.6
+  },
+  {
+    "code": "CR-MX2P",
+    "scores": {
+      "imi": 154,
+      "heits": 220,
+      "sabau": 133,
+      "ioan": 120,
+      "uniqa": 95,
+      "training": 30
+    },
+    "total": 752
+  },
+  {
+    "code": "CR-Q2ZB",
+    "scores": {
+      "imi": 121,
+      "heits": 165,
+      "sabau": 198,
+      "ioan": 68,
+      "uniqa": 90,
+      "training": 50
+    },
+    "total": 692
+  },
+  {
+    "code": "CR-B44S",
+    "scores": {
+      "imi": 112.2,
+      "heits": 165,
+      "sabau": 190,
+      "ioan": 92,
+      "uniqa": 80,
+      "training": 30
+    },
+    "total": 669.2
+  },
+  {
+    "code": "CR-UQQ8",
+    "scores": {
+      "imi": 46,
+      "heits": 180,
+      "sabau": 197,
+      "ioan": 113,
+      "uniqa": 90,
+      "training": 40
+    },
+    "total": 666
+  },
+  {
+    "code": "CR-DPQN",
+    "scores": {
+      "imi": 112.2,
+      "heits": 160,
+      "sabau": 195,
+      "ioan": 53,
+      "uniqa": 75,
+      "training": 50
+    },
+    "total": 645.2
+  },
+  {
+    "code": "CR-89JQ",
+    "scores": {
+      "imi": 112.2,
+      "heits": 165,
+      "sabau": 40,
+      "ioan": 110,
+      "uniqa": 90,
+      "training": 50
+    },
+    "total": 567.2
+  },
+  {
+    "code": "CR-PLCJ",
+    "scores": {
+      "imi": 0,
+      "heits": 185,
+      "sabau": 185,
+      "ioan": 55,
+      "uniqa": 90,
+      "training": 40
+    },
+    "total": 555
+  },
+  {
+    "code": "CR-N6JQ",
+    "scores": {
+      "imi": 123.2,
+      "heits": 90,
+      "sabau": 195,
+      "ioan": 0,
+      "uniqa": 80,
+      "training": 50
+    },
+    "total": 538.2
+  },
+  {
+    "code": "CR-HYG4",
+    "scores": {
+      "imi": 121,
+      "heits": 95,
+      "sabau": 82,
+      "ioan": 120,
+      "uniqa": 60,
+      "training": 50
+    },
+    "total": 528
+  },
+  {
+    "code": "CR-C39N",
+    "scores": {
+      "imi": 110,
+      "heits": 90,
+      "sabau": 94,
+      "ioan": 65,
+      "uniqa": 90,
+      "training": 50
+    },
+    "total": 499
+  },
+  {
+    "code": "CR-RP7K",
+    "scores": {
+      "imi": 101.2,
+      "heits": 70,
+      "sabau": 163,
+      "ioan": 50,
+      "uniqa": 65,
+      "training": 40
+    },
+    "total": 489.2
+  },
+  {
+    "code": "CR-NDKQ",
+    "scores": {
+      "imi": 46.2,
+      "heits": 95,
+      "sabau": 54,
+      "ioan": 180,
+      "uniqa": 60,
+      "training": 40
+    },
+    "total": 475.2
+  },
+  {
+    "code": "CR-NVHZ",
+    "scores": {
+      "imi": 41.8,
+      "heits": 95,
+      "sabau": 80,
+      "ioan": 110,
+      "uniqa": 95,
+      "training": 50
+    },
+    "total": 471.8
+  },
+  {
+    "code": "CR-P589",
+    "scores": {
+      "imi": 105.6,
+      "heits": 60,
+      "sabau": 75,
+      "ioan": 60,
+      "uniqa": 85,
+      "training": 40
+    },
+    "total": 425.6
+  },
+  {
+    "code": "CR-9HYD",
+    "scores": {
+      "imi": 112.2,
+      "heits": 55,
+      "sabau": 59.5,
+      "ioan": 110,
+      "uniqa": 50,
+      "training": 30
+    },
+    "total": 416.7
+  },
+  {
+    "code": "CR-78P8",
+    "scores": {
+      "imi": 11,
+      "heits": 120,
+      "sabau": 44,
+      "ioan": 120,
+      "uniqa": 80,
+      "training": 40
+    },
+    "total": 415
+  },
+  {
+    "code": "CR-F8W9",
+    "scores": {
+      "imi": 61.6,
+      "heits": 40,
+      "sabau": 88,
+      "ioan": 120,
+      "uniqa": 45,
+      "training": 40
+    },
+    "total": 394.6
+  },
+  {
+    "code": "CR-59MU",
+    "scores": {
+      "imi": 70.4,
+      "heits": 75,
+      "sabau": 61,
+      "ioan": 53,
+      "uniqa": 95,
+      "training": 30
+    },
+    "total": 384.4
+  },
+  {
+    "code": "CR-WDLG",
+    "scores": {
+      "imi": 66,
+      "heits": 80,
+      "sabau": 93,
+      "ioan": 58,
+      "uniqa": 50,
+      "training": 30
+    },
+    "total": 377
+  },
+  {
+    "code": "CR-95ET",
+    "scores": {
+      "imi": 0,
+      "heits": 100,
+      "sabau": 173,
+      "ioan": 0,
+      "uniqa": 65,
+      "training": 30
+    },
+    "total": 368
+  },
+  {
+    "code": "CR-HZK7",
+    "scores": {
+      "imi": 101.2,
+      "heits": 60,
+      "sabau": 85,
+      "ioan": 0,
+      "uniqa": 80,
+      "training": 40
+    },
+    "total": 366.2
+  },
+  {
+    "code": "CR-A9NR",
+    "scores": {
+      "imi": 22,
+      "heits": 80,
+      "sabau": 93,
+      "ioan": 45,
+      "uniqa": 80,
+      "training": 40
+    },
+    "total": 360
+  },
+  {
+    "code": "CR-PN2B",
+    "scores": {
+      "imi": 15.4,
+      "heits": 85,
+      "sabau": 37,
+      "ioan": 70,
+      "uniqa": 95,
+      "training": 50
+    },
+    "total": 352.4
+  },
+  {
+    "code": "CR-8TVN",
+    "scores": {
+      "imi": 35.2,
+      "heits": 90,
+      "sabau": 20,
+      "ioan": 58,
+      "uniqa": 95,
+      "training": 50
+    },
+    "total": 348.2
+  },
+  {
+    "code": "CR-3TD6",
+    "scores": {
+      "imi": 41.8,
+      "heits": 90,
+      "sabau": 16,
+      "ioan": 58,
+      "uniqa": 70,
+      "training": 50
+    },
+    "total": 325.8
+  },
+  {
+    "code": "CR-WKV7",
+    "scores": {
+      "imi": 90.2,
+      "heits": 100,
+      "sabau": 0,
+      "ioan": 0,
+      "uniqa": 75,
+      "training": 50
+    },
+    "total": 315.2
+  },
+  {
+    "code": "CR-7B8T",
+    "scores": {
+      "imi": 35.2,
+      "heits": 20,
+      "sabau": 85,
+      "ioan": 57,
+      "uniqa": 70,
+      "training": 40
+    },
+    "total": 307.2
+  },
+  {
+    "code": "CR-693Z",
+    "scores": {
+      "imi": 33,
+      "heits": 15,
+      "sabau": 64,
+      "ioan": 53,
+      "uniqa": 80,
+      "training": 50
+    },
+    "total": 295
+  },
+  {
+    "code": "CR-GSRE",
+    "scores": {
+      "imi": 15.4,
+      "heits": 65,
+      "sabau": 63,
+      "ioan": 48,
+      "uniqa": 70,
+      "training": 30
+    },
+    "total": 291.4
+  },
+  {
+    "code": "CR-P27Q",
+    "scores": {
+      "imi": 41.8,
+      "heits": 55,
+      "sabau": 49,
+      "ioan": 0,
+      "uniqa": 85,
+      "training": 40
+    },
+    "total": 270.8
+  },
+  {
+    "code": "CR-AFL4",
+    "scores": {
+      "imi": 0,
+      "heits": 50,
+      "sabau": 69,
+      "ioan": 0,
+      "uniqa": 80,
+      "training": 50
+    },
+    "total": 249
+  },
+  {
+    "code": "CR-RUVN",
+    "scores": {
+      "imi": 15.4,
+      "heits": 35,
+      "sabau": 33,
+      "ioan": 40,
+      "uniqa": 75,
+      "training": 50
+    },
+    "total": 248.4
+  },
+  {
+    "code": "CR-QNL5",
+    "scores": {
+      "imi": 26.4,
+      "heits": 65,
+      "sabau": 20,
+      "ioan": 0,
+      "uniqa": 70,
+      "training": 50
+    },
+    "total": 231.4
+  },
+  {
+    "code": "CR-BKTS",
+    "scores": {
+      "imi": 0,
+      "heits": 40,
+      "sabau": 91,
+      "ioan": 0,
+      "uniqa": 70,
+      "training": 30
+    },
+    "total": 231
+  },
+  {
+    "code": "CR-TKJ9",
+    "scores": {
+      "imi": 0,
+      "heits": 60,
+      "sabau": 65,
+      "ioan": 0,
+      "uniqa": 75,
+      "training": 30
+    },
+    "total": 230
+  },
+  {
+    "code": "CR-SLYQ",
+    "scores": {
+      "imi": 15.4,
+      "heits": 20,
+      "sabau": 29,
+      "ioan": 25,
+      "uniqa": 55,
+      "training": 40
+    },
+    "total": 184.4
+  },
+  {
+    "code": "CR-2VUC",
+    "scores": {
+      "imi": 0,
+      "heits": 50,
+      "sabau": 0,
+      "ioan": 0,
+      "uniqa": 0,
+      "training": 50
+    },
+    "total": 100
+  }
+]

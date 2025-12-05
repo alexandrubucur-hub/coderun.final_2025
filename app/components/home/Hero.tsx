@@ -190,23 +190,27 @@ const HeroSection: React.FC = () => {
                                                             : ""
                                                   }`}
                                              >
-                                                  JOIN THE CODERUNNERS
+                                                  Thank you for a memorable
+                                                  edition! <br />
+                                                  See you next year.
                                              </span>
                                         </h1>
 
                                         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-2 sm:pt-4 pb-2">
-                                             <GradientSlideButton
-                                                  className="
+                                             <Link href="/pages/Clasament">
+                                                  <GradientSlideButton
+                                                       className="
                                                 px-6 sm:px-8 md:px-12
                                                 h-12 sm:h-14 md:h-16
                                                 text-2xl sm:text-3xl md:text-4xl
                                                 rounded-3xl bg-black text-white border-2 border-coderun-accent text-glitch hover:scale-110 hover:shadow-lg hover:shadow-coderun-pink/30 active:scale-95 will-change-transform
                                             "
-                                                  colorFrom="#FA58B6"
-                                                  colorTo="#7A0BC0"
-                                             >
-                                                  Registration Closed
-                                             </GradientSlideButton>
+                                                       colorFrom="#FA58B6"
+                                                       colorTo="#7A0BC0"
+                                                  >
+                                                       View Results
+                                                  </GradientSlideButton>
+                                             </Link>
                                         </div>
 
                                         <div className="grid grid-cols-3 items-center gap-10 sm:gap-20 lg:gap-24 mt-10 pb-16">
